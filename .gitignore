@@ -10,6 +10,7 @@ writable/logs/log-2022-04-27.log
 *.lnk
 *.zip
 *.log
+.env
 public/upload/*
 public/uploads/*
 writable/logs/log-2022-04-27.log
