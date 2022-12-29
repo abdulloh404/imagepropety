@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    
+
     <script src="page/assets/js/bootstrap.bundle.min.js"></script>
     <script src="page/assets/js/jquery.min.js"></script>
 

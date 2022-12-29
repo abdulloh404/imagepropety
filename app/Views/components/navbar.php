@@ -71,15 +71,17 @@
                     <li class="nav-item">
                         <a class="nav-link active-3" href="<?php echo front_link(3) ?>">โปรโมชั่น</a>
                     </li>
+                    <!-- adldev -->
                     <li class="nav-item">
-                        <a class="nav-link active-4" href="blog.php">ข่าวสารและกิจกรรม</a>
+                        <a class="nav-link active-4" href="<?php echo front_link(7) ?>">ข่าวสารและกิจกรรม</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active-5" href="about.php">เกี่ยวกับเรา</a>
+                        <a class="nav-link active-5" href="<?php echo front_link(11) ?>">เกี่ยวกับเรา</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active-6" href="contact-us.php">ติดต่อเรา</a>
+                        <a class="nav-link active-6" href="<?php echo front_link(8) ?>">ติดต่อเรา</a>
                     </li>
+                    <!-- adldev -->
                 </ul>
                 <ul class="navbar-nav mx-auto pe-3">
                     <li class="nav-item dropdown pt-xl-0 pt-lg-4 pt-md-4 pt-4">
