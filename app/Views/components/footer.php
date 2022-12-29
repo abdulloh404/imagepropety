@@ -49,6 +49,7 @@
     .img-container {
         width: 300px;
         height: auto;
+        align-items: center;
     }
 
     .img-container>img {
@@ -66,19 +67,19 @@
         <div class="row d-flex justify-content-center">
             <div class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-center align-items-center mb-xl-0 mb-lg-0 mb-md-5 mb-3">
                 <div class="img-container">
-                    <img src="assets/img/footer imp/image (23).png" class="w-100" alt="">
+                    <img src="page/assets/img/footer imp/image (23).png" class="w-100" alt="">
                     <div class="row g-1">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <img src="assets/img/logo-partner.png" class="w-100" alt="">
+                            <img src="page/assets/img/logo-partner.png" class="w-100" alt="">
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <img src="assets/img/logo-partner.png" class="w-100" alt="">
+                            <img src="page/assets/img/logo-partner.png" class="w-100" alt="">
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <img src="assets/img/logo-partner.png" class="w-100" alt="">
+                            <img src="page/assets/img/logo-partner.png" class="w-100" alt="">
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <img src="assets/img/logo-partner.png" class="w-100" alt="">
+                            <img src="page/assets/img/logo-partner.png" class="w-100" alt="">
                         </div>
                     </div>
                 </div>
