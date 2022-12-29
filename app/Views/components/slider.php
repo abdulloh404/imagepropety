@@ -81,62 +81,62 @@
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/001.png">
+                        <img src="page/assets/img/001.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/002.png">
+                        <img src="page/assets/img/002.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/003.png">
+                        <img src="page/assets/img/003.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/004.png">
+                        <img src="page/assets/img/004.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/005.png">
+                        <img src="page/assets/img/005.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/006.png">
+                        <img src="page/assets/img/006.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/007.png">
+                        <img src="page/assets/img/007.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/001.png">
+                        <img src="page/assets/img/001.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/003.png">
+                        <img src="page/assets/img/003.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/010.png">
+                        <img src="page/assets/img/010.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/011.png">
+                        <img src="page/assets/img/011.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
                     <a href="" class="swiper-slide">
-                        <img src="./assets/img/005.png">
+                        <img src="page/assets/img/005.png">
                         <span class="new-project">NEW PROJECT</span>
                         <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                     </a>
