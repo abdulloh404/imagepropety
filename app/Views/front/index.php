@@ -1,282 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php echo view('components/navbar') ?>
 
-<head>
-    <base href="<?php echo base_url() ?>" />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo titleWeb()?></title>
-
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="front/assets/style/bootstrap.min.css">
-
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="page/assets/img/icon/favicon.ico">
-
-    <!-- font -->
-    <link rel="stylesheet" href="front/assets/style/font.css">
-
-    <link rel="stylesheet" href="front/assets/style/slick.css">
-    <link rel="stylesheet" href="front/assets/style/slick-theme.css">
-    <link rel="stylesheet" href="front/assets/style/customSilde.css">
-
-    <link rel="stylesheet" href="front/assets/style/fontawesome.min.css">
-
-    <link rel="stylesheet" href="front/assets/style/style.css?rand=<?php echo rand() ?>">
-    <!-- วิทยุ -->
-    <link rel="stylesheet" href="front/assets/style/audio.css">
-    <link rel="stylesheet" href="front/asset/css/jquery-ui.css">
-
-    
-
-
-    <style>
-        /* img anime */
-        .wrapper-card-img img:hover {
-            transform: scale(1.1);
-        }
-
-        .wrapper-card-img img {
-            position: absolute;
-            top: 0%;
-            transition: 1s;
-        }
-
-        .wrapper-card-img {
-            position: relative;
-            padding-top: 56.25%;
-            overflow: hidden;
-        }
-
-        /* end img anime */
-        .text-muted {
-            font-size: 14px;
-            margin-bottom: 0px;
-        }
-
-        .cardMoblie{
-            height: 325px;
-            
-        }
-        .slick-dots li ul{
-            list-style-type: none !important;
-        }
-       
-        .responsive_img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            /* Prevent the image from stretching. So it crops the image to prevent from awkward stretching */
-        }
-        
-        
-    </style>
-
-</head>
-
-<body>
-    <!--navbar-->
-    <?php echo view('front/components/navbar') ?>
-    <!--navbar-->
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-xl-7 col-lg-7 col-md-12 col-12">
-                <div id="carouselExampleCaptions" class="carousel slide news-height" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <?php echo $btnCas?>
-                        
-                    </div>
-                    <div class="carousel-inner">
-                        <?php echo $paginationNews ?>
-
-                        
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-
+    <div class="container p-0">
+        <div id="carouselOurProject" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <iframe width="100%" src="https://www.youtube.com/embed/NFXydCGKrd8?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/banner-home-3.jpeg" class="d-block w-100" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/banner-home-4.jpg" class="d-block w-100" alt="">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselOurProject" data-bs-slide="prev">
+                <i class="fas fa-chevron-left fa-2x"></i>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselOurProject" data-bs-slide="next">
+                <i class="fas fa-chevron-right fa-2x"></i>
+            </button>
+        </div>
 
-
-            <div class="col-xl-5 col-lg-5 col-md-12 col-12 mobile-hidden">
-
+        <div class="search-content">
+            <form action="" method="post">
+                <div class="text-center mb-4">
+                    <h3>ค้นหาโครงการ</h3>
+                    <p>บ้านเดี่ยว ทาวน์โฮม คอนโด</p>
+                </div>
                 <div class="row">
-                    <?php echo $headerNews ?>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
+                        <div class="icon-location-search"><img src="assets/img/location.png" width="20" alt=""></div>
+                        <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
+                            <option selected>ทำเลที่ตั้ง</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <img src="" alt="">
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
+                        <div class="icon-home-search"><img src="assets/img/home-page.png" width="20" alt=""></div>
+                        <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
+                            <option selected>ประเภทโครงการ</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
+                        <div class="icon-tag-search"><img src="assets/img/price-tag.png" width="20" alt=""></div>
+                        <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
+                            <option selected>ช่วงราคา</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <div class="d-flex justify-content-center align-items-center mb-3 bg-white p-2">
+                            <img src="assets/img/search.png" width="20" alt="">
+                            <input type="text" class="form-control border-0 rounded-0 text-xl-center text-lg-center text-md-center text-start" style="font-size: x-large; width: 153px" id="" placeholder="พิมพ์คำค้นหา" required>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn-search">ค้นหา</button>
+                        </div>
+                    </div>
                 </div>
-                
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="header-slide">
+                <h2>ประเภทโครงการ</h2>
             </div>
         </div>
-
-        
-    </div>
-    
-    <!-- <div class="pagination slick-slider-dots" role="group" aria-label="Page navigation"></div> -->
-
-
-    <!-- วิทยุ -->
-
-    <br/>
-    <div class="container">
-        <div class="mt-3 newsMT">
-            <?php echo implode('', $newdivs) ?>
-        </div>
-    </div>
-    
-    <!-- ข่าวฮอตฮิต -->
-
-
-
-
-
-    <?php echo $navVideo ?>
-
-    <div style="clear: both;"></div>
-    <div class="container">
-        <hr>
+        <?php echo view('components/houseType') ?>
         <div class="row">
-            <?php echo getVdos() ?>
+            <div class="header-slide">
+                <h2>โครงการของเรา</h2>
+                <a href="ourproject-items.php">ดูทั้งหมด</a>
+            </div>
+        </div>
+        <?php echo view('components/slider') ?>
+    </div>
+
+    <div class="container-fluid" style="background: rgba(209, 174, 140, 0.1);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 col-md-7 col-12">
+                    <img class="w-100 pb-5 pt-5" src="assets/img/013.png" alt="">
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-5 col-12 my-auto">
+                    <div class="index-detail1 mb-5">
+                        <h1><b>ทำเลดี ที่อยู่สบาย</b></h1>
+                        <h4>กับเรา Image Property ครบที่เดียว</h4>
+                        <a href="blog-detail.php">อ่านต่อ คลิ๊ก <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="container">
+        <?php echo view('components/blog') ?>
+    </div>
 
-    <script>
-        /*
-	$( function() {
-		
-		$( '.close-video' ).click( function() {
-			
-			
-			setTimeout(function(){
-				 
-				$( this ).parents( '.modal' ).find( 'video' ).pause();
-			}, 7000);
-			 
-			
-		});
-		
-	});*/
-    </script>
-    <br>
-    <div class="container mt-4 mt-2">
-        <div class="col pt-5 text-center">
-            <img src="front/assets/png/ads.png" alt="" class="w-75 text-center">
+    <div class="container">
+        <div class="index-detail2">
+            <img src="assets/img/015.png" alt="">
+            <div class="index-detail2-text">
+                <h1><b>ชีวิตเลือกได้ แค่ตัวคุณ</b></h1>
+                <h3>กับทาวน์โฮม อาคารพาณิชย์ บ้านเดี่ยวของเรา</h3>
+            </div>
         </div>
     </div>
-    <br>
 
-    <!--footer-->
-
-
-    <!--footer-->
-
-    <!-- bootstrap bundle -->
-    <script src="front/assets/js/5d7fe28a13.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <script src="admin/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="admin/assets/plugins/jquery/jquery-ui.js"></script>
-    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
-
-    <script src="front/assets/js/slick.min.js"></script>
-    <script src="front/assets/js/fontawesome.min.js"></script>
-
-    <script type='text/javascript'>
-        $(document).ready(function() {
-
-            i = 1;
-            createPagination(i);
-            // setInterval(function() {
-
-            //     if (i == 1) {
-            //         i = 2;
-            //     } else if (i == 5) {
-            //         i = 1;
-            //     }
-
-
-            //     createPagination(i);
-            //     i++;
-
-            // }, 4000);
-
-            $('.newsSlide').slick({
-                autoplay: false,
-                dots: true,
-                appendDots: $('.slick-slider-dots'),
-                arrows: false,
-                draggable: true,
-                mobileFirst: true ,
-                
-
-            });
-
-            $('#pagination').on('click', 'a', function(e) {
-                e.preventDefault();
-
-                var link = $(this).attr('data-link');
-                $("#NewsLastestList").show("slide", {
-                    direction: "up"
-                }, 2000);
-                createPagination(link);
-
-            });
-
-            function createPagination(pageNum) {
-
-               
-
-                links = '<?php echo front_link(341, 'getLoadNewsPage', NULL, false) ?>';
-
-
-                $.ajax({
-                    url: links,
-                    type: 'get',
-                    data: {
-                        page: pageNum
-                    },
-                    dataType: 'json',
-                    success: function(responseData) {
-
-                        $('#pagination').html(responseData.pagination);
-
-                        paginationData(responseData.NewsData);
-                        paginationDateTime(responseData.dateTime);
-                    }
-                });
-            }
-
-            function paginationData(data) {
-                $('#NewsLastestList').empty();
-
-                for (news in data) {
-
-                    $('#NewsLastestList').append(data[news]);
-                }
-            }
-
-            function paginationDateTime(data) {
-                $('#NewsLastestDateTime').empty();
-
-                for (dateTime in data) {
-
-                    $('#NewsLastestDateTime').text(data[dateTime]);
-                }
-            }
-        });
-    </script>
-
-    <?php echo view('front/components/footer') ?>
-
-
-
-</body>
-
-</html>
+    <?php echo view('components/cookiesPopup') ?>

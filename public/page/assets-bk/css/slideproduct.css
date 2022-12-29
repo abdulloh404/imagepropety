@@ -1,0 +1,200 @@
+
+.gallery-slider_wrapper{
+width:100%;
+max-width:768px;
+margin:auto;
+}
+.gallery-slider_wrapper .owl-theme .owl-nav {
+margin:0;
+}
+.gallery-slider_wrapper .owl-theme .owl-nav [class*=owl-] {
+width:30px;
+height:120px;
+/* background: #ffb808; */
+font-size: 20px;
+color:#000;
+margin:0;
+padding: 0;
+border-radius: 0;
+}
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-prev:before,
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-next:before {
+position: absolute;
+line-height: 120px;
+width:30px;
+text-align: center;
+top:0;
+left:0;
+}
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-prev:before {
+content: "\f111";
+}
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-prev {
+position: absolute;
+top:0;
+left:-25px;
+}
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-next:before {
+content: "\f112";
+}
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+position: absolute;
+top:0;
+right:-24px;
+}
+.gallery-slider_wrapper .owl-theme .owl-nav [class*=owl-]:hover {
+background: #202020;
+color:#fff;
+}
+.gallery-slider_wrapper .single-gallery-carousel-thumbnail-box .item {
+position: relative;
+margin: 0 5px;
+height: 120px;
+}
+.gallery-slider_wrapper .single-gallery-carousel-thumbnail-box .item img {
+height: 100%;
+cursor: pointer;
+}
+
+.mfp-bottom-bar .mfp-title {
+display: none  !important;
+}
+
+/* .control-chevron-left {
+    position: relative;
+    top: -65px;
+    left: -2%;
+    color: blue;
+}
+
+.control-chevron-right {
+    position: relative;
+    top: -65px;
+    left: 99%;
+    color: blue;
+} */
+
+
+.gallery-slider_wrapper .owl-theme .owl-nav [class*=owl-] {
+    width: 30px;
+    height: 60px;
+    background: #ffb808;
+    font-size: 20px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+
+}
+
+.owl-prev {
+    clip-path: polygon(20% 0%, 20% 10%, 50% 10%, 50% 40%, 20% 40%, 20% 50%, 0% 25%);
+}
+
+
+
+.owl-next {
+    clip-path: polygon(0% 10%, 30% 10%, 30% 0%, 50% 25%, 30% 50%, 30% 40%, 0% 40%);
+}
+
+
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-prev {
+    position: absolute;
+    top: 45px;
+    left: -25px;
+}
+
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+    position: absolute;
+    top: 45px;
+    left: 25px;
+}
+
+.gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+    position: absolute;
+    top: 45px;
+    left: 345px;
+}
+
+.gallery-slider_wrapper .owl-theme .owl-nav [class*=owl-] {
+    width: 40px;
+    height: 45px;
+    background: #0082C8;
+    font-size: 20px;
+    color: #000;
+    margin: 5px;
+    padding: 0;
+    border-radius: 0;
+}
+
+
+@media (max-width: 575.98px) { 
+    .gallery-slider_wrapper .owl-theme .owl-nav [class*=owl-] {
+        width: 40px;
+        height: 45px;
+        background: #0082C8;
+        font-size: 20px;
+        color: blue;
+        margin: 5px;
+        padding: 0;
+        border-radius: 0;
+        display: none;
+    }
+    .gallery-slider_wrapper {
+        width: 100%;
+        max-width: 768px;
+        margin-top: 60px;
+    }
+
+   }
+
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+        position: absolute;
+        top: 45px;
+        left: 345px;
+        /* background-color: green; */
+    }
+    .gallery-slider_wrapper {
+        margin-top: 60px;
+    }
+
+    .card-body {
+        margin-top: 110px;
+    }
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+        position: absolute;
+        top: 45px;
+        left: 500px;
+        /* background-color: red; */
+    }
+ }
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+        position: absolute;
+        top: 45px;
+        left: 575px;
+        /* background-color: blue; */
+    }
+    .card-body {
+        margin-top: 0px;
+    }
+  }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+    .gallery-slider_wrapper .owl-carousel .owl-nav .owl-next {
+        position: absolute;
+        top: 45px;
+        left: 710px;
+        /* background-color: yellow; */
+    }
+ }

@@ -1,58 +1,82 @@
-body {
-    background-color: #fff;
-    font-family: 'Prompt', sans-serif;
-  }
-  
-
-
-  /* Main content */
-  .img-header {
-    width: 100%;
-    height: 80vh;
-    background-image: url(../img/page/header-about.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-
-  
-@media (max-width: 575.98px) { 
-  .img-header {
-    width: 100%;
-    height: 30vh;
-    background-image: url(../img/page/header-about.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
- }
-
-  /* End main content */
-
-  /* header-blog-detail */
-
-  .header-blog-detail {
-    margin: 40px 40px;
-  }
-  @media (max-width: 575.98px) { 
-    .header-blog-detail {
-      margin: 0px 0px;
+    .size-profile {
+        border-radius: 99px;
+        width: 40px;
+        height: 40px;
     }
-   }
-  /* end */
-
-/* Comment */
-.bg-comment {
-  background-color: #F2F2F2;
-  padding: 20px 0px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* End Comment */
-
-.avatar {
-  border: 99px;
-}
+    
+    .icon-share {
+        display: flex;
+        align-items: center;
+    }
+    
+    .icon-share a {
+        margin: 0 8px;
+        color: gray;
+        cursor: pointer;
+    }
+    
+    .icon-share img {
+        width: 30px;
+        height: 30px;
+    }
+    /* #box {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    
+    #btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 2;
+        display: grid;
+        place-content: center;
+        background: #fff;
+        color: gray;
+    }
+    
+    #list {
+        position: absolute;
+        left: 28px;
+        top: 15px;
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        z-index: 1;
+        transition: 0.5s ease-in-out;
+        overflow: hidden;
+        list-style: none;
+    }
+    
+    .act>#list {
+        left: 55px;
+        top: 0px;
+        width: 160px;
+        height: 40px;
+        padding: 5px;
+        background-color: #2E69B6;
+        border-radius: 30px;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .list-item {
+        border-radius: 100%;
+    }
+    
+    .list-item:hover ion-icon {
+        transform: scale(140%);
+    }
+    
+    .list-item-link {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-content: center;
+    } */

@@ -1,0 +1,312 @@
+body {
+    background-color: #fff;
+    font-family: 'Prompt', sans-serif;
+  }
+  
+  /* Narbar */
+  .goldcity-header {
+  font-weight: 700;
+  font-size: 25px;
+  padding: 0px 10px;
+  }
+  
+  .main-header-right a {
+    font-weight: 400;
+    color: #5b6e88;
+  }
+  
+  .horizontalMenu>.horizontalMenu-list>li>a {
+    display: block;
+    margin: 0px 2px;
+    border-radius: 0px;
+    text-decoration: none;
+    position: relative;
+    color: #000;
+    padding: 15px 12px 15px 12px;
+    font-weight: 300;
+    font-size: 17px;
+  }
+  
+  .set-mobile {
+    display: none;
+  }
+  
+  .set-pc {
+    display: inherit;
+  }
+  
+  .controltext-ad {
+    margin-top: 0;
+    margin-bottom: 0rem;
+    position: absolute;
+    top: 104%;
+    left: 66%;
+    font-size: 12px;
+  }
+  
+  .horizontalMenucontainer .main-header.hor-header {
+    height: 85px;
+  }
+  
+  @media (max-width: 575.98px) { 
+    .goldcity-header {
+      font-weight: 700;
+      font-size: 18px;
+      padding: 0px;
+      margin: 0px;
+      }
+      .main-header-right a {
+        font-weight: 300;
+        color: #5b6e88;
+        padding: 5px;
+        margin: 0px;
+      }
+      .set-mobile {
+        display: inherit;
+      }
+      
+      .set-pc {
+        display: none;
+      }
+   }
+  
+  /* End Navbar */
+
+  /* Main content */
+
+  .btn-fb {
+    background-color: #3C5A99;
+    color: #fff;
+    /* margin: 10px;
+    width: 100%; */
+
+  }
+
+  .btn-go {
+    background-color: #fff;
+    color: green;
+    /* margin: 10px;
+    width: 100%; */
+}
+
+  .dialog-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 20;
+  }
+  
+  .dialog-box {
+    position: absolute;
+    left: calc(50% - 275px);
+    top: calc(50% - 200px);
+    width: 450px;
+    background-color: #F1EFF5;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    /* padding-bottom: 20px; */
+    z-index: 25;
+    border-radius: 5px;
+  }
+  
+  .dialog-box .title-bar {
+    width: 100%;
+    background-color: white;
+  }
+  
+  .dialog-box .title-intro {
+    width: 340;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    color: grey;
+    background-color: white;
+  }
+  
+  .dialog-box .title {
+    background-color: white;
+    padding-left: 20px;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .dialog-box .close-icon {
+    padding-top: 13px;
+    color: black !important;
+}
+
+  .dialog-box .close-box {
+    position: absolute;
+    right: -26px;
+    top: -26px;
+    height: 40px;
+    width: 40px;
+    /* background-color: white; */
+    text-align: center;
+    border-radius: 99px;
+    border: 1px solid #000;
+    color: #000 !important;
+  }
+  
+  .dialog-box close-box:hover {
+    font: white;
+    background-color: LightGrey;
+  }
+  
+  .dialog-box .close-box:active {
+    color: white;
+    background-color: LightGrey;
+  }
+  
+  .dialog-box .close-icon {
+    padding-top: 13px;
+    color: MediumSeaGreen;
+  }
+  
+  .dialog-box .skill {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .dialog-box .short-description {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .dialog-box #skill-input,
+  .dialog-box #short-description-input,
+  .dialog-box #wiki-input {
+    width: 275px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: #8d959e;
+    /* Solid Grey */
+    color: white;
+  }
+  
+  .dialog-box ::-webkit-input-placeholder {
+    color: white;
+  }
+  
+  .dialog-box ::-webkit-textarea-placeholder {
+    color: white;
+  }
+  
+  .dialog-box :-moz-placeholder {
+    /* Firefox 18- */
+    
+    color: white;
+  }
+  
+  .dialog-box ::-moz-placeholder {
+    /* Firefox 19+ */
+    
+    color: white;
+  }
+  
+  .dialog-box :-ms-input-placeholder {
+    color: white;
+  }
+  
+  .dialog-box :-ms-textarea-placeholder {
+    color: white;
+  }
+  
+  .dialog-box .wiki {
+    padding: 60px 100px;
+  }
+  
+  .dialog-box .wiki-label {
+    padding-left: 5px;
+    line-height: 1.8;
+  }
+  
+  .dialog-box .save-cancel {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+  
+  .dialog-box .save {
+    display: inline-block;
+    border: 1px solid LightGrey;
+    width: 140px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: salmon;
+    color: white;
+  }
+  
+  .dialog-box .save:active {
+    background-color: LightGrey;
+  }
+  
+  .dialog-box .cancel {
+    float: right;
+    display: inline-block;
+    border: 1px solid LightGrey;
+    width: 140px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: black;
+    color: white;
+  }
+  
+  .dialog-box .cancel:active {
+    background-color: LightGrey;
+  }
+
+  @media (max-width: 575.98px) { 
+    .dialog-box .wiki {
+      padding: 20px 20px;
+    }
+    .dialog-box {
+      position: absolute;
+      left: calc(50% - 170px);
+      top: calc(50% - 200px);
+      width: 340px;
+      background-color: #F1EFF5;
+      color: rgb(0, 0, 0);
+      font-size: 14px;
+      padding-bottom: 20px;
+      z-index: 25;
+      border-radius: 5px;
+  }
+   }
+  /* End main content */
+
+/* Start Footer  */
+.follow-control .icons-list-item {
+    background-color: #424453;
+    color: #fff;
+    border-color: #424453;
+  }
+  
+  .follow-bg {
+    background-color: #F4F4F4;
+    padding-bottom:20px;
+  }
+  
+  .sub-footer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sub-footer .fa, .fas {
+    font-weight: 900;
+    font-size: 20px;
+  }
+  
+  /* End Footer */
