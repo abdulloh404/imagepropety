@@ -1,0 +1,116 @@
+body {
+    background-color: #FFFFFF;
+  }
+  
+
+
+  /*Box Products */
+
+  .text-discount {
+    text-decoration: line-through !important;
+    color: rgba(0,0,0,.13);
+  }
+
+  .product-sale .wishlist {
+    font-size: 22px !important;
+    background-color: #FFF;
+    padding: 0px 20px 0px;
+    top: -12px;
+    right: 12px;
+    border-radius:8px ;
+}
+
+.box-image > span {
+  background-color: #FFFFFF;
+  color: #fff;
+  left: 15px;
+  line-height: 1;
+  padding: 3px 10px 3px;
+  position: absolute;
+  top: 20px;
+  z-index: 98;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background: #F5F5F5;
+  background-clip: border-box;
+  border-radius: 5px;
+  border: 1px solid #00000014;
+  margin-bottom: 1.3rem;
+  box-shadow: -8px 12px 18px 0 #00000014;
+  height: 95% !important;
+}
+
+.colorinput span {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.colorinput-color {
+  border-radius: 99px;
+}
+
+  /*Box Products */
+
+  .text-price {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+
+  .control-color {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .control-color h6 {
+    margin-bottom: 0px;
+    margin-right: 5px;
+  }
+
+
+  .main-contect {
+    margin: 60px 0px;
+    padding: 20px 20px;
+  }
+
+  .bg-control {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px 0px;
+  }
+
+  .btn-comment-user {
+  border: 1px solid #e1e5ef;
+    border-radius: 99px;
+    margin: 5px;
+  }
+
+  .bg-button {
+    background-color: #0082C8;
+    color: #fff;
+  }
+
+  
+   @media (max-width: 575.98px) { 
+    .text-price {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 15px;
+    }
+ } 

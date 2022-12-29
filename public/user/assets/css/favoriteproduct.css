@@ -1,0 +1,106 @@
+
+body {
+  font-family: 'Noto Sans Thai', sans-serif;
+    background-color: #fff ;
+  }
+
+  .app-content {
+    background-color: #fff !important;
+  }
+  
+
+.flex-header-data {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+
+  /*Box Products */
+
+  .text-discount {
+    text-decoration: line-through !important;
+    color: rgba(0,0,0,.13);
+  }
+
+  .product-sale .wishlist {
+    font-size: 22px !important;
+    background-color: #FFF;
+    padding: 0px 20px 0px;
+    top: -12px;
+    right: 12px;
+    border-radius:8px ;
+}
+
+.box-image > span {
+  background-color: #5D6C8B;
+  color: #fff;
+  left: 15px;
+  line-height: 1;
+  padding: 3px 10px 3px;
+  position: absolute;
+  top: 20px;
+  z-index: 98;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.card-body {
+  background-color: #F5F5F5;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background: #F5F5F5;
+  background-clip: border-box;
+  border-radius: 5px;
+  border: 1px solid #00000014;
+  margin-bottom: 1.3rem;
+  box-shadow: -8px 12px 18px 0 #00000014;
+  height: 95% !important;
+}
+
+.colorinput span {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.colorinput-color {
+  border-radius: 99px;
+}
+
+  /*Box Products */
+
+  .mainproduct {
+    border: 1px solid;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 10px 0px;
+
+   }
+
+  @media (max-width: 575.98px) { 
+    .flex-header-data {
+        display: flex;
+        flex-direction: column;
+      }
+    .header-set {
+      display: none;
+      }
+      .flex-header-data div{
+        margin-top: 10px;
+      }
+      .card-body {
+        padding: 10px;
+      }
+      .card {
+        padding: 10px;
+      }
+   }
+

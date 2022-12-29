@@ -1,0 +1,795 @@
+
+<!-- DEBUG-VIEW START 3 APPPATH\Views\admin\aa_form.php -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<script type="text/javascript"  id="debugbar_loader" data-time="1652158224" src="http://fm91/index.php?debugbar"></script><script type="text/javascript"  id="debugbar_dynamic_script"></script><style type="text/css"  id="debugbar_dynamic_style"></style><script  class="kint-rich-script">void 0===window.kintShared&&(window.kintShared=function(){"use strict";var e={dedupe:function(e,n){return[].forEach.call(document.querySelectorAll(e),function(e){e!==(n=!n||!n.ownerDocument.contains(n)?e:n)&&e.parentNode.removeChild(e)}),n},runOnce:function(e){"complete"===document.readyState?e():window.addEventListener("load",e)}};return window.addEventListener("click",function(e){var n;e.target.classList.contains("kint-ide-link")&&((n=new XMLHttpRequest).open("GET",e.target.href),n.send(null),e.preventDefault())}),e}());
+void 0===window.kintRich&&(window.kintRich=function(){"use strict";var i={selectText:function(e){var t=window.getSelection(),a=document.createRange();a.selectNodeContents(e),t.removeAllRanges(),t.addRange(a)},each:function(e,t){Array.prototype.slice.call(document.querySelectorAll(e),0).forEach(t)},hasClass:function(e,t){return!!e.classList&&e.classList.contains(t=void 0===t?"kint-show":t)},addClass:function(e,t){e.classList.add(t=void 0===t?"kint-show":t)},removeClass:function(e,t){return e.classList.remove(t=void 0===t?"kint-show":t),e},toggle:function(e,t){var a=i.getChildren(e);a&&((t=void 0===t?i.hasClass(e):t)?i.removeClass(e):i.addClass(e),1===a.childNodes.length&&(a=a.childNodes[0].childNodes[0])&&i.hasClass(a,"kint-parent")&&i.toggle(a,t))},toggleChildren:function(e,t){var a=i.getChildren(e);if(a){var o=a.getElementsByClassName("kint-parent"),r=o.length;for(void 0===t&&(t=!i.hasClass(e));r--;)i.toggle(o[r],t)}},toggleAll:function(e){for(var t=document.getElementsByClassName("kint-parent"),a=t.length,o=!i.hasClass(e.parentNode);a--;)i.toggle(t[a],o)},switchTab:function(e){var t=e.previousSibling,a=0;for(i.removeClass(e.parentNode.getElementsByClassName("kint-active-tab")[0],"kint-active-tab"),i.addClass(e,"kint-active-tab");t;)1===t.nodeType&&a++,t=t.previousSibling;for(var o=e.parentNode.nextSibling.childNodes,r=0;r<o.length;r++)r===a?(i.addClass(o[r]),1===o[r].childNodes.length&&(t=o[r].childNodes[0].childNodes[0])&&i.hasClass(t,"kint-parent")&&i.toggle(t,!1)):i.removeClass(o[r])},mktag:function(e){return"<"+e+">"},openInNewWindow:function(e){var t=window.open();t&&(t.document.open(),t.document.write(i.mktag("html")+i.mktag("head")+i.mktag("title")+"Kint ("+(new Date).toISOString()+")"+i.mktag("/title")+i.mktag('meta charset="utf-8"')+document.getElementsByClassName("kint-rich-script")[0].outerHTML+document.getElementsByClassName("kint-rich-style")[0].outerHTML+i.mktag("/head")+i.mktag("body")+'<input style="width: 100%" placeholder="Take some notes!"><div class="kint-rich">'+e.parentNode.outerHTML+"</div>"+i.mktag("/body")),t.document.close())},sortTable:function(e,a){var t=e.tBodies[0];[].slice.call(e.tBodies[0].rows).sort(function(e,t){if(e=e.cells[a].textContent.trim().toLocaleLowerCase(),t=t.cells[a].textContent.trim().toLocaleLowerCase(),isNaN(e)||isNaN(t)){if(isNaN(e)&&!isNaN(t))return 1;if(isNaN(t)&&!isNaN(e))return-1}else e=parseFloat(e),t=parseFloat(t);return e<t?-1:t<e?1:0}).forEach(function(e){t.appendChild(e)})},showAccessPath:function(e){for(var t=e.childNodes,a=0;a<t.length;a++)if(i.hasClass(t[a],"access-path"))return void(i.hasClass(t[a],"kint-show")?i.removeClass(t[a]):(i.addClass(t[a]),i.selectText(t[a])))},showSearchBox:function(e){var t=e.querySelector(".kint-search");t&&(i.hasClass(t)?(i.removeClass(t),i.removeClass(e.parentNode,"kint-search-root")):(i.addClass(e),i.addClass(t),t.focus(),t.select(),i.search(e.parentNode,t.value)))},search:function(e,t){var a=e.querySelectorAll(".kint-search-match");[].forEach.call(a,function(e){i.removeClass(e,"kint-search-match")}),i.removeClass(e,"kint-search-match"),t.length?(i.addClass(e,"kint-search-root"),i.findMatches(e,t)):i.removeClass(e,"kint-search-root")},findMatches:function(e,t){var a,o,r,s=e.cloneNode(!0);if(s.querySelectorAll(".access-path").forEach(function(e){e.remove()}),-1!=s.textContent.toUpperCase().indexOf(t.toUpperCase())){for(n in i.addClass(e,"kint-search-match"),e.childNodes)if("DD"==e.childNodes[n].tagName){a=e.childNodes[n];break}if(a)if([].forEach.call(a.childNodes,function(e){"DL"==e.tagName?i.findMatches(e,t):"UL"==e.tagName&&(i.hasClass(e,"kint-tabs")?o=e.childNodes:i.hasClass(e,"kint-tab-contents")&&(r=e.childNodes))}),o&&r&&o.length==r.length)for(var n=0;n<o.length;n++){var l=!1;-1!=o[n].textContent.toUpperCase().indexOf(t.toUpperCase())?l=!0:((s=r[n].cloneNode(!0)).querySelectorAll(".access-path").forEach(function(e){e.remove()}),-1!=s.textContent.toUpperCase().indexOf(t.toUpperCase())&&(l=!0)),l&&(i.addClass(o[n],"kint-search-match"),[].forEach.call(r[n].childNodes,function(e){"DL"==e.tagName&&i.findMatches(e,t)}))}}},getParentByClass:function(e,t){for(void 0===t&&(t="kint-rich");(e=e.parentNode)&&!i.hasClass(e,t););return e},getParentHeader:function(e,t){for(var a=e.nodeName.toLowerCase();"dd"!==a&&"dt"!==a&&i.getParentByClass(e);)a=(e=e.parentNode).nodeName.toLowerCase();return i.getParentByClass(e)?(e="dd"===a&&t?e.previousElementSibling:e)&&"dt"===e.nodeName.toLowerCase()&&i.hasClass(e,"kint-parent")?e:void 0:null},getChildren:function(e){for(;(e=e.nextElementSibling)&&"dd"!==e.nodeName.toLowerCase(););return e},isFolderOpen:function(){if(i.folder&&i.folder.querySelector("dd.kint-foldout"))return i.hasClass(i.folder.querySelector("dd.kint-foldout").previousSibling)},initLoad:function(){i.style=window.kintShared.dedupe("style.kint-rich-style",i.style),i.script=window.kintShared.dedupe("script.kint-rich-script",i.script),i.folder=window.kintShared.dedupe(".kint-rich.kint-folder",i.folder);var t,e=document.querySelectorAll("input.kint-search");[].forEach.call(e,function(t){function e(e){window.clearTimeout(a),t.value!==o&&(a=window.setTimeout(function(){o=t.value,i.search(t.parentNode.parentNode,o)},500))}var a=null,o=null;t.removeEventListener("keyup",e),t.addEventListener("keyup",e)}),i.folder&&(t=i.folder.querySelector("dd"),[].forEach.call(document.querySelectorAll(".kint-rich.kint-file"),function(e){e.parentNode!==i.folder&&t.appendChild(e)}),document.body.appendChild(i.folder),i.addClass(i.folder))},keyboardNav:{targets:[],target:0,active:!1,fetchTargets:function(){var e=i.keyboardNav.targets[i.keyboardNav.target];i.keyboardNav.targets=[],i.each(".kint-rich nav, .kint-tabs>li:not(.kint-active-tab)",function(e){i.isFolderOpen()&&!i.folder.contains(e)||0===e.offsetWidth&&0===e.offsetHeight||i.keyboardNav.targets.push(e)}),e&&-1!==i.keyboardNav.targets.indexOf(e)&&(i.keyboardNav.target=i.keyboardNav.targets.indexOf(e))},sync:function(e){var t=document.querySelector(".kint-focused");t&&i.removeClass(t,"kint-focused"),i.keyboardNav.active&&(t=i.keyboardNav.targets[i.keyboardNav.target],i.addClass(t,"kint-focused"),e||i.keyboardNav.scroll(t))},scroll:function(e){var t,a;e!==i.folder.querySelector("dt > nav")&&(a=(t=function(e){return e.offsetTop+(e.offsetParent?t(e.offsetParent):0)})(e),i.isFolderOpen()?(e=i.folder.querySelector("dd.kint-foldout")).scrollTo(0,a-e.clientHeight/2):window.scrollTo(0,a-window.innerHeight/2))},moveCursor:function(e){for(i.keyboardNav.target+=e;i.keyboardNav.target<0;)i.keyboardNav.target+=i.keyboardNav.targets.length;for(;i.keyboardNav.target>=i.keyboardNav.targets.length;)i.keyboardNav.target-=i.keyboardNav.targets.length;i.keyboardNav.sync()},setCursor:function(e){if(i.isFolderOpen()&&!i.folder.contains(e))return!1;i.keyboardNav.fetchTargets();for(var t=0;t<i.keyboardNav.targets.length;t++)if(e===i.keyboardNav.targets[t])return i.keyboardNav.target=t,!0;return!1}},mouseNav:{lastClickTarget:null,lastClickTimer:null,lastClickCount:0,renewLastClick:function(){window.clearTimeout(i.mouseNav.lastClickTimer),i.mouseNav.lastClickTimer=window.setTimeout(function(){i.mouseNav.lastClickTarget=null,i.mouseNav.lastClickTimer=null,i.mouseNav.lastClickCount=0},250)}},style:null,script:null,folder:null};return window.addEventListener("click",function(e){var t=e.target,a=t.nodeName.toLowerCase();if(i.mouseNav.lastClickTarget&&i.mouseNav.lastClickTimer&&i.mouseNav.lastClickCount)return t=i.mouseNav.lastClickTarget,void(1===i.mouseNav.lastClickCount?(i.toggleChildren(t.parentNode),i.keyboardNav.setCursor(t),i.keyboardNav.sync(!0),i.mouseNav.lastClickCount++,i.mouseNav.renewLastClick()):(i.toggleAll(t),i.keyboardNav.setCursor(t),i.keyboardNav.sync(!0),i.keyboardNav.scroll(t),window.clearTimeout(i.mouseNav.lastClickTimer),i.mouseNav.lastClickTarget=null,i.mouseNav.lastClickTarget=null,i.mouseNav.lastClickCount=0));if(i.getParentByClass(t)){if("dfn"===a)i.selectText(t);else if("th"===a)return void(e.ctrlKey||i.sortTable(t.parentNode.parentNode.parentNode,t.cellIndex));if((t=i.getParentHeader(t))&&(i.keyboardNav.setCursor(t.querySelector("nav")),i.keyboardNav.sync(!0)),t=e.target,"li"===a&&"kint-tabs"===t.parentNode.className)"kint-active-tab"!==t.className&&i.switchTab(t),(t=i.getParentHeader(t,!0))&&(i.keyboardNav.setCursor(t.querySelector("nav")),i.keyboardNav.sync(!0));else if("nav"===a)"footer"===t.parentNode.nodeName.toLowerCase()?(i.keyboardNav.setCursor(t),i.keyboardNav.sync(!0),t=t.parentNode,i.hasClass(t)?i.removeClass(t):i.addClass(t)):(i.toggle(t.parentNode),i.keyboardNav.fetchTargets(),i.mouseNav.lastClickCount=1,i.mouseNav.lastClickTarget=t,i.mouseNav.renewLastClick());else if(i.hasClass(t,"kint-popup-trigger")){var o=t.parentNode;if("footer"===o.nodeName.toLowerCase())o=o.previousSibling;else for(;o&&!i.hasClass(o,"kint-parent");)o=o.parentNode;i.openInNewWindow(o)}else i.hasClass(t,"kint-access-path-trigger")?i.showAccessPath(t.parentNode):i.hasClass(t,"kint-search-trigger")?i.showSearchBox(t.parentNode):i.hasClass(t,"kint-search")||("pre"===a&&3===e.detail?i.selectText(t):i.getParentByClass(t,"kint-source")&&3===e.detail?i.selectText(i.getParentByClass(t,"kint-source")):i.hasClass(t,"access-path")?i.selectText(t):"a"!==a&&(t=i.getParentHeader(t))&&(i.toggle(t),i.keyboardNav.fetchTargets()))}},!0),window.addEventListener("keydown",function(e){if(e.target===document.body&&!e.altKey&&!e.ctrlKey){if(68===e.keyCode){if(i.keyboardNav.active)i.keyboardNav.active=!1;else if(i.keyboardNav.active=!0,i.keyboardNav.fetchTargets(),0===i.keyboardNav.targets.length)return void(i.keyboardNav.active=!1);return i.keyboardNav.sync(),void e.preventDefault()}if(i.keyboardNav.active){if(9===e.keyCode)return i.keyboardNav.moveCursor(e.shiftKey?-1:1),void e.preventDefault();if(38===e.keyCode||75===e.keyCode)return i.keyboardNav.moveCursor(-1),void e.preventDefault();if(40===e.keyCode||74===e.keyCode)return i.keyboardNav.moveCursor(1),void e.preventDefault();var t,a,o=i.keyboardNav.targets[i.keyboardNav.target];if("li"===o.nodeName.toLowerCase()){if(32===e.keyCode||13===e.keyCode)return i.switchTab(o),i.keyboardNav.fetchTargets(),i.keyboardNav.sync(),void e.preventDefault();if(39===e.keyCode||76===e.keyCode)return i.keyboardNav.moveCursor(1),void e.preventDefault();if(37===e.keyCode||72===e.keyCode)return i.keyboardNav.moveCursor(-1),void e.preventDefault()}o=o.parentNode,65===e.keyCode?(i.showAccessPath(o),e.preventDefault()):"footer"===o.nodeName.toLowerCase()&&i.hasClass(o.parentNode,"kint-rich")?32===e.keyCode||13===e.keyCode?(i.hasClass(o)?i.removeClass(o):i.addClass(o),e.preventDefault()):37===e.keyCode||72===e.keyCode?(i.removeClass(o),e.preventDefault()):39!==e.keyCode&&76!==e.keyCode||(i.addClass(o),e.preventDefault()):32===e.keyCode||13===e.keyCode?(i.toggle(o),i.keyboardNav.fetchTargets(),e.preventDefault()):39!==e.keyCode&&76!==e.keyCode&&37!==e.keyCode&&72!==e.keyCode||(t=37===e.keyCode||72===e.keyCode,i.hasClass(o)?i.toggleChildren(o,t):!t||(a=i.getParentHeader(o.parentNode.parentNode,!0))&&(i.keyboardNav.setCursor((o=a).querySelector("nav")),i.keyboardNav.sync()),i.toggle(o,t),i.keyboardNav.fetchTargets(),e.preventDefault())}}},!0),i}()),window.kintShared.runOnce(window.kintRich.initLoad);
+void 0===window.kintMicrotimeInitialized&&(window.kintMicrotimeInitialized=1,window.addEventListener("load",function(){"use strict";var a={},t=Array.prototype.slice.call(document.querySelectorAll("[data-kint-microtime-group]"),0);t.forEach(function(t){var i,e;t.querySelector(".kint-microtime-lap")&&(i=t.getAttribute("data-kint-microtime-group"),e=parseFloat(t.querySelector(".kint-microtime-lap").innerHTML),t=parseFloat(t.querySelector(".kint-microtime-avg").innerHTML),void 0===a[i]&&(a[i]={}),(void 0===a[i].min||a[i].min>e)&&(a[i].min=e),(void 0===a[i].max||a[i].max<e)&&(a[i].max=e),a[i].avg=t)}),t.forEach(function(t){var i,e,r,o,n=t.querySelector(".kint-microtime-lap");null!==n&&(i=parseFloat(n.textContent),o=t.dataset.kintMicrotimeGroup,e=a[o].avg,r=a[o].max,o=a[o].min,i===(t.querySelector(".kint-microtime-avg").textContent=e)&&i===o&&i===r||(n.style.background=e<i?"hsl("+(40-40*((i-e)/(r-e)))+", 100%, 65%)":"hsl("+(40+80*(e===o?0:(e-i)/(e-o)))+", 100%, 65%)"))})}));
+</script><style  class="kint-rich-style">.kint-rich{font-size:13px;overflow-x:auto;white-space:nowrap;background:rgba(255,255,255,0.9)}.kint-rich.kint-folder{position:fixed;bottom:0;left:0;right:0;z-index:999999;width:100%;margin:0;display:block}.kint-rich.kint-folder dd.kint-foldout{max-height:calc(100vh - 100px);padding-right:8px;overflow-y:scroll;display:none}.kint-rich.kint-folder dd.kint-foldout.kint-show{display:block}.kint-rich::selection,.kint-rich::-moz-selection,.kint-rich::-webkit-selection{background:#aaa;color:#1d1e1e}.kint-rich .kint-focused{box-shadow:0 0 3px 2px red}.kint-rich,.kint-rich::before,.kint-rich::after,.kint-rich *,.kint-rich *::before,.kint-rich *::after{box-sizing:border-box;border-radius:0;color:#1d1e1e;float:none !important;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;line-height:15px;margin:0;padding:0;text-align:left}.kint-rich{margin:8px 0}.kint-rich dt,.kint-rich dl{width:auto}.kint-rich dt,.kint-rich div.access-path{background:#f8f8f8;border:1px solid #d7d7d7;color:#1d1e1e;display:block;font-weight:bold;list-style:none outside none;overflow:auto;padding:4px}.kint-rich dt:hover,.kint-rich div.access-path:hover{border-color:#aaa}.kint-rich>dl dl{padding:0 0 0 12px}.kint-rich dt.kint-parent>nav,.kint-rich>footer>nav{background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAxNTAiPjxwYXRoIGQ9Ik02IDdoMThsLTkgMTV6bTAgMzBoMThsLTkgMTV6bTAgNDVoMThsLTktMTV6bTAgMzBoMThsLTktMTV6bTAgMTJsMTggMThtLTE4IDBsMTgtMTgiIGZpbGw9IiM1NTUiLz48cGF0aCBkPSJNNiAxMjZsMTggMThtLTE4IDBsMTgtMTgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjNTU1Ii8+PC9zdmc+") no-repeat scroll 0 0/15px 75px transparent;cursor:pointer;display:inline-block;height:15px;width:15px;margin-right:3px;vertical-align:middle}.kint-rich dt.kint-parent:hover>nav,.kint-rich>footer>nav:hover{background-position:0 25%}.kint-rich dt.kint-parent.kint-show>nav,.kint-rich>footer.kint-show>nav{background-position:0 50%}.kint-rich dt.kint-parent.kint-show:hover>nav,.kint-rich>footer.kint-show>nav:hover{background-position:0 75%}.kint-rich dt.kint-parent.kint-locked>nav{background-position:0 100%}.kint-rich dt.kint-parent+dd{display:none;border-left:1px dashed #d7d7d7}.kint-rich dt.kint-parent.kint-show+dd{display:block}.kint-rich var,.kint-rich var a{color:#06f;font-style:normal}.kint-rich dt:hover var,.kint-rich dt:hover var a{color:red}.kint-rich dfn{font-style:normal;font-family:monospace;color:#1d1e1e}.kint-rich pre{color:#1d1e1e;margin:0 0 0 12px;padding:5px;overflow-y:hidden;border-top:0;border:1px solid #d7d7d7;background:#f8f8f8;display:block;word-break:normal}.kint-rich .kint-popup-trigger,.kint-rich .kint-access-path-trigger,.kint-rich .kint-search-trigger{background:rgba(29,30,30,0.8);border-radius:3px;height:16px;font-size:16px;margin-left:5px;font-weight:bold;width:16px;text-align:center;float:right !important;cursor:pointer;color:#f8f8f8;position:relative;overflow:hidden;line-height:17.6px}.kint-rich .kint-popup-trigger:hover,.kint-rich .kint-access-path-trigger:hover,.kint-rich .kint-search-trigger:hover{color:#1d1e1e;background:#f8f8f8}.kint-rich dt.kint-parent>.kint-popup-trigger{line-height:19.2px}.kint-rich .kint-search-trigger{font-size:20px}.kint-rich input.kint-search{display:none;border:1px solid #d7d7d7;border-top-width:0;border-bottom-width:0;padding:4px;float:right !important;margin:-4px 0;color:#1d1e1e;background:#f8f8f8;height:24px;width:160px;position:relative;z-index:100}.kint-rich input.kint-search.kint-show{display:block}.kint-rich .kint-search-root ul.kint-tabs>li:not(.kint-search-match){background:#f8f8f8;opacity:0.5}.kint-rich .kint-search-root dl:not(.kint-search-match){opacity:0.5}.kint-rich .kint-search-root dl:not(.kint-search-match)>dt{background:#f8f8f8}.kint-rich .kint-search-root dl:not(.kint-search-match) dl,.kint-rich .kint-search-root dl:not(.kint-search-match) ul.kint-tabs>li:not(.kint-search-match){opacity:1}.kint-rich div.access-path{background:#f8f8f8;display:none;margin-top:5px;padding:4px;white-space:pre}.kint-rich div.access-path.kint-show{display:block}.kint-rich footer{padding:0 3px 3px;font-size:9px;background:transparent}.kint-rich footer>.kint-popup-trigger{background:transparent;color:#1d1e1e}.kint-rich footer nav{height:10px;width:10px;background-size:10px 50px}.kint-rich footer>ol{display:none;margin-left:32px}.kint-rich footer.kint-show>ol{display:block}.kint-rich a{color:#1d1e1e;text-shadow:none;text-decoration:underline}.kint-rich a:hover{color:#1d1e1e;border-bottom:1px dotted #1d1e1e}.kint-rich ul{list-style:none;padding-left:12px}.kint-rich ul:not(.kint-tabs) li{border-left:1px dashed #d7d7d7}.kint-rich ul:not(.kint-tabs) li>dl{border-left:none}.kint-rich ul.kint-tabs{margin:0 0 0 12px;padding-left:0;background:#f8f8f8;border:1px solid #d7d7d7;border-top:0}.kint-rich ul.kint-tabs>li{background:#f8f8f8;border:1px solid #d7d7d7;cursor:pointer;display:inline-block;height:24px;margin:2px;padding:0 12px;vertical-align:top}.kint-rich ul.kint-tabs>li:hover,.kint-rich ul.kint-tabs>li.kint-active-tab:hover{border-color:#aaa;color:red}.kint-rich ul.kint-tabs>li.kint-active-tab{background:#f8f8f8;border-top:0;margin-top:-1px;height:27px;line-height:24px}.kint-rich ul.kint-tabs>li:not(.kint-active-tab){line-height:20px}.kint-rich ul.kint-tabs li+li{margin-left:0}.kint-rich ul.kint-tab-contents>li{display:none}.kint-rich ul.kint-tab-contents>li.kint-show{display:block}.kint-rich dt:hover+dd>ul>li.kint-active-tab{border-color:#aaa;color:red}.kint-rich dt>.kint-color-preview{width:16px;height:16px;display:inline-block;vertical-align:middle;margin-left:10px;border:1px solid #d7d7d7;background-color:#ccc;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="%23FFF" d="M0 0h1v2h1V1H0z"/></svg>');background-size:100%}.kint-rich dt>.kint-color-preview:hover{border-color:#aaa}.kint-rich dt>.kint-color-preview>div{width:100%;height:100%}.kint-rich table{border-collapse:collapse;empty-cells:show;border-spacing:0}.kint-rich table *{font-size:12px}.kint-rich table dt{background:none;padding:2px}.kint-rich table dt .kint-parent{min-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kint-rich table td,.kint-rich table th{border:1px solid #d7d7d7;padding:2px;vertical-align:center}.kint-rich table th{cursor:alias}.kint-rich table td:first-child,.kint-rich table th{font-weight:bold;background:#f8f8f8;color:#1d1e1e}.kint-rich table td{background:#f8f8f8;white-space:pre}.kint-rich table td>dl{padding:0}.kint-rich table pre{border-top:0;border-right:0}.kint-rich table thead th:first-child{background:none;border:0}.kint-rich table tr:hover>td{box-shadow:0 0 1px 0 #aaa inset}.kint-rich table tr:hover var{color:red}.kint-rich table ul.kint-tabs li.kint-active-tab{height:20px;line-height:17px}.kint-rich pre.kint-source{margin-left:-1px}.kint-rich pre.kint-source[data-kint-filename]:before{display:block;content:attr(data-kint-filename);margin-bottom:4px;padding-bottom:4px;border-bottom:1px solid #f8f8f8}.kint-rich pre.kint-source>div:before{display:inline-block;content:counter(kint-l);counter-increment:kint-l;border-right:1px solid #aaa;padding-right:8px;margin-right:8px}.kint-rich pre.kint-source>div.kint-highlight{background:#f8f8f8}.kint-rich .kint-microtime-lap{text-shadow:-1px 0 #aaa,0 1px #aaa,1px 0 #aaa,0 -1px #aaa;color:#f8f8f8;font-weight:bold}.kint-rich .kint-focused{box-shadow:0 0 3px 2px red}.kint-rich dt{font-weight:normal}.kint-rich dt.kint-parent{margin-top:4px}.kint-rich dl dl{margin-top:4px;padding-left:25px;border-left:none}.kint-rich>dl>dt{background:#f8f8f8}.kint-rich ul{margin:0;padding-left:0}.kint-rich ul:not(.kint-tabs)>li{border-left:0}.kint-rich ul.kint-tabs{background:#f8f8f8;border:1px solid #d7d7d7;border-width:0 1px 1px 1px;padding:4px 0 0 12px;margin-left:-1px;margin-top:-1px}.kint-rich ul.kint-tabs li,.kint-rich ul.kint-tabs li+li{margin:0 0 0 4px}.kint-rich ul.kint-tabs li{border-bottom-width:0;height:25px}.kint-rich ul.kint-tabs li:first-child{margin-left:0}.kint-rich ul.kint-tabs li.kint-active-tab{border-top:1px solid #d7d7d7;background:#fff;font-weight:bold;padding-top:0;border-bottom:1px solid #fff !important;margin-bottom:-1px}.kint-rich ul.kint-tabs li.kint-active-tab:hover{border-bottom:1px solid #fff}.kint-rich ul>li>pre{border:1px solid #d7d7d7}.kint-rich dt:hover+dd>ul{border-color:#aaa}.kint-rich pre{background:#fff;margin-top:4px;margin-left:25px}.kint-rich .kint-source{margin-left:-1px}.kint-rich .kint-source .kint-highlight{background:#cfc}.kint-rich .kint-parent.kint-show>.kint-search{border-bottom-width:1px}.kint-rich table td{background:#fff}.kint-rich table td>dl{padding:0;margin:0}.kint-rich table td>dl>dt.kint-parent{margin:0}.kint-rich table td:first-child,.kint-rich table td,.kint-rich table th{padding:2px 4px}.kint-rich table dd,.kint-rich table dt{background:#fff}.kint-rich table tr:hover>td{box-shadow:none;background:#cfc}
+</style>
+<base href="http://fm91" />
+
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+		<meta name="Author" content="Spruko Technologies Private Limited">
+		<meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4"/>
+
+		<!-- Title -->
+		<title>สวพ.FM91</title>
+
+		<!-- Favicon -->
+		<link rel="icon" href="admin/assets/img/brand/favicon.png" type="image/x-icon"/>
+
+		<!-- Icons css -->
+		<link href="admin/assets/css/icons.css" rel="stylesheet">
+
+		<!-- Bootstrap css -->
+		<link href="admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Internal Select2 css -->
+		<link href="admin/assets/plugins/select2/css/select2.min.css" rel="stylesheet">
+
+		<!---Internal Fileupload css-->
+		<link href="admin/assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css"/>
+
+		<!---Internal Fancy uploader css-->
+		<link href="admin/assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
+		
+		<!--Internal  Datetimepicker-slider css -->
+		<link href="admin/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css" rel="stylesheet">
+		<link href="admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css" rel="stylesheet">
+		<link href="admin/assets/plugins/pickerjs/picker.min.css" rel="stylesheet">
+
+		<!-- Internal Spectrum-colorpicker css -->
+		<link href="admin/assets/plugins/spectrum-colorpicker/spectrum.css" rel="stylesheet">
+
+		<!--  Right-sidemenu css -->
+		<link href="admin/assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+		<!--  Custom Scroll bar-->
+		<link href="admin/assets/plugins/mscrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"/>
+
+		<!--- Style css-->
+		<link href="admin/assets/css/style.css" rel="stylesheet">
+		<link href="admin/assets/css/style-dark.css" rel="stylesheet">
+		<link href="admin/assets/css/boxed.css" rel="stylesheet">
+		<link href="admin/assets/css/dark-boxed.css" rel="stylesheet">
+
+		<!---Skinmodes css-->
+		<link href="admin/assets/css/skin-modes.css" rel="stylesheet" />
+
+		<!--- Animations css-->
+		<link href="admin/assets/css/animate.css" rel="stylesheet">
+		 <script src="admin/assets/plugins/jquery/jquery.min.js"></script>
+	 
+		
+<script type="text/javascript">
+    AppHelper = {};
+    
+
+
+</script>
+<!--
+
+
+
+<script src="http://fm91/form/app.all.js"></script>	-->
+		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+	</head>
+
+	<body class="main-body">
+
+		<!-- Loader -->
+		<div id="global-loader">
+			<img src="admin/assets/img/loader.svg" class="loader-img" alt="Loader">
+		</div>
+		<!-- /Loader -->
+
+		<!-- Page -->
+		<div class="page">
+
+			<!-- เมนู -->
+			<!-- main-header opened -->
+			<!-- DEBUG-VIEW START 1 APPPATH\Views\admin\component\top_bar.php -->
+<div class="main-header nav nav-item hor-header">
+
+
+	<div class="container">
+		<div class="main-header-left ">
+			<a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
+			<a class="header-brand" href="http://fm91">
+				<img src="admin/assets/img/brand/logo-white.png" class="desktop-dark">
+				<img src="admin/assets/img/logo.jpg" style="border-radius: 99px;" class="desktop-logo">
+				<img src="admin/assets/img/logo.jpg" style="border-radius: 99px;" class="desktop-logo-1">
+				<img src="admin/assets/img/brand/favicon-white.png" class="desktop-logo-dark">
+			</a>
+			<div class="main-header-center  ms-4">
+				<input class="form-control" placeholder="Search for anything..." type="search"><button class="btn"><i class="fe fe-search"></i></button>
+			</div>
+		</div><!-- search -->
+		<div class="main-header-right">
+			<ul class="nav nav-item  navbar-nav-right ms-auto">
+				<li class="nav-link" id="bs-example-navbar-collapse-1">
+					<form class="navbar-form" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search">
+							<span class="input-group-btn">
+								<button type="reset" class="btn btn-default">
+									<i class="fas fa-times"></i>
+								</button>
+								<button type="submit" class="btn btn-default nav-link resp-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+								</button>
+							</span>
+						</div>
+					</form>
+				</li>
+				<li class="dropdown nav-item main-header-message ">
+					<button class="btn btn-light btn-block" style="background-color: #fff;margin-right: 0px;padding-right: 0px;">สวัสดีคุณ :</button>
+				</li>
+				<li class="dropdown main-profile-menu nav nav-item nav-link">
+					<p style="padding-top: 15px;">Admin</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	
+</div>
+
+
+
+<div class="sticky">
+				<div class="horizontal-main hor-menu clearfix side-header">
+					<div class="horizontal-mainwrapper container clearfix">
+						<!--Nav-->
+						<nav class="horizontalMenu clearfix">
+							<ul class="horizontalMenu-list">
+								<!-- <li aria-haspopup="true"><a href="index.html" class=""><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg>แดชบอร์ด</a></li>
+								<li aria-haspopup="true"><a href="addnew.html" class=""><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" class="side-menu__icon" viewBox="0 0 24 24" ><g><rect fill="none"/></g><g><g/><g><path d="M21,5c-1.11-0.35-2.33-0.5-3.5-0.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5S2.45,4.9,1,6v14.65 c0,0.25,0.25,0.5,0.5,0.5c0.1,0,0.15-0.05,0.25-0.05C3.1,20.45,5.05,20,6.5,20c1.95,0,4.05,0.4,5.5,1.5c1.35-0.85,3.8-1.5,5.5-1.5 c1.65,0,3.35,0.3,4.75,1.05c0.1,0.05,0.15,0.05,0.25,0.05c0.25,0,0.5-0.25,0.5-0.5V6C22.4,5.55,21.75,5.25,21,5z M3,18.5V7 c1.1-0.35,2.3-0.5,3.5-0.5c1.34,0,3.13,0.41,4.5,0.99v11.5C9.63,18.41,7.84,18,6.5,18C5.3,18,4.1,18.15,3,18.5z M21,18.5 c-1.1-0.35-2.3-0.5-3.5-0.5c-1.34,0-3.13,0.41-4.5,0.99V7.49c1.37-0.59,3.16-0.99,4.5-0.99c1.2,0,2.4,0.15,3.5,0.5V18.5z"/><path d="M11,7.49C9.63,6.91,7.84,6.5,6.5,6.5C5.3,6.5,4.1,6.65,3,7v11.5C4.1,18.15,5.3,18,6.5,18 c1.34,0,3.13,0.41,4.5,0.99V7.49z" opacity=".3"/></g><g><path d="M17.5,10.5c0.88,0,1.73,0.09,2.5,0.26V9.24C19.21,9.09,18.36,9,17.5,9c-1.28,0-2.46,0.16-3.5,0.47v1.57 C14.99,10.69,16.18,10.5,17.5,10.5z"/><path d="M17.5,13.16c0.88,0,1.73,0.09,2.5,0.26V11.9c-0.79-0.15-1.64-0.24-2.5-0.24c-1.28,0-2.46,0.16-3.5,0.47v1.57 C14.99,13.36,16.18,13.16,17.5,13.16z"/><path d="M17.5,15.83c0.88,0,1.73,0.09,2.5,0.26v-1.52c-0.79-0.15-1.64-0.24-2.5-0.24c-1.28,0-2.46,0.16-3.5,0.47v1.57 C14.99,16.02,16.18,15.83,17.5,15.83z"/></g></g></svg>เพิ่มข่าว</a></li>
+								<li aria-haspopup="true"><a href="editnew.html" class=""><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6.26 9L12 13.47 17.74 9 12 4.53z" opacity=".3"/><path d="M19.37 12.8l-7.38 5.74-7.37-5.73L3 14.07l9 7 9-7zM12 2L3 9l1.63 1.27L12 16l7.36-5.73L21 9l-9-7zm0 11.47L6.26 9 12 4.53 17.74 9 12 13.47z"/></svg>จัดการข่าว</a></li>
+								<li aria-haspopup="true"><a href="userlist.html" class=""><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>จัดการผู้ใช้</a></li>
+								 -->
+								
+								
+				<li aria-haspopup="true">
+					<a href="http://fm91/dashboard/?token=62e1b9957c761f8eb8460159286291d5a5239366015a8a5722327c5533fc3639" >แดชบอร์ด</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/editnew/?token=5387689dbba3258298c777549e285c739445426ec68fb05b02b30a5885b6fb9f" >จัดการข่าว</a><ul class="sub-menu">
+				<li aria-haspopup="true">
+					<a href="http://fm91/cat/?token=9d4b7fdad57a997a833e62034e5c15715a895529a8560ca3194a1f0f55c2b29d" >จัดการหมวดหมู่</a>
+				</li>
+			</ul>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/userlist/?token=e42bab97a26998ac7ce5a2c196970cd423e98164df450d75e691dfcd8d09ab38" >จัดการผู้ใช้</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/memberlist/?token=275c01698b08cfc590117f5ccf1ef96ce09e2b9af6245a1c0a650250d4805e80" >จัดการสมาชิก</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/managetemplates/?token=42a86a2ea83fbabff64029fdafe50bfd856a40ddd5132f666c3454f1b47bac11" >จัดการเทมเพลต</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/lostitems/?token=3b37e648c95b939dc678102009c079b0fcf5ccbbb47706445c0c6d2c125ede5c" >ของหายได้คืน</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/publicrelations/?token=e0b6669dafd5c68db881c48079390b6627744c6ed2f9535422f5b98c62a7ac8a" >ประชาสัมพันธ์</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/editvideo/?token=bb8bee155ef66fcbf488bb46ac6d3ff97c49c4e623dafa126efcc64ab7f39815" >วีดีโอ</a>
+				</li>
+			
+				<li aria-haspopup="true">
+					<a href="http://fm91/radiostation/?token=0f795968faf2bab027820bb911e3fa02c8bb739b87de2f69bdf676b50a7d5dee" >สถานีวิทยุในเครือบริษัท</a>
+				</li>
+			<li aria-haspopup="true"><a href="http://fm91/logout" style="border: 1px solid #fff;padding: 7px 12px;margin: 7px 5px 5px 5px;border-radius: 30px;background: #FDD400;color: #fff;">ออกจากระบบ</a></li>							</ul>
+						</nav>
+						<!--Nav-->
+					</div>
+				</div>
+			</div>
+
+
+			
+			<style>
+				@media (max-width: 575.98px) { 
+					.main-header-right {
+						display: none;
+					}
+				}
+
+
+				@media (max-width: 767.98px) { 
+					.main-header-right {
+						display: none;
+					}
+				}
+			</style>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\Views\admin\component\top_bar.php -->
+			<!-- /main-header -->
+
+
+
+			<!--Horizontal-main -->
+			
+			<!--Horizontal-main -->
+			<!-- เมนู -->
+
+			<div class="jumps-prevent" style="padding-top: 53.2969px;"></div>
+			<div class="main-content horizontal-content">
+			
+				<script type="text/javascript" src="http://fm91/form/jquery.form.js"></script>
+				<script src="http://fm91/form/sweetalert2@11.js"></script>
+				<!-- content -->
+				<div class="container">
+					<div class="card">
+						<div class="card-body">
+								<div class="card  box-shadow-0">
+									<div class="card-header">
+										<h2>จัดการข่าว</h2>
+										<p class="mb-2">กรุณากรอกข้อมูลให้ครบถ้วน และตรวจสอบความถูกต้อง</p>
+									</div>
+									<div class="card-body pt-0">
+									
+									
+	<script type="text/javascript" src="formConfig/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="formConfig/custom.js"></script>	
+	<link href="formConfig/redactor.css" rel="stylesheet" />
+			
+	<script>
+	$( function() {
+		
+		$('textarea')
+			.redactor({
+				buttons: [
+					'formatting',
+					'|',
+					'alignleft',
+					'aligncenter',
+					'alignright',
+					'justify',
+					'|',
+					'bold',
+					'italic',
+					'underline',
+					'|',
+					'unorderedlist',
+					'orderedlist',
+					'|',
+					/*'image', 'video',*/ 'link',
+					'|',
+					'html',
+				],
+				formattingTags: ['p', 'pre', 'h3', 'h4'],
+				minHeight: 100,
+				changeCallback: function (e) {
+					var editor = this.$editor.next('textarea');
+					if ($(editor).attr('required')) {
+						$('form[data-toggle="validator"]').bootstrapValidator('revalidateField', $(editor).attr('name'));
+					}
+				},
+			});
+	});
+	</script>
+						
+									
+										
+			<form method="post" action="http://fm91/editnew/save/19"  enctype="multipart/form-data" >
+
+				<input type="hidden" name="token" value="d3a36e148c596412829ceda6b88534dc146144e7f175f1cb18e890aaa31b9330"><input type="hidden" name="action" value="1" />
+				<input type="hidden" name="pri_key" value="19" />
+				
+				<link href="admin/assets/css/dropzone.css" rel="stylesheet" />
+				<div class="">
+					<div class="">
+						
+						<div class="">
+
+							<div class="row row-sm">
+								<div class="form-group">
+
+									<div id="notes-dropzone" class="post-dropzone">
+
+										<div class="post-file-dropzone-scrollbar hide">
+											<div class="post-file-previews clearfix b-t">
+												<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left">
+													<div class="preview" style="width:85px;">
+														<img data-dz-thumbnail class="upload-thumbnail-sm" />
+														<span data-dz-remove="" class="delete">×</span>
+														<div class="progress progress-striped upload-progress-sm active m0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+															<div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<button class="btn btn-default upload-file-button pull-left btn-sm round" type="button" style="color:#7988a2"><i class="fa fa-camera"></i> อัพโหลดไฟล์</button>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<div class="row row-sm">
+								<div class="form-group post-dropzone">
+									<div class="post-file-dropzone-scrollbar hide">
+										<div class="post-file-previews clearfix b-t" id="irtbomknyhjfduy" style="display: grid;align-items: center;grid-template-columns: auto auto auto auto auto auto;">  
+					<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left" id="">
+						<div class="preview" style="width:85px;">
+							<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="upload/tb_news/9f72f490d98f18216aa343cf04bb4716.jpg">
+							
+							<a href="http://fm91/editnew/deleteImgs/17/?token=b19f72ff2ca45bef72a65b115e6c5941765d580c5188ce36e8d2261d45f2fead">
+								<span data-dz-remove="" class="delete"><span>x</span></span>
+							</a>
+							
+							<div class="progress upload-progress-sm active m0 progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+
+							</div>
+						</div>
+					</div>
+				
+					<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left" id="">
+						<div class="preview" style="width:85px;">
+							<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="upload/tb_news/4d5518f38b64a5db6cb5ebd7d0dc32ad.jpg">
+							
+							<a href="http://fm91/editnew/deleteImgs/18/?token=c16f9baab1fea3e6c757ddf67e8f8f5206adb159ccd2363f5d23a0fa651128be">
+								<span data-dz-remove="" class="delete"><span>x</span></span>
+							</a>
+							
+							<div class="progress upload-progress-sm active m0 progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+
+							</div>
+						</div>
+					</div>
+				
+					<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left" id="">
+						<div class="preview" style="width:85px;">
+							<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="upload/tb_news/7b4c6fbc5ac4acc887a084cbf876e7ea.jpg">
+							
+							<a href="http://fm91/editnew/deleteImgs/19/?token=8cca2dacf3c9485a954c90328b7b9bba4b08075f8ee5dd830f38ed3e90e53c56">
+								<span data-dz-remove="" class="delete"><span>x</span></span>
+							</a>
+							
+							<div class="progress upload-progress-sm active m0 progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+
+							</div>
+						</div>
+					</div>
+				
+					<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left" id="">
+						<div class="preview" style="width:85px;">
+							<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="upload/tb_news/8dc5f0bfbe8366043cfaebde299275df.jpg">
+							
+							<a href="http://fm91/editnew/deleteImgs/20/?token=2a5f54b953a62f8473117a01c8a3fa50ed9d7e4a2e8aba5de965070dd33d5dbc">
+								<span data-dz-remove="" class="delete"><span>x</span></span>
+							</a>
+							
+							<div class="progress upload-progress-sm active m0 progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<script type="text/javascript">
+				
+				// getnerat random small alphabet 
+					getRandomAlphabet = function (length) {
+						var result = '',
+								chars = 'abcdefghijklmnopqrstuvwxyz';
+						for (var i = length; i > 0; --i)
+							result += chars[Math.round(Math.random() * (chars.length - 1))];
+						return result;
+					};
+					var data = {};
+					
+					AppHelper.csrfTokenName = "token";
+					AppHelper.csrfHash = "d3a36e148c596412829ceda6b88534dc146144e7f175f1cb18e890aaa31b9330";
+					
+					data[AppHelper.csrfTokenName] = AppHelper.csrfHash;
+
+					$.ajaxSetup({
+						data: data
+					});
+
+					attachDropzoneWithForm = function (dropzoneTarget, uploadUrl, validationUrl, options) {
+						var $dropzonePreviewArea = $(dropzoneTarget),
+							$dropzonePreviewScrollbar = $dropzonePreviewArea.find(".post-file-dropzone-scrollbar"),
+							$previews = $dropzonePreviewArea.find(".post-file-previews"),
+							$postFileUploadRow = $dropzonePreviewArea.find(".post-file-upload-row"),
+							$uploadFileButton = $dropzonePreviewArea.find(".upload-file-button"),
+							$submitButton = $dropzonePreviewArea.find("button[type=submit]"),
+							previewsContainer = getRandomAlphabet(15),
+							postFileUploadRowId = getRandomAlphabet(15),
+							uploadFileButtonId = getRandomAlphabet(15);
+
+						//set random id with the previws
+						$previews.attr("id", previewsContainer);
+						$postFileUploadRow.attr("id", postFileUploadRowId);
+						$uploadFileButton.attr("id", uploadFileButtonId);
+
+
+						//get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+						var previewNode = document.querySelector("#" + postFileUploadRowId);
+						previewNode.id = "";
+						var previewTemplate = previewNode.parentNode.innerHTML;
+						previewNode.parentNode.removeChild(previewNode);
+
+						if (!options)
+							options = {};
+
+						var postFilesDropzone = new Dropzone(dropzoneTarget, {
+							uploadMultiple: false,
+							url: uploadUrl,
+							thumbnailWidth: 80,
+							thumbnailHeight: 80,
+							parallelUploads: 20,
+							maxFilesize: 3000,
+							previewTemplate: previewTemplate,
+							
+							autoQueue: true,
+							previewsContainer: "#" + previewsContainer,
+							clickable: "#" + uploadFileButtonId,
+							maxFiles: options.maxFiles ? options.maxFiles : 1000,
+							sending: function (file, xhr, formData) {
+								formData.append(AppHelper.csrfTokenName, AppHelper.csrfHash);
+							},
+							init: function () {
+								this.on("maxfilesexceeded", function (file) {
+									this.removeAllFiles();
+									this.addFile(file);
+								});
+
+
+							},
+
+							processing: function () {
+								$submitButton.prop("disabled", true);
+							
+							},
+							queuecomplete: function () {
+								$submitButton.prop("disabled", false);
+							
+							},
+							reset: function (file) {
+								$dropzonePreviewScrollbar.addClass("hide");
+							},
+							fallback: function () {
+								//add custom fallback;
+								$("body").addClass("dropzone-disabled");
+
+								$uploadFileButton.click(function () {
+									//fallback for old browser
+									$(this).html("<i class='fa fa-camera'></i> Add more");
+
+									$dropzonePreviewScrollbar.removeClass("hide");
+									initScrollbar($dropzonePreviewScrollbar, {setHeight: 90});
+
+									$dropzonePreviewScrollbar.parent().removeClass("hide");
+									$previews.prepend("<div class='clearfix p5 file-row'><button type='button' class='btn btn-xs btn-danger pull-left mr10 remove-file'><i class='fa fa-times'></i></button> <input class='pull-left' type='file' name='manualFiles[]' /></div>");
+
+								});
+								$previews.on("click", ".delete", function () {
+									alert( 'dsfas' );
+									$(this).parent().remove();
+								});
+							},
+							success: function ( file, response ) {
+							
+								setTimeout(function () {
+									$( file.previewElement )
+										.find( ".progress-striped" )
+										.removeClass( "progress-striped" )
+										.addClass( "progress-bar-success" );
+
+
+									data = $.parseJSON( response );
+									AppHelper.csrfHash = data.csrfHash;
+									window.location = data.redirect;
+									
+								}, 500 );
+							}
+						});
+
+						return postFilesDropzone;
+					};
+
+					$( document ).ready(function () {
+						var uploadUrl = "http://fm91/editnew/uploadUrl/19";
+						var validationUri = "";
+						var dropzone = attachDropzoneWithForm("#notes-dropzone", uploadUrl, validationUri );
+					});
+				</script>
+
+			
+				<div class="">
+					<div class="">
+						<div class="">
+							
+						</div>
+						<div class="">
+							<div class="row"><div class=""><div class="form-group"><span>หัวเรื่องข่าว</span> <span class="text-danger" data-name="name" style="color: red;">*</span><input class="form-control" value="JAPAN" type="text" name="name" placeholder="หัวเรื่องข่าว"></div></div><div class=""><div class="form-group"><span>หัวเรื่องย่อย</span> <input class="form-control" value="" type="text" name="sub_name" placeholder="หัวเรื่องย่อย"></div></div><div class=""><div class="form-group"><span>หมวดหมู่ย่อย</span> <span class="text-danger" data-name="cat_id" style="color: red;">*</span><select class="form-control select2-no-search" name="cat_id"><option  value="1">ข่าวกีฬา</option><option  value="2">ข่าวต่างประเทศ</option><option  value="3">ข่าวฮอตฮิต</option><option  value="4">ข่าวจราจรล่าสุด</option><option  value="5">นวัตกรรม</option><option selected value="6">ไลฟ์สไตล์</option><option  value="7">ข่าวบันเทิง</option></select></div></div><div class=""><div class="form-group"><span>แท็ก</span> <span class="text-danger" data-name="tag" style="color: red;">*</span><input class="form-control" value="" type="text" name="tag" placeholder="แท็ก"></div></div><div class=""><div class="form-group"><span>เนื้อหาข่าว</span> <span class="text-danger" data-name="detail" style="color: red;">*</span><textarea name="detail" class="form-control" rows="3">&lt;p&gt;JAPAN&lt;/p&gt;</textarea>
+
+						</div></div><div class=""><div class="form-group"><span>กำหนดเผยแพร่เนื้อหา</span> <span class="text-danger" data-name="release_time" style="color: red;">*</span>
+					<div class="row row-sm" mt-3="">
+						<div class="input-group">
+							<div class="input-group-text">
+								<div class="input-group-text">
+									<i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+								</div>
+							</div><input name="release_time" class="form-control" id="datetimepicker2" type="text" placeholder="MM/DD/YYYY">
+						</div>
+					</div>
+				</div></div><div class=""><div class="form-group"><span>เผยแพร่เนื้อหา</span> <span class="text-danger" data-name="status_id" style="color: red;">*</span>
+						
+						<div class="main-toggle-group-demo">								
+							<div class="main-toggle" style="background-color: #FDD400;">
+								<span></span><input class="toggle-val" type="hidden" value="1" name="status_id" />
+							</div>									
+						</div>
+						
+						<script>
+						$( function() {
+							
+							options = {"type":"toggle","param":{"options":{"on":"2","off":"1"}}} 
+							$( '.main-toggle' ).click( function(){
+								
+								
+								me = $( this );
+								
+								if( me.hasClass( 'on' ) ) {
+									val = options.param.options.off;
+								}
+								else {
+									
+									val = options.param.options.on;
+								}
+								
+								me.find( '.toggle-val' ).val( val );
+							}); 
+							
+							
+						});
+						</script>
+					</div></div></div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="form-group mb-0 mt-3 justify-content-end">
+					<div>
+						<input type="submit" value="บันทึกข้อมูล" class="btn btn-primary hidden_submit" style="background-color: #FDD400;">
+						
+						<a href="http://fm91/editnew/?token=65b7a5b630d7b3ee215da5438b796a32a2758f454dfb2637bb29d84f90e7cdde" class="btn btn-secondary">ย้อนกลับไปที่รายการ</a>
+					</div>
+				</div>	
+			</form>
+												
+									
+										<script>
+										$(function() {
+											
+											//
+											//
+											$( '.save-form' ).click(   function() {
+
+												$( '.hidden_submit' ).trigger( 'click' );
+											});
+
+											$( '.hidden_submit' ).click( function () {
+
+												myForm = $( this ).parents('form');
+
+
+												var completed = '0%';
+
+												$( myForm ).ajaxForm({
+
+													beforeSubmit: function(data, form, options) {
+
+														var data = {};
+
+														options["url"] = myForm.attr('action') + '';
+													},
+													complete: function(response) {
+
+														protect = 0;
+
+														data = $.parseJSON(response.responseText);
+
+														$('.text-danger').html('<i class="fa fa-check" style="color: green;"></i>');
+
+														i = 0;
+														for ( x in data.field ) {
+															
+															if( i == 0 ) {
+																 
+																$( '[name="'+ x +'"]' ).focus();
+															}
+															
+
+															$('.text-danger[data-name="' + x + '"]').html( data.field[x] );
+															
+															++i;
+														}
+
+														if ( data.success == 0 ) {
+
+															if ( data.message ) {
+
+																Swal.fire({
+																	title: data.message,
+																	text: '',
+																	icon: 'error',
+																	confirmButtonText: 'ตกลง'
+																}).then(function() {
+
+																});
+															
+															
+															}
+
+															// return false;
+														}
+
+														if ( data.success == 1) {
+															Swal.fire({
+																title: data.message,
+																text: '',
+																icon: 'success',
+																confirmButtonText: 'ตกลง'
+															}).then(function() {
+																//location.reload();
+																window.location = data.redirect;
+															});
+														}
+
+
+													}
+												});
+											});
+
+
+
+										});
+										</script>
+									
+									
+								 
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			<!-- end contect -->
+		</div>
+
+
+
+			<!-- Footer opened -->
+			
+			<!-- DEBUG-VIEW START 2 APPPATH\Views\admin\component\footer.php -->
+<div class="main-footer ht-40">
+	<div class="container-fluid pd-t-0-f ht-100p">
+		<p>© <span class="main-color">FM91BKK</span> website -All Rights Reserve 2017
+			<a target="_blank" href="http://fm91/config-form/2/?token=df2ab3927b29ba3fc8e72fb35f88bda818e8996106052fe6529352bf44161a44" class="btn btn-default">
+				<strong class=""><i class="fa fa-cogs"></i></strong> 105 
+				
+			</a>
+		</p>
+	</div>
+</div>
+<div class="chat-scroll"></div>
+
+<!-- DEBUG-VIEW ENDED 2 APPPATH\Views\admin\component\footer.php -->
+			
+			
+			<!-- Footer closed -->
+
+		</div>
+		<!-- End Page -->
+
+		<!-- Back-to-top -->
+		<a href="#top" id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+
+		<!-- JQuery min js -->
+		
+
+		<!--Internal  Datepicker js -->
+		<script src="admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+
+		<!-- Bootstrap Bundle js -->
+		<script src="admin/assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="admin/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Ionicons js -->
+		<script src="admin/assets/plugins/ionicons/ionicons.js"></script>
+
+		<!-- Moment js -->
+		<script src="admin/assets/plugins/moment/moment.js"></script>
+
+		<!--Internal  jquery.maskedinput js -->
+		<script src="admin/assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
+
+		<!--Internal  spectrum-colorpicker js -->
+		<script src="admin/assets/plugins/spectrum-colorpicker/spectrum.js"></script>
+
+		<!-- Internal Select2.min js -->
+		<script src="admin/assets/plugins/select2/js/select2.min.js"></script>
+
+		<!--Internal Ion.rangeSlider.min js -->
+		<script src="admin/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+
+		<!--Internal  jquery-simple-datetimepicker js -->
+		<script src="admin/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+
+		<!-- Ionicons js -->
+		<script src="admin/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+
+		<!--Internal  pickerjs js -->
+		<script src="admin/assets/plugins/pickerjs/picker.min.js"></script>
+
+		<!-- Rating js-->
+		<script src="admin/assets/plugins/rating/jquery.rating-stars.js"></script>
+		<script src="admin/assets/plugins/rating/jquery.barrating.js"></script>
+
+		<!-- P-scroll js -->
+		<script src="admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		 
+
+		<!-- Custom Scroll bar Js-->
+		<script src="admin/assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<!-- Horizontalmenu js-->
+		<script src="admin/assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script>
+
+		<!-- Sticky js -->
+		<script src="admin/assets/js/sticky.js"></script>
+
+		<!-- Right-sidebar js -->
+		 
+		<script src="admin/assets/plugins/sidebar/sidebar-custom.js"></script>
+
+		<!-- eva-icons js -->
+		<script src="admin/assets/js/eva-icons.min.js"></script>
+
+		<!-- custom js -->
+		<script src="admin/assets/js/custom.js"></script>
+
+		<!-- Internal form-elements js -->
+		<script src="admin/assets/js/form-elements.js"></script>
+
+	
+
+		
+	</body>
+</html>
+<!-- DEBUG-VIEW ENDED 3 APPPATH\Views\admin\aa_form.php -->

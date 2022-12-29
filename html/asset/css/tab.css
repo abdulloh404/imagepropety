@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+/* Makes the checkbox hack work for Android 4.1.2 */
+@-webkit-keyframes checkbox-hack-bugfix {
+  from {
+    padding: 0;
+  }
+  to {
+    padding: 0;
+  }
+}
+
+body {
+  -webkit-animation: checkbox-hack-bugfix infinite 1s;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  clip: rect(0, 0, 0, 0);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+          transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  z-index: -1;
+}
+
+input[type="checkbox"][id="test1"]:checked ~ .tabs .tab label[for="test1"],
+input[type="radio"][id="test1"]:checked ~ .tabs .tab label[for="test1"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test1"]:checked ~ .tabs .tab label[for="test1"]::after,
+input[type="radio"][id="test1"]:checked ~ .tabs .tab label[for="test1"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test1"]:checked ~ .panels #panel1,
+input[type="radio"][id="test1"]:checked ~ .panels #panel1 {
+  display: block;
+}
+
+input[type="checkbox"][id="test2"]:checked ~ .tabs .tab label[for="test2"],
+input[type="radio"][id="test2"]:checked ~ .tabs .tab label[for="test2"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test2"]:checked ~ .tabs .tab label[for="test2"]::after,
+input[type="radio"][id="test2"]:checked ~ .tabs .tab label[for="test2"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test2"]:checked ~ .panels #panel2,
+input[type="radio"][id="test2"]:checked ~ .panels #panel2 {
+  display: block;
+}
+
+input[type="checkbox"][id="test3"]:checked ~ .tabs .tab label[for="test3"],
+input[type="radio"][id="test3"]:checked ~ .tabs .tab label[for="test3"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test3"]:checked ~ .tabs .tab label[for="test3"]::after,
+input[type="radio"][id="test3"]:checked ~ .tabs .tab label[for="test3"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test3"]:checked ~ .panels #panel3,
+input[type="radio"][id="test3"]:checked ~ .panels #panel3 {
+  display: block;
+}
+
+input[type="checkbox"][id="test4"]:checked ~ .tabs .tab label[for="test4"],
+input[type="radio"][id="test4"]:checked ~ .tabs .tab label[for="test4"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test4"]:checked ~ .tabs .tab label[for="test4"]::after,
+input[type="radio"][id="test4"]:checked ~ .tabs .tab label[for="test4"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test4"]:checked ~ .panels #panel4,
+input[type="radio"][id="test4"]:checked ~ .panels #panel4 {
+  display: block;
+}
+
+input[type="checkbox"][id="test5"]:checked ~ .tabs .tab label[for="test5"],
+input[type="radio"][id="test5"]:checked ~ .tabs .tab label[for="test5"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test5"]:checked ~ .tabs .tab label[for="test5"]::after,
+input[type="radio"][id="test5"]:checked ~ .tabs .tab label[for="test5"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test5"]:checked ~ .panels #panel5,
+input[type="radio"][id="test5"]:checked ~ .panels #panel5 {
+  display: block;
+}
+
+input[type="checkbox"][id="test6"]:checked ~ .tabs .tab label[for="test6"],
+input[type="radio"][id="test6"]:checked ~ .tabs .tab label[for="test6"] {
+  color: #f0b53b;
+  cursor: default;
+}
+
+input[type="checkbox"][id="test6"]:checked ~ .tabs .tab label[for="test6"]::after,
+input[type="radio"][id="test6"]:checked ~ .tabs .tab label[for="test6"]::after {
+  opacity: 1;
+}
+
+input[type="checkbox"][id="test6"]:checked ~ .panels #panel6,
+input[type="radio"][id="test6"]:checked ~ .panels #panel6 {
+  display: block;
+}
+
+.tabs-panel .tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tabs-panel .tabs .tab {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  /* We need to define flex-grow here aside from flex for IE10 because it defaults to something else. */
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  position: relative;
+  width: 60%;
+  margin-top: 2.5rem;
+  margin-right: 0;
+  text-align: center;
+  color: #707a89;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s, 
+ color 0.3s ease;
+  transition: background-color 0.3s, 
+ color 0.3s ease;
+}
+
+.tabs-panel .tabs .tab label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: block;
+  height: 100%;
+  padding: 0 0.75rem;
+  border: none;
+  cursor: pointer;
+}
+
+.tabs-panel .tabs .tab label .content .icon {
+  margin-bottom: 1rem;
+  font-size: 1.375rem;
+  text-align: center;
+}
+
+.tabs-panel .tabs .tab label .content .text {
+  margin-bottom: 1.563rem;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.875rem;
+}
+
+.tabs-panel .tabs .tab label::after {
+  content: "";
+  position: absolute;
+  bottom: -0.188rem;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 3px;
+  opacity: 0;
+  background-color: #f0b53b;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.tabs-panel .tabs .tab:hover {
+  color: #f0b53b;
+}
+
+.tabs-panel .separator {
+  width: 100%;
+  height: 3px;
+  margin-bottom: 2.5rem;
+  background-color: #363e4e;
+}
+
+.tabs-panel .panels {
+  border: none;
+}
+
+.tabs-panel .panels .tab-panel {
+  display: none;
+  border: none;
+}
+
+.tabs-panel .panels .tab-panel .content {
+  font-family: 'Prompt', sans-serif;
+  color: #707a89;
+  -webkit-animation: fade 0.3s linear;
+          animation: fade 0.3s linear;
+}
+/*# sourceMappingURL=tab.css.map */

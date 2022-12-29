@@ -1,0 +1,10 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #ffffff;
+  }
+  
+.content-main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }

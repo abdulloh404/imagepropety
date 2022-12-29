@@ -1,0 +1,272 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+a, h3 ,div{
+  font-family: 'Prompt', sans-serif;
+}
+hr.pagealine{
+    /* ต้องใส่ important เพราะมีไฟล์ชนกันละหาไม่เจอ */
+    height: 2px !important;
+    color: #000;
+}
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #F2F2F2;
+  text-align: center;
+}
+.text-box{
+  background-color: #FDD400;
+  width: 100%;
+  height: 20%;
+}
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+
+.textinradio{
+  position: absolute;
+  left: 25%;
+  bottom: -32.5%;
+}
+.textunderradio{
+
+}
+.pl-10{
+  padding-left: 10%;
+}
+.pl-9{
+  padding-left: 9%;
+}
+.h1px{
+  height: 1px;
+}
+.pt-2-5{
+  padding-top: 2.5rem;
+}
+.pt-1-75{
+  padding-top: .75rem;
+}
+.pt-4-5{
+  padding-top: 2rem;
+}
+.mg-2{
+  margin-top: 2rem;
+}
+.b1s{
+  border: 1px solid;
+}
+.searchbg,.searchbg:focus{
+  background-color:#E5E5E5 ;
+}
+
+#searchthings::placeholder{
+  color: #000;
+}
+.radiantblurcard{
+  background-color: rgba(251, 251, 251, 0.15);
+}
+.hidetextover{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bordertagnews{
+  border: 1px solid orange;
+  border-radius: 9px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: orange;
+}
+.nevnews{
+  padding-left: 10px;
+}
+.nevnews:hover , .nevnews:active{
+  color: #FDD400;
+}
+.headsubjectnews{
+  color: #F65050;
+}
+
+
+.tagnews{
+  float:left;
+  text-align:center;
+}
+.pagenevnews{
+  float:right;
+  text-align:center;
+}
+
+.m05rem{
+  margin: .25rem;
+}
+.videoall{
+  /* ปุ่มดุทั้งหมดในหมวดหมู่วีดีโอ */
+  border: 1px solid #FE4A51;
+  border-radius: 50px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #FE4A51;
+}
+.videotravel{
+  border: 1px solid #A56CBD;
+  border-radius: 50px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color:#A56CBD;
+}
+.videofit{
+  border: 1px solid #0088FF;
+  border-radius: 50px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #0088FF;
+}
+.videomusic{
+  border: 1px solid #997C00;
+  border-radius: 50px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #997C00;
+}
+.videoarrowleft{
+  padding: .9rem;
+  background-color: rgba(246, 80, 80, 0.6);
+}
+.videoarrowright{
+  padding: .9rem;
+  background-color: #F65050;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.membershipfooter{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background-color: #2D2D2D;
+  color: white;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #f0b53b;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownm {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f0b53b;}
+
+/* Show the dropdown menu on hover */
+.dropdownm:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdownm:hover .dropbtn {background-color: #f0b53b;}
+
+
+/* เพิ่มเสียงลดเสียง */
+#player {
+    width: 18.5%;
+    position: absolute;
+
+  }
+  #player i {
+    position: absolute;
+    margin-top: -2%;
+    color: #666;
+  }
+  #player i.fa-volume-down {
+    margin-left: -1.5%;
+  }
+  #player i.fa-volume-up {
+    margin-right: -1%;
+    right: 0;
+  }
+  #volume {
+    position: absolute;
+    left: 5%;
+    margin: 0 auto;
+    height: 5px;
+    width: 85%;
+    background: #555;
+    border-radius: 15px;
+  }
+  #volume .ui-slider-range-min {
+    height: 5px;
+    width: 100px;
+    position: absolute;
+    background: #2ecc71;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+  }
+  #volume .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #fff;
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+    cursor: pointer;
+    outline: none;
+  }
+.volumpadding{
+  padding-left: 16% !important;
+  padding-top: 1.5%;
+}
+.lineunderradio{
+  padding-bottom: 4%;
+  padding-left: 11%;
+}
+.radiobg{
+  background-image:url(https://www.img.in.th/images/4ddfd8926ea10fbb5aa761478c359249.png);
+  background-size: cover;
+  background-position: center;
+  height: 120px;
+  width: 100%;
+}

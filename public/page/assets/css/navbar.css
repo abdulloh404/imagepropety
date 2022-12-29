@@ -1,0 +1,75 @@
+/* Narbar */
+.goldcity-header {
+    font-weight: 700;
+    font-size: 25px;
+    padding: 0px 10px;
+    }
+
+    .card-sigin_activate {
+			backdrop-filter: blur(70px);
+			padding: 40px;
+			/* margin: 100px; */
+			
+		}
+    
+    .main-header-right a {
+      font-weight: 400;
+      color: #5b6e88;
+    }
+    
+    .horizontalMenu>.horizontalMenu-list>li>a {
+      display: block;
+      margin: 0px 2px;
+      border-radius: 0px;
+      text-decoration: none;
+      position: relative;
+      color: #000;
+      padding: 15px 12px 15px 12px;
+      font-weight: 300;
+      font-size: 17px;
+    }
+    
+    .set-mobile {
+      display: none;
+    }
+    
+    .set-pc {
+      display: inherit;
+    }
+    
+    .controltext-ad {
+      margin-top: 0;
+      margin-bottom: 0rem;
+      position: absolute;
+      top: 104%;
+      left: 66%;
+      font-size: 12px;
+    }
+    
+    .horizontalMenucontainer .main-header.hor-header {
+      height: 85px;
+    }
+    
+    @media (max-width: 575.98px) { 
+      .goldcity-header {
+        font-weight: 700;
+        font-size: 18px;
+        padding: 0px;
+        margin: 0px;
+        }
+        .main-header-right a {
+          font-weight: 300;
+          color: #5b6e88;
+          padding: 5px;
+          margin: 0px;
+        }
+        .set-mobile {
+          display: inherit;
+        }
+        
+        .set-pc {
+          display: none;
+        }
+     }
+    
+    /* End Navbar */

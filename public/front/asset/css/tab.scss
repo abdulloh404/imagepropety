@@ -1,0 +1,163 @@
+
+$number-of-tabs: 6;
+
+$separator-height: 0.188rem; //3px
+
+@mixin user-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+/* Makes the checkbox hack work for Android 4.1.2 */
+@-webkit-keyframes checkbox-hack-bugfix { 
+  from {padding:0;} 
+  to {padding:0;} 
+}
+body { 
+  -webkit-animation: checkbox-hack-bugfix infinite 1s; 
+
+}
+input[type="checkbox"],
+input[type="radio"] {
+  @include user-select();
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  clip: rect(0, 0, 0, 0);
+  visibility: hidden;
+  opacity: 0;
+  transform: matrix3d(0,0,0.00,0,0.00,0,0.00,0,0,0,1,0,0,0,0,1);
+  z-index: -1;
+  
+  @for $i from 1 through $number-of-tabs {
+    &[id="test#{$i}"] {
+      &:checked {
+        & ~ .tabs {
+          .tab {
+            label[for="test#{$i}"] {
+              color: #f0b53b;
+              cursor: default;
+              
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+        }
+        & ~ .panels {
+          #panel#{$i} {
+             display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tabs-panel {
+  
+  .tabs {
+    display: flex;
+
+    .tab {
+      -webkit-box-flex :1;
+      -webkit-flex     :1;
+      -ms-flex         :1;
+      flex             :1;
+      flex-basis       : auto;
+      /* We need to define flex-grow here aside from flex for IE10 because it defaults to something else. */
+      flex-grow        : 1;
+
+      position: relative;
+      width: 60%;
+      margin-top: 2.5rem; //40px
+      margin-right: 0; //50px
+      text-align: center;
+      color: #707a89;
+      background-color: transparent;
+      cursor: pointer;
+      transition: 
+        background-color 0.3s, 
+        color 0.3s ease;
+
+      label {
+        @include user-select();
+        display: block;
+        height: 100%;
+        padding: 0 0.75rem;
+        border: none;
+        cursor: pointer;
+        
+        .content {
+          .icon {
+            margin-bottom: 1rem;
+            font-size: 1.375rem;
+            text-align: center;
+          }
+          .text {
+            margin-bottom: 1.563rem;
+            font-family: 'Ubuntu', 'Myriad Pro', sans-serif;
+            font-size: 0.875rem;
+          }
+        }
+        
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: (-1) * $separator-height;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 3px;
+          opacity: 0;
+          background-color: #f0b53b;
+          transition: opacity 0.3s ease-in-out;
+        }
+      }
+
+      &:hover {
+        color: #f0b53b;
+      }
+    }
+  }
+  .separator {
+    width: 100%;
+    height: 3px;
+    margin-bottom: 2.5rem; // 40px
+    background-color: #363e4e;
+  }
+  .panels {
+    border: none;
+    
+    .tab-panel {
+      display: none;
+      border: none;
+      
+      
+      .content {
+        font-family: 'Ubuntu', 'Myriad Pro', sans-serif;
+        color: #707a89;
+        animation: fade 0.3s linear;
+      }
+    }
+  }
+}
