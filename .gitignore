@@ -234,3 +234,4 @@ writable/debugbar/debugbar_1651047005.json
 public/front/asset/png/news/Thumbs.db
 *.db
 app/Config/Database.php
+env
