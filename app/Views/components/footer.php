@@ -105,8 +105,8 @@
                         เกี่ยวกับเรา
                     </h4>
                     <ul>
-                        <li><a href="about.php">เกี่ยวกับเรา</a></li>
-                        <li><a href="blog.php">ข่าวสารและกิจกรรม</a></li>
+                        <li><a href="<?php echo front_link(11) ?>">เกี่ยวกับเรา</a></li>
+                        <li><a href="<?php echo front_link(7) ?>">ข่าวสารและกิจกรรม</a></li>
                         <li><a href="<?php echo front_link(4) ?>">นโยบายความเป็นส่วนตัว</a></li>
                         <li><a href="<?php echo front_link(5) ?>">นโยบายคุกกี้</a></li>
                     </ul>
@@ -124,7 +124,7 @@
                         <a href="https://www.facebook.com/homegardenville" target="_blank">
                             <img src="page/assets/img/footer imp/image (27).png" alt="facebook">
                         </a>
-                        <a href="" >
+                        <a href="">
                             <img src="page/assets/img/footer imp/image (26).png" alt="line">
                         </a>
                     </div>
