@@ -119,13 +119,13 @@
                     </h4>
                     <div class="d-flex align-items-center social-link">
                         <a href="https://www.instagram.com/homegardenville/" target="_blank">
-                            <img src="assets/img/footer imp/image (28).png" alt="instagram">
+                            <img src="page/assets/img/footer imp/image (28).png" alt="instagram">
                         </a>
                         <a href="https://www.facebook.com/homegardenville" target="_blank">
-                            <img src="assets/img/footer imp/image (27).png" alt="facebook">
+                            <img src="page/assets/img/footer imp/image (27).png" alt="facebook">
                         </a>
                         <a href="" >
-                            <img src="assets/img/footer imp/image (26).png" alt="line">
+                            <img src="page/assets/img/footer imp/image (26).png" alt="line">
                         </a>
                     </div>
                 </div>

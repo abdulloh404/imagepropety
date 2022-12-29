@@ -99,7 +99,7 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/006.png" alt="">
+                <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -107,7 +107,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/001.png" alt="">
+                <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -115,7 +115,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111519.png" alt="">
+                <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -123,7 +123,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111442.png" alt="">
+                <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -131,7 +131,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/006.png" alt="">
+                <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -139,7 +139,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/001.png" alt="">
+                <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -147,7 +147,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111519.png" alt="">
+                <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -155,7 +155,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111442.png" alt="">
+                <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -163,7 +163,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/006.png" alt="">
+                <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -171,7 +171,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/001.png" alt="">
+                <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -179,7 +179,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111519.png" alt="">
+                <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>
@@ -187,7 +187,7 @@
         </div>
         <div class="swiper-slide otherProduct">
             <a href="item-detail.php">
-                <img src="./assets/img/2022-10-20_111442.png" alt="">
+                <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
                 </span>

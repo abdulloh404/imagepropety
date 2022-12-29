@@ -1,4 +1,5 @@
 <?php echo view('components/navbar') ?>
+<link rel="stylesheet" href="page/assets/css/index.css">
 
 <div class="container p-0">
     <div id="carouselOurProject" class="carousel slide" data-bs-ride="true">
