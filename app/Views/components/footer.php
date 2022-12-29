@@ -107,8 +107,8 @@
                     <ul>
                         <li><a href="about.php">เกี่ยวกับเรา</a></li>
                         <li><a href="blog.php">ข่าวสารและกิจกรรม</a></li>
-                        <li><a href="privacy-policy.php">นโยบายความเป็นส่วนตัว</a></li>
-                        <li><a href="cookie-policy.php">นโยบายคุกกี้</a></li>
+                        <li><a href="<?php echo front_link(4) ?>">นโยบายความเป็นส่วนตัว</a></li>
+                        <li><a href="<?php echo front_link(5) ?>">นโยบายคุกกี้</a></li>
                     </ul>
                 </div>
             </div>

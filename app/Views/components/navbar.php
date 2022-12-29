@@ -50,14 +50,14 @@
 <nav class="navbar navbar-expand-xl sticky-top">
     <div class="container p-md-0 px-2">
         <a class="navbar-brand" href="index.php">
-            <img src="./assets/img/logo.png" alt="">
+            <img src="page/assets/img/logo.png" alt="">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-                <img src="./assets/img/logo.png" alt="">
+                <img src="page/assets/img/logo.png" alt="">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body d-xl-flex align-items-center">
@@ -69,7 +69,7 @@
                         <a class="nav-link active-2" href="<?php echo front_link(2) ?>">โครงการของเรา</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active-3" href="promotion.php">โปรโมชั่น</a>
+                        <a class="nav-link active-3" href="<?php echo front_link(3) ?>">โปรโมชั่น</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active-4" href="blog.php">ข่าวสารและกิจกรรม</a>

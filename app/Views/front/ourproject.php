@@ -92,8 +92,6 @@
 
         <?php echo view('components/favorite') ?>
     </div>
-
-    <?php echo view('components/footer') ?>
 </body>
 
 </html>

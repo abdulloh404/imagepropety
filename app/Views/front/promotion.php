@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include('./components/header.php') ?>
-<link rel="stylesheet" href="./assets/css/promotion.css">
+<?php echo view('components/header') ?>
+<link rel="stylesheet" href="page/assets/css/promotion.css">
 
 <body>
-    <?php include('./components/navbar.php') ?>
+    <?php echo view('components/navbar') ?>
     <div class="container p-md-auto p-0">
         <div class="text-center my-5 p-3">
             <h1>
@@ -19,7 +19,7 @@
             <form action="" method="post">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
-                        <div class="icon-location-search"><img src="./assets/img/location.png" width="20" alt=""></div>
+                        <div class="icon-location-search"><img src="page/assets/img/location.png" width="20" alt=""></div>
                         <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
                             <option selected>ทำเลที่ตั้ง</option>
                             <option value="1">One</option>
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
-                        <div class="icon-home-search"><img src="./assets/img/home-page.png" width="20" alt=""></div>
+                        <div class="icon-home-search"><img src="page/assets/img/home-page.png" width="20" alt=""></div>
                         <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
                             <option selected>ประเภทโครงการ</option>
                             <option value="1">One</option>
@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-12 position-relative">
-                        <div class="icon-tag-search"><img src="./assets/img/price-tag.png" width="20" alt=""></div>
+                        <div class="icon-tag-search"><img src="page/assets/img/price-tag.png" width="20" alt=""></div>
                         <select class="form-select mb-3 p-3 border-0 rounded-0 ps-5">
                             <option selected>ช่วงราคา</option>
                             <option value="1">One</option>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                         <div class="d-flex justify-content-center align-items-center mb-3 bg-white p-2">
-                            <img src="./assets/img/search.png" width="20" alt="">
+                            <img src="page/assets/img/search.png" width="20" alt="">
                             <input type="text" class="form-control border-0 rounded-0 text-xl-center text-lg-center text-md-center text-start" style="font-size: x-large; width: 153px" id="" placeholder="พิมพ์คำค้นหา" required>
                         </div>
                     </div>
@@ -75,33 +75,31 @@
         <div class="row mb-5 g-3">
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="" class="productItem">
-                    <img src="./assets/img/003.png">
+                    <img src="page/assets/img/003.png">
                     <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="" class="productItem">
-                    <img src="./assets/img/011.png">
+                    <img src="page/assets/img/011.png">
                     <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="" class="productItem">
-                    <img src="./assets/img/010.png">
+                    <img src="page/assets/img/010.png">
                     <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="" class="productItem">
-                    <img src="./assets/img/001.png">
+                    <img src="page/assets/img/001.png">
                     <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                 </a>
             </div>
         </div>
-        <?php include('./components/register-form.php') ?>
+        <?php echo view('components/register-form') ?>
     </div>
-
-    <?php include('./components/footer.php') ?>
 </body>
 
 </html>
