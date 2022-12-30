@@ -15,5 +15,5 @@ writable/logs/log-2022-04-27.log
 public/upload/*
 public/uploads/*
 writable/logs/log-2022-04-27.log
-writable/debugbar/debugbar/*.json
+writable/debugbar/*.json
 
