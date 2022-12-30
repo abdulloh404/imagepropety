@@ -86,11 +86,11 @@
                 <ul class="navbar-nav mx-auto pe-3">
                     <li class="nav-item dropdown pt-xl-0 pt-lg-4 pt-md-4 pt-4">
                         <a class="nav-link-language dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            EN
+                            TH
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">EN</a></li>
                             <li><a class="dropdown-item" href="#">TH</a></li>
+                            <li><a class="dropdown-item" href="#">EN</a></li>
                         </ul>
                     </li>
                 </ul>
