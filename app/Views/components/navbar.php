@@ -63,7 +63,7 @@
             <div class="offcanvas-body d-xl-flex align-items-center">
                 <ul class="navbar-nav mx-auto pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active-1" aria-current="page" href="index.php">หน้าแรก</a>
+                        <a class="nav-link active-1" aria-current="page" href="<?php echo front_link(1) ?>">หน้าแรก</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active-2" href="<?php echo front_link(2) ?>">โครงการของเรา</a>
