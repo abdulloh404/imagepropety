@@ -28,6 +28,7 @@
             max-height: 125px;
         }
     }
+
     @media screen and (max-width: 768px) {
         .blog-link>img {
             max-height: 340px;
@@ -44,19 +45,19 @@
 <div class="row mt-4 mb-4">
     <h2 class="mb-2">บทความอื่นๆ</h2>
     <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-        <a href="" class="blog-link">
+        <a href="<?php echo front_link(9) ?>" class="blog-link">
             <img src="page/assets/img/014.png">
             <span class="text-dark limit-line mt-2"><b>อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565</b></span>
         </a>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-        <a href="" class="blog-link">
+        <a href="<?php echo front_link(9) ?>" class="blog-link">
             <img src="page/assets/img/012.png">
             <span class="text-dark limit-line mt-2"><b>อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565 อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565 อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565 อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565</b></span>
         </a>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-        <a href="" class="blog-link">
+        <a href="<?php echo front_link(9) ?>" class="blog-link">
             <img src="page/assets/img/009.png">
             <span class="text-dark limit-line mt-2"><b>อัปเดท อัตราดอกเบี้ยสินเชื่อบ้าน เดือน ธันวาคม 2565</b></span>
         </a>

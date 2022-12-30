@@ -6,7 +6,7 @@
             <h4>บทความ&nbsp;<span class="text-primary">อื่นๆ</span></h4>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -36,7 +36,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -46,7 +46,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -56,7 +56,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -66,7 +66,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
@@ -76,7 +76,7 @@
             </a>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 col-12 mt-2">
-            <a href="blog-detail.php">
+            <a href="<?php echo front_link(9) ?>">
                 <div class="card border-0">
                     <img src="page/assets/img/image (26).png" class="card-img-top" alt="">
                     <div class="card-body px-0 pb-0">
