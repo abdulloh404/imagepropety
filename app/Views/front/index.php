@@ -88,7 +88,7 @@
     <div class="row">
         <div class="header-slide">
             <h2>โครงการของเรา</h2>
-            <a href="ourproject-items.php">ดูทั้งหมด</a>
+            <a href="<?php echo front_link(10) ?>">ดูทั้งหมด</a>
         </div>
     </div>
     <?php echo view('components/slider') ?>
@@ -104,7 +104,7 @@
                 <div class="index-detail1 mb-5">
                     <h1><b>ทำเลดี ที่อยู่สบาย</b></h1>
                     <h4>กับเรา Image Property ครบที่เดียว</h4>
-                    <a href="blog-detail.php">อ่านต่อ คลิ๊ก <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo front_link(9) ?>">อ่านต่อ คลิ๊ก <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

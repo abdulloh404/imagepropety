@@ -98,7 +98,7 @@
 <div class="swiper productSwiper my-3 pb-5">
     <div class="swiper-wrapper">
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -106,7 +106,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -114,7 +114,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -122,7 +122,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -130,7 +130,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -138,7 +138,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -146,7 +146,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -154,7 +154,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -162,7 +162,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/006.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -170,7 +170,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/001.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -178,7 +178,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111519.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
@@ -186,7 +186,7 @@
             </a>
         </div>
         <div class="swiper-slide otherProduct">
-            <a href="item-detail.php">
+            <a href="<?php echo front_link(12) ?>">
                 <img src="page/assets/img/2022-10-20_111442.png" alt="">
                 <span>โฮมการ์เด้นวิว<br>
                     จอหอ-บายพาส
