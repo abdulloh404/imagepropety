@@ -54,7 +54,7 @@
 <div class="row">
     <div class="col-xl-4 col-lg-4 col-md-4 col-12 m-0">
         <div class="house-type">
-            <a class="house-type-link" href="<?php echo front_link(9) ?>">
+            <a class="house-type-link" href="<?php echo front_link(10) ?>">
                 <img src="page/assets/img/004.png" alt="">
                 <h1>บ้านเดี่ยว</h1>
             </a>
@@ -62,7 +62,7 @@
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-12 m-0">
         <div class="house-type">
-            <a class="house-type-link" href="<?php echo front_link(9) ?>">
+            <a class="house-type-link" href="<?php echo front_link(10) ?>">
                 <img src="page/assets/img/005.png" alt="">
                 <h1>บ้านแฝด</h1>
             </a>
@@ -70,7 +70,7 @@
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-12 m-0">
         <div class="house-type">
-            <a class="house-type-link" href="<?php echo front_link(9) ?>">
+            <a class="house-type-link" href="<?php echo front_link(10) ?>">
                 <img src="page/assets/img/003.png" alt="">
                 <h1>อาคารพาณิชย์</h1>
             </a>
