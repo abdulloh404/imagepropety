@@ -366,7 +366,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="mb-3">
-                                        <button role="submit" class="btn btn-outline-dark p-2 rounded-0">คำนวนเงินกู้</button>
+                                        <button role="submit" class="btn btn-outline-dark p-2 rounded-0 calculate">คำนวนเงินกู้</button>
                                         <button type="reset" class="btn btn-dark p-2 rounded-0">เริ่มใหม่</button>
                                     </div>
                                 </div>
@@ -497,6 +497,11 @@
                 swiper: swiper,
             },
         });
+
+        $('.calculate').click(function(){
+            event.preventDefault();
+            alert('TEST');
+        })
     </script>
 </body>
 
