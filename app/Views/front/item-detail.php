@@ -330,7 +330,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label ps-4">วงเงินที่ต้องการกู้</label>
                                         <div class="d-flex">
-                                            <input type="number" class="form-control ps-4" id="exampleFormControlInput1" placeholder="ป้อนตัวเลข" required>
+                                            <input type="number" class="form-control ps-4 base" id="exampleFormControlInput1" placeholder="ป้อนตัวเลข" required>
                                             <span>บาท</span>
                                         </div>
                                     </div>
@@ -339,19 +339,19 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput2" class="form-label ps-4">ระยะเวลาที่ต้องการผ่อนชำระ</label>
                                         <div class="d-flex">
-                                            <input type="number" class="form-control ps-4" id="exampleFormControlInput2" placeholder="ป้อนตัวเลข" required>
+                                            <input type="number" class="form-control ps-4 peroid" id="exampleFormControlInput2" placeholder="ป้อนตัวเลข" required>
                                             <span>ปี</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-12">
                                     <div class="mb-3">
-                                        <label class="form-label ps-4">อัตราดอกเบี้ย MMR</label>
-                                        <select class="form-select form-select-sm ps-4" aria-label="form-select-sm example">
+                                        <label class="form-label ps-4">อัตราดอกเบี้ย MRR</label>
+                                        <select class="form-select form-select-sm ps-4 mrr" aria-label="form-select-sm example">
                                             <option selected>เลือกระยะเวลาที่ต้องการผ่อนชำระ</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">2</option>
+                                            <option value="6.15">6.150%</option>
+                                            <option value="7">7.00%</option>
+                                            <option value="6.5">6.500%</option>
                                         </select>
                                     </div>
                                 </div>
@@ -359,7 +359,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput3" class="form-label ps-4">อัตราดอกเบี้ย</label>
                                         <div class="d-flex">
-                                            <input type="number" class="form-control ps-4" id="exampleFormControlInput3" placeholder="ป้อนตัวเลข" required>
+                                            <input type="number" class="form-control ps-4 interest" id="exampleFormControlInput3" placeholder="ป้อนตัวเลข" required>
                                             <span>%</span>
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
                                 <p class="m-0">ยอดผ่อนชำระต่อเดือน</p>
                             </div>
                             <div>
-                                <span class="font-thb1">5,093.45</span><span>&nbsp;&nbsp;บาท</span>
+                                <span class="font-thb1 permonth">5,093.45</span><span>&nbsp;&nbsp;บาท</span>
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-between align-items-end">
@@ -500,7 +500,12 @@
 
         $('.calculate').click(function(){
             event.preventDefault();
-            alert('TEST');
+            base = $('.base').val()
+            peroid = $('.peroid').val()
+            mrr = ($('.mrr').val()*1)+100
+            interest = ($('.interest').val()*1)+100
+            cal = (base*mrr*interest)/(100*100*peroid*12)
+            $('.permonth').html(cal.toFixed(2));
         })
     </script>
 </body>
