@@ -6,7 +6,6 @@ public/upload/*
 *.log
 *.log
 note.txt
-writable/logs/log-2022-04-27.log
 *.lnk
 *.zip
 *.log
@@ -14,6 +13,6 @@ writable/logs/log-2022-04-27.log
 .env
 public/upload/*
 public/uploads/*
-writable/logs/log-2022-04-27.log
+writable/logs/*.log
 writable/debugbar/*.json
 
