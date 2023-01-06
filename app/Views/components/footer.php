@@ -26,7 +26,7 @@ footer div>h4 {
     position: relative;
 }
 
-footer div>h4::before {
+/* footer div>h4::before {
     content: "";
     position: absolute;
     left: 0;
@@ -34,7 +34,8 @@ footer div>h4::before {
     height: 1px;
     width: 70%;
     border-bottom: 1px solid #ffffff;
-}
+
+} */
 
 .social-link>a>img {
     width: 40px;
@@ -56,6 +57,12 @@ footer div>h4::before {
     width: 100%;
 }
 
+.img-container {
+    width: 300px;
+    height: auto;
+    align-items: center;
+}
+
 @media screen and (max-width: 576px) {
     footer div>h4::before {
         width: 28%;
@@ -71,11 +78,26 @@ footer div>h4::before {
         margin: auto;
         align-items: center;
     }
+
+    footer div>h4::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 70%;
+        border-bottom: 0px solid #ffffff;
+
+    }
+
+    .hr {
+        width: 30%;
+    }
 }
 </style>
 <footer>
     <div class="container-fluid">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex align-item-center justify-content-center">
             <div
                 class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-center align-items-center mb-xl-0 mb-lg-0 mb-md-5 mb-3">
                 <div class="img-container">
@@ -101,22 +123,22 @@ footer div>h4::before {
                     <h4>
                         ติดต่อเรา
                     </h4>
+                    <hr style="width:90%; text-align:center; margin:auto; padding:5px">
+
                     <p class="mb-1">
-                        79 หมู่ 8 ถนนมิตรภาพ-หนองคาย ต.หมื่นไวย อ.เมืองนครราชสีมา จ.นครราชสีมา 30000
+                        79 หมู่ 8 ถนนมิตรภาพ-หนองคาย <br> ต.หมื่นไวย อ.เมืองนครราชสีมา จ.นครราชสีมา 30000
                     </p>
                     <p class="mb-1">
                         <a href="tel:096-965-4555">Call Center: 096-965-4555</a>
                     </p>
-                    <p class="mb-1">
-                        Fax: 044-244-830
-                    </p>
+                    <p class="mb-1"> Fax: 044-244-830 </p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
                 <div class="second-container text-center">
-                    <h4>
-                        เกี่ยวกับเรา
-                    </h4>
+                    <h4> เกี่ยวกับเรา </h4>
+                    <hr style="width:90%; text-align:center; margin:auto; padding:5px">
+
                     <ul>
                         <li><a href="<?php echo front_link(11) ?>">เกี่ยวกับเรา</a></li>
                         <li><a href="<?php echo front_link(7) ?>">ข่าวสารและกิจกรรม</a></li>
@@ -127,15 +149,16 @@ footer div>h4::before {
             </div>
             <div class="col-lg-2 col-md-4 col-12">
                 <div class="second-container text-center">
-                    <h4>
-                        ติดตามเรา
-                    </h4>
-                    <div class="d-flex align-items-center social-link">
+                    <h4> ติดตามเรา </h4>
+                    <hr style=" width:90%; color:white; text-align:center; margin:auto; padding:5px">
+
+                    <div class=" social-link">
                         <a href="https://www.instagram.com/homegardenville/" target="_blank">
                             <img src="page/assets/img/footer imp/image (28).png" alt="instagram">
                         </a>
                         <a href="https://www.facebook.com/homegardenville" target="_blank">
-                            <img src="page/assets/img/footer imp/image (27).png" alt="facebook">
+                            <img src="page/assets/img/footer imp/image (27).png" alt="facebook"
+                                style="align-items: center;">
                         </a>
                         <a href="">
                             <img src="page/assets/img/footer imp/image (26).png" alt="line">
