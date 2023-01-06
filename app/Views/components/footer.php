@@ -1,49 +1,64 @@
 <style>
-    footer {
-        background-color: #2E69B6;
-        color: #ffffff;
-        padding-top: 50px;
-        font-size: 14px;
-    }
+footer {
+    background-color: #2E69B6;
+    color: #ffffff;
+    padding-top: 50px;
+    font-size: 14px;
+}
 
-    footer a {
-        color: #f0f2f5;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-    }
+footer a {
+    color: #f0f2f5;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
 
-    footer a:hover {
-        color: #ffffff;
-        letter-spacing: 1.5px;
-    }
+footer a:hover {
+    color: #ffffff;
+    letter-spacing: 1.5px;
+}
 
-    footer ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
+footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
 
-    footer div>h4 {
-        position: relative;
-    }
+footer div>h4 {
+    position: relative;
+}
 
+footer div>h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 70%;
+    border-bottom: 1px solid #ffffff;
+}
+
+.social-link>a>img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.social-link>a {
+    margin-right: 5px;
+}
+
+.img-container {
+    width: 300px;
+    height: auto;
+    align-items: center;
+}
+
+.img-container>img {
+    width: 100%;
+}
+
+@media screen and (max-width: 576px) {
     footer div>h4::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 1px;
-        width: 70%;
-        border-bottom: 1px solid #ffffff;
-    }
-
-    .social-link>a>img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-    }
-
-    .social-link>a {
-        margin-right: 5px;
+        width: 28%;
     }
 
     .img-container {
@@ -52,20 +67,17 @@
         align-items: center;
     }
 
-    .img-container>img {
-        width: 100%;
+    .third-container {
+        margin: auto;
+        align-items: center;
     }
-
-    @media screen and (max-width: 576px) {
-        footer div>h4::before {
-            width: 28%;
-        }
-    }
+}
 </style>
 <footer>
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-center align-items-center mb-xl-0 mb-lg-0 mb-md-5 mb-3">
+            <div
+                class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-center align-items-center mb-xl-0 mb-lg-0 mb-md-5 mb-3">
                 <div class="img-container">
                     <img src="page/assets/img/footer imp/image (23).png" class="w-100" alt="">
                     <div class="row g-1">
@@ -85,7 +97,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="third-container">
+                <div class="third-container text-center">
                     <h4>
                         ติดต่อเรา
                     </h4>
@@ -101,7 +113,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="second-container">
+                <div class="second-container text-center">
                     <h4>
                         เกี่ยวกับเรา
                     </h4>
@@ -114,7 +126,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="fourth-container">
+                <div class="second-container text-center">
                     <h4>
                         ติดตามเรา
                     </h4>
@@ -132,7 +144,8 @@
                 </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                <div class="text-center mt-3 pb-3"><small>Copyright <?php echo date("Y") ?> Image Property Management Co,.Ltd www.imageproperty.co.th</small></div>
+                <div class="text-center mt-3 pb-3"><small>Copyright <?php echo date("Y") ?> Image Property Management
+                        Co,.Ltd www.imageproperty.co.th</small></div>
             </div>
         </div>
     </div>
