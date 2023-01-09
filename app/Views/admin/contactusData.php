@@ -59,9 +59,9 @@
             var table = $('#dataTable').DataTable({
                 responsive: true,
                 language: {
-                    url: './assets/json/language.json',
+                    url: 'page/admin-assets/json/language.json',
                 },
-                ajax: './assets/data/contactusData.txt',
+                ajax: 'page/admin-assets/data/contactusData.txt',
                 columnDefs: [{
                     targets: -1,
                     data: null,
