@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- head -->
-<?php include('./components/header.php') ?>
-<!-- head -->
 
 <style>
     .collapes-add {
@@ -46,12 +40,6 @@
         padding: 5px 10px;
     }
 </style>
-
-<body>
-
-    <!-- nav -->
-    <?php include('./components/navbar.php') ?>
-    <!-- nav -->
 
     <div class="container fit-height">
         <div class="row">
@@ -142,11 +130,3 @@
             });
         });
     </script>
-
-    <!-- footer -->
-    <?php include('./components/footer.php') ?>
-    <!-- footer -->
-
-</body>
-
-</html>

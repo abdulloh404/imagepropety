@@ -10,7 +10,9 @@
 
 <body>
 
-
+	<!-- nav -->
+    <?php echo view('components/navbar') ?>
+    <!-- nav -->
     <?php echo $page; ?>
     <div class="fixed-bottom">
     	<?php echo view('components/adminfooter') ?>

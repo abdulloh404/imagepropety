@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- head -->
+<?php echo view('components/header') ?>
+<!-- head -->
+
 <style>
     body {
         background-color: #FFFFFF;
@@ -136,7 +140,9 @@
     </div>
 
     <!-- footer -->
-    
+    <div class="fixed-bottom">
+    <?php echo view('components/adminfooter') ?>
+    </div>
     
     <!-- footer -->
 

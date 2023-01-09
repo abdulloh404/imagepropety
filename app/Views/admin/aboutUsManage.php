@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <style>
     .collapes-add {
@@ -42,12 +40,6 @@
         padding: 5px 10px;
     }
 </style>
-
-<body>
-
-    <!-- nav -->
-    <?php include('./components/navbar.php') ?>
-    <!-- nav -->
 
     <div class="container fit-height">
         <div class="row">
@@ -108,7 +100,3 @@
             });
         });
     </script>
-
-</body>
-
-</html>

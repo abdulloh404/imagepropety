@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- head -->
-<?php include('./components/header.php') ?>
-<!-- head -->
 
 <style>
     /* dragdrop */
@@ -168,12 +162,6 @@
 
     /* end dragdrop */
 </style>
-
-<body>
-
-    <!-- nav -->
-    <?php include('./components/navbar.php') ?>
-    <!-- nav -->
 
     <div class="container">
         <div class="row">
@@ -455,11 +443,3 @@
 
     <!-- dragdrop file -->
     <script src="./assets/js/dragdropFile.js"></script>
-
-    <!-- footer -->
-    <?php include('./components/footer.php') ?>
-    <!-- footer -->
-
-</body>
-
-</html>
