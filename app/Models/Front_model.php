@@ -53,10 +53,11 @@ class Front_model
 
 
 
-    function xmlIndex(){
+    function xmlIndex()
+    {
 
         date_default_timezone_set('Asia/Bangkok');
-        
+
         $sql = "
         SELECT
             tb_news.*,
@@ -76,44 +77,42 @@ class Front_model
             $keep[$v->catalogId][] = $v;
         }
 
-        header('Content-type: application/xml;');  
-        
-        
-        
+        header('Content-type: application/xml;');
+
+
+
         $html = array();
-        foreach($keep as $k => $v){
+        foreach ($keep as $k => $v) {
             // $vals = convertObJectToArray($v);
-            
-            
-            if($v[0]->cat_type == 2){
-            }else if($v[0]->cat_type == 3){
-            }else if($v[0]->cat_type == 10){
 
-            }
-            else{
-                
+
+            if ($v[0]->cat_type == 2) {
+            } else if ($v[0]->cat_type == 3) {
+            } else if ($v[0]->cat_type == 10) {
+            } else {
+
                 $xmlDatas = array();
-                foreach($v as $kv => $vv){
-                    
+                foreach ($v as $kv => $vv) {
 
-                    if(count($xmlDatas) == 4){
+
+                    if (count($xmlDatas) == 4) {
                         continue;
                     }
 
-                    
+
                     $xmlDatas[] = '
                         <article>
-                        <ID>'.$vv->id.'</ID>
+                        <ID>' . $vv->id . '</ID>
                         <nativeCountry>TH</nativeCountry>
                         <language>th</language>
-                        <startYmdtUnix>'.strtotime($vv->release_time).'000</startYmdtUnix> 
-                        <endYmdtUnix>'.strtotime($vv->expired_date).'000</endYmdtUnix>  
-                        <title>'.$vv->name.'</title>
-                        <category>'.$vv->catalogName.'</category>  
-                        <subCategory>'.$vv->subCatNames.'</subCategory>
-                        <publishTimeUnix>'.strtotime($vv->release_time).'000</publishTimeUnix>
-                        <updateTimeUnix>'.strtotime($vv->time_update).'000</updateTimeUnix>
-                        <thumbnail>'.$vv->img_path.'</thumbnail>
+                        <startYmdtUnix>' . strtotime($vv->release_time) . '000</startYmdtUnix> 
+                        <endYmdtUnix>' . strtotime($vv->expired_date) . '000</endYmdtUnix>  
+                        <title>' . $vv->name . '</title>
+                        <category>' . $vv->catalogName . '</category>  
+                        <subCategory>' . $vv->subCatNames . '</subCategory>
+                        <publishTimeUnix>' . strtotime($vv->release_time) . '000</publishTimeUnix>
+                        <updateTimeUnix>' . strtotime($vv->time_update) . '000</updateTimeUnix>
+                        <thumbnail>' . $vv->img_path . '</thumbnail>
                         <contentType>0</contentType>
                             <contents>
                                 <text>  
@@ -126,7 +125,7 @@ class Front_model
 
                                                 </div>
 
-                                                '.html_entity_decode($vv->detail).'
+                                                ' . html_entity_decode($vv->detail) . '
                                             ]]>
                                     </content>
                                 </text>
@@ -136,15 +135,8 @@ class Front_model
                     
                     ';
                 }
-                $html[] = implode('',$xmlDatas);
-               
-                
+                $html[] = implode('', $xmlDatas);
             }
-
-           
-
-            
-            
         }
 
         $sqlVdo = "
@@ -170,23 +162,23 @@ class Front_model
 			tb_vdos.time_update DESC
 		LIMIT 0,6
 	";
-    
-    $xmlDatas = array();
-    foreach($this->dao->fetchAll($sqlVdo) as $kv => $vv){
-       
-        $xmlDatas[] = '
+
+        $xmlDatas = array();
+        foreach ($this->dao->fetchAll($sqlVdo) as $kv => $vv) {
+
+            $xmlDatas[] = '
             <article>
-            <ID>'.$vv->id.'</ID>
+            <ID>' . $vv->id . '</ID>
             <nativeCountry>TH</nativeCountry>
             <language>th</language>
-            <startYmdtUnix>'.strtotime($vv->release_time).'000</startYmdtUnix> 
-            <endYmdtUnix>'.strtotime($vv->expired_date).'000</endYmdtUnix>  
-            <title>'.$vv->name.'</title>
-            <category>'.$vv->catalogName.'</category>  
-            <subCategory>'.$vv->subCatNames.'</subCategory>
-            <publishTimeUnix>'.strtotime($vv->release_time).'000</publishTimeUnix>
-            <updateTimeUnix>'.strtotime($vv->time_update).'000</updateTimeUnix>
-            <thumbnail>'.$vv->img_path.'</thumbnail>
+            <startYmdtUnix>' . strtotime($vv->release_time) . '000</startYmdtUnix> 
+            <endYmdtUnix>' . strtotime($vv->expired_date) . '000</endYmdtUnix>  
+            <title>' . $vv->name . '</title>
+            <category>' . $vv->catalogName . '</category>  
+            <subCategory>' . $vv->subCatNames . '</subCategory>
+            <publishTimeUnix>' . strtotime($vv->release_time) . '000</publishTimeUnix>
+            <updateTimeUnix>' . strtotime($vv->time_update) . '000</updateTimeUnix>
+            <thumbnail>' . $vv->img_path . '</thumbnail>
             <contentType>0</contentType>
                 <contents>
                     <text>  
@@ -199,7 +191,7 @@ class Front_model
 
                                     </div>
                                     <iframe src="' . $vv->youtube_link . '" title="' . $vv->name . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-                                    '.html_entity_decode($vv->detail).'
+                                    ' . html_entity_decode($vv->detail) . '
                                 ]]>
                         </content>
                     </text>
@@ -208,24 +200,23 @@ class Front_model
             </article>
         
         ';
-    }
+        }
 
-    $html[] = implode('',$xmlDatas);
+        $html[] = implode('', $xmlDatas);
 
-   
 
-       
+
+
 
         echo '<articles>
-            <UUID>fm91'.time().'000</UUID>
-            <time>'.time().'000</time>
-            '.implode('',$html).'
+            <UUID>fm91' . time() . '000</UUID>
+            <time>' . time() . '000</time>
+            ' . implode('', $html) . '
         </articles>';
         exit;
-         
     }
 
-    
+
 
     function editvideo()
     {
@@ -352,31 +343,24 @@ class Front_model
 
     function sortTableList()
     {
-        
-       
+
+
         $i = 1;
         foreach ($_REQUEST['item'] as $k => $v) {
-            
-            if($k == 'video'){
-                foreach( $v as $vv){
-                    $sql = "UPDATE tb_catalog SET order_number_videoCat = " . $i . " WHERE tb_catalog.id = " . $vv . " ";              
-                    
+
+            if ($k == 'video') {
+                foreach ($v as $vv) {
+                    $sql = "UPDATE tb_catalog SET order_number_videoCat = " . $i . " WHERE tb_catalog.id = " . $vv . " ";
+
                     $this->dao->execDatas($sql);
                     $i++;
                 }
-                
-                            
-            }else{
+            } else {
                 $sql = "UPDATE tb_catalog SET order_number = " . $i . " WHERE tb_catalog.id = " . $v . " ";
                 $this->dao->execDatas($sql);
 
                 $i++;
             }
-            
-            
-            
-
-            
         }
     }
 
@@ -775,12 +759,12 @@ class Front_model
     function signin($param)
     {
 
-        
-     
+
+
 
         $configs['email'] = array('require' => 1, 'format' => 'email');
         $configs['password'] = array('require' => 1);
-        
+
         $check_form = check_form($_REQUEST, $configs);
 
 
@@ -793,10 +777,10 @@ class Front_model
             exit;
         }
 
-    
 
 
-        $password = $_REQUEST['password'];        
+
+        $password = $_REQUEST['password'];
 
         $sql = "
 
@@ -811,10 +795,10 @@ class Front_model
             'message' => 'ไม่พบผู้ใช้งานในระบบ กรุณาลองใหม่อีกครั้ง'
         );
         $errors['field']['email'] = $errors['message'];
-        
+
         $timeout = 10;
 
-        
+
 
         foreach ($this->dao->fetchAll($sql) as $ku => $vu) {
 
@@ -843,7 +827,7 @@ class Front_model
                 $errors = array(
                     'success' => 0,
                     'message' => 'รหัสผ่านของท่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
-                    'token_val' => csrf_hash() 
+                    'token_val' => csrf_hash()
                 );
                 $errors['field']['password'] = $errors['message'];
             }
@@ -1549,68 +1533,88 @@ class Front_model
         return $params;
     }
 
-    function managetemplates($param)
+    function bannerUpload()
     {
-        $request = service('request');
-        $result = $request->getVar();
+        $config['upload_path']   = './public/uploads/tb_banner/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size']      = 1024;
 
-        // $img = $request->getFile('banner');
-        $img1 = $request->getFile('banner1');
+        $this->load->library('upload', $config);
 
-        // var_dump($result,$img,$img1);exit;
+        if (!$this->upload->do_upload('banner')) {
 
-        if (empty($img1)) {
-            // echo 'EMPTY';
-            $errors = array(
-                'success' => 1,
-                'message' => 'Success',
-                'redirect' => front_link(111)
-            );
-            // $sql = "UPDATE tb_banner SET img = '".$result['first_name']."', last_name = '".$result['last_name']."', company = '".$result['company']."', gender = '".$result['flexRadioDefault']."', email = '".$result['email']."', phone = '".$result['phone']."' WHERE id = ".$_SESSION['user_id']."";
+            $error = array('error' => $this->upload->display_errors());
 
-            // $data_res = $this->dao->execDatas($sql);
-
-            // if($data_res){
-            //     // SendEmail($result);
-            //     $errors = array(
-            //                 'success' => 1,
-            //                 'message' => 'Success',
-            //                 'redirect' => front_link(111)
-            //             );
-            //     echo json_encode( $errors );
-            // }else{
-            //         $errors = array(
-            //         'success' => 0,
-            //         'message' => 'ERROR'
-            //     );
-            //     echo json_encode($errors);
-            // }
-
+            $this->load->view('BannerAdd', $error);
         } else {
-            //echo 'NOT EMPTY';
-            $Newname = $img1->getRandomName();
-            $img1->move('uploads', $Newname);
-            $sql = "INSERT INTO tb_banner (img) VALUES ('" . $Newname . "')";
-
-            $data_res = $this->dao->execDatas($sql);
-
-            if ($data_res) {
-                // SendEmail($result);
-                $errors = array(
-                    'success' => 1,
-                    'message' => 'Success',
-                    'redirect' => front_link(111)
-                );
-                echo json_encode($errors);
-            } else {
-                $errors = array(
-                    'success' => 0,
-                    'message' => 'ERROR'
-                );
-                echo json_encode($errors);
-            }
+            print_r('Banner Uploaded Successfully.');
+            exit;
         }
     }
+
+
+    // function managetemplates($param)
+    // {
+    //     $request = service('request');
+    //     $result = $request->getVar();
+
+    //     // $img = $request->getFile('banner');
+    //     $img1 = $request->getFile('banner1');
+
+    //     // var_dump($result,$img,$img1);exit;
+
+    //     if (empty($img1)) {
+    //         // echo 'EMPTY';
+    //         $errors = array(
+    //             'success' => 1,
+    //             'message' => 'Success',
+    //             'redirect' => front_link(111)
+    //         );
+    //         // $sql = "UPDATE tb_banner SET img = '".$result['first_name']."', last_name = '".$result['last_name']."', company = '".$result['company']."', gender = '".$result['flexRadioDefault']."', email = '".$result['email']."', phone = '".$result['phone']."' WHERE id = ".$_SESSION['user_id']."";
+
+    //         // $data_res = $this->dao->execDatas($sql);
+
+    //         // if($data_res){
+    //         //     // SendEmail($result);
+    //         //     $errors = array(
+    //         //                 'success' => 1,
+    //         //                 'message' => 'Success',
+    //         //                 'redirect' => front_link(111)
+    //         //             );
+    //         //     echo json_encode( $errors );
+    //         // }else{
+    //         //         $errors = array(
+    //         //         'success' => 0,
+    //         //         'message' => 'ERROR'
+    //         //     );
+    //         //     echo json_encode($errors);
+    //         // }
+
+    //     } else {
+    //         //echo 'NOT EMPTY';
+    //         $Newname = $img1->getRandomName();
+    //         $img1->move('uploads', $Newname);
+    //         $sql = "INSERT INTO tb_banner (img) VALUES ('" . $Newname . "')";
+
+    //         $data_res = $this->dao->execDatas($sql);
+
+    //         if ($data_res) {
+    //             // SendEmail($result);
+    //             $errors = array(
+    //                 'success' => 1,
+    //                 'message' => 'Success',
+    //                 'redirect' => front_link(111)
+    //             );
+    //             echo json_encode($errors);
+    //         } else {
+    //             $errors = array(
+    //                 'success' => 0,
+    //                 'message' => 'ERROR'
+    //             );
+    //             echo json_encode($errors);
+    //         }
+    //     }
+    // }
 
     function get_newdetail($param = array())
     {
@@ -2115,8 +2119,8 @@ class Front_model
 
             $filters['WHERE'][] = 'r.status_id = 1';
 
-            if($ajax){
-                $filters['WHERE'][] = 'r.id = "'.$_REQUEST['data'].'" ';
+            if ($ajax) {
+                $filters['WHERE'][] = 'r.id = "' . $_REQUEST['data'] . '" ';
             }
 
             //  $filters['WHERE'][] = 'r.id = 50';
@@ -2127,15 +2131,15 @@ class Front_model
             $radioHtml = array();
 
             $html['playRadio'] = '';
-        }      
-        
+        }
+
 
         $html['img'] = '';
 
         $returns = [];
 
         foreach ($this->dao->fetchAll($sql) as $ka => $va) {
-            
+
             // if (!empty($params['myid'])) {
 
             //     $playId = $params['myid'];
@@ -2146,42 +2150,42 @@ class Front_model
 
             // if ($playId == $va->id) {
 
-               if($ajax){
-                    $sources = '
+            if ($ajax) {
+                $sources = '
                         <audio controls="" >
                             <source src="' . $va->source . '" type="audio/mp3">
                         </audio>
                     ';
-                    $returns = [
-                        'errors' => false,
-                        'radio_name' => $va->name,
-                        'sources' => $sources
-                    ];
-               }
+                $returns = [
+                    'errors' => false,
+                    'radio_name' => $va->name,
+                    'sources' => $sources
+                ];
+            }
 
-                if (file_exists($va->img)) {
+            if (file_exists($va->img)) {
 
-                    $html['img'] = '
+                $html['img'] = '
 
 						<div class="container">
 							<div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-12"></div>
 								<div class="col-lg-6 col-md-6 col-sm-12">
-									<a href="' . front_link($params['id'], $va->id ) . '"><img src="' . $va->img . '" alt="" class="imgsec1"></a>
+									<a href="' . front_link($params['id'], $va->id) . '"><img src="' . $va->img . '" alt="" class="imgsec1"></a>
 								</div>
                                 <div class="col-lg-3 col-md-3 col-sm-12"></div>
 							</div>
 						</div>
 					';
-                }
+            }
 
-                $autoplay = '';
-              
-               
-                $autoplay = 'autoplay="0"';
+            $autoplay = '';
 
-                if($ka == 0 ){
-                    $html['playRadio'] = '
+
+            $autoplay = 'autoplay="0"';
+
+            if ($ka == 0) {
+                $html['playRadio'] = '
                         <div class="container tab-view-radio">
                             <div class="row">
                                 <div class="col-xl-2 col-lg-2 col-md-12 col-12"></div>
@@ -2211,37 +2215,37 @@ class Front_model
                         </div>
                         <br>
                     ';
-                }
-           
-                
+            }
+
+
             // } else {
 
-                if (file_exists($va->img)) {
-                    $radioHtml[] = '
+            if (file_exists($va->img)) {
+                $radioHtml[] = '
 						<div class="col-xl-4 col-lg-4 col-md-6 col-12">
 							<div class="text-center mt-1">
-								<button type="button" class="btn radiosbtn" data-radio="'.$va->id.'" ><img src="' . $va->img . '" alt="'.$va->name.'" class="logoradio"><b style="font-size: 20px;">' . $va->name . '</b></button>
+								<button type="button" class="btn radiosbtn" data-radio="' . $va->id . '" ><img src="' . $va->img . '" alt="' . $va->name . '" class="logoradio"><b style="font-size: 20px;">' . $va->name . '</b></button>
 							</div>
 						</div>
 					';
-                } else {
+            } else {
 
-                    $radioHtml[] = '
+                $radioHtml[] = '
 						<div class="col-xl-4 col-lg-4 col-md-6 col-12">
 							<div class="text-center mt-1">
-								<button type="button" class="btn radiosbtn" data-radio="'.$va->id.'"><img src="front/assets/img/logoradio.png" alt="logoRadio" class="logoradio" ><b style="font-size: 20px;">' . $va->name . '</b></button>
+								<button type="button" class="btn radiosbtn" data-radio="' . $va->id . '"><img src="front/assets/img/logoradio.png" alt="logoRadio" class="logoradio" ><b style="font-size: 20px;">' . $va->name . '</b></button>
 							</div>
 						</div>
 					';
-                }
+            }
             // }
         }
 
-        if($ajax){
+        if ($ajax) {
             echo json_encode($returns);
             exit;
         }
-       
+
 
         $html['radioHtml'] = implode('', $radioHtml);
 
@@ -2568,7 +2572,7 @@ class Front_model
         //LIMIT $record,$recordPerPage ";
         // GROUP BY tb_ecom_file.img_path asdadad
 
-        $hNPagination = array();      
+        $hNPagination = array();
         $now = date('Y-m-d H:i:s');
 
 
@@ -2588,8 +2592,8 @@ class Front_model
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="' . $kdata . '" class="' . $active . '" aria-current="true" aria-label="Slide 1"></button>     
             ';
 
-           
-            if(isset($vdata->types) && $vdata->types == 3){
+
+            if (isset($vdata->types) && $vdata->types == 3) {
                 $hNPagination[] = '
             
                 <div class="carousel-item ' . $active . '">             
@@ -2607,7 +2611,7 @@ class Front_model
                 </div>
                 
                 ';
-            }else{
+            } else {
                 $hNPagination[] = '
             
                 <div class="carousel-item ' . $active . '">
@@ -2624,11 +2628,11 @@ class Front_model
                     </a>
                 </div>
                 
-                '; 
-            }                      
+                ';
+            }
         }
 
-      
+
         $html['paginationNews'] = implode('', $hNPagination);
         $html['btnCas'] = implode('', $btnCas);
 
@@ -2650,7 +2654,7 @@ class Front_model
         date_default_timezone_set('Asia/Bangkok');
 
         $hHtml = array();
-       
+
 
         $sql = "
             SELECT
@@ -2667,9 +2671,9 @@ class Front_model
 				
             LIMIT 4,4
 		";
-       
+
         $now = date('Y-m-d H:i:s');
-      
+
         foreach ($this->dao->fetchAll($sql) as $k => $v) {
             $img = !empty($v->img) ? $v->img : 'front/assets/no-image-icon-15.png';
             $hHtml[] = '
@@ -2704,8 +2708,8 @@ class Front_model
     function NewsHighlight()
     {
 
-        
-     
+
+
         $sqlCountRead = "
 			SELECT
 				tb_news.*,
@@ -2805,7 +2809,7 @@ class Front_model
         $html['breadCum'] = '';
 
         foreach ($this->dao->fetchAll($sql) as $k => $v) {
-            
+
             $html['sub_name'] =  '<meta name="Description" content="' . $v->sub_name . '">';
             $html['sub_title'] =  '<p><b>' . $v->sub_name . '</b><p>';
 
@@ -2816,7 +2820,7 @@ class Front_model
 				SET count = count + 1
 				WHERE id = " . $v->cat_id . "
 			";
-            
+
             $this->dao->execDatas($sql);
 
 
@@ -2849,7 +2853,7 @@ class Front_model
 				SET countRead = countRead + 1
 				WHERE id = " . $v->id . "
 			";
-            
+
 
             getDb()->execDatas($sql);
             if (isset($_SESSION['user_id'])) {
@@ -2962,7 +2966,7 @@ class Front_model
             $html['breadCum'] = '<p class="">' . implode(' &gt; ', $keep) . '</p>';
         }
 
-        $html['ImgUrl'] = base_url($img) ;
+        $html['ImgUrl'] = base_url($img);
         $html['imgSwiper'] = $imgSwiper;
         $html['ImgSwiperSide'] = implode("", $ImgSwiperSide);
         $html['zoomImgSwiper'] = implode("", $zoomImgSwiper);
@@ -2994,18 +2998,17 @@ class Front_model
         ";
         $res = $this->dao->fetchAll($sql);
 
-        
+
         $htmlAllNews['main'] = [];
         $htmlAllNews['sub'] = [];
-      
+
         foreach ($res as $k => $v) {
-            
+
             $img = 'front/assets/no-image-icon-15.jpg';
             if (!empty($v->img)) {
                 $img = $v->img;
-                
             }
-            
+
 
             if ($k == 0) {
                 $htmlAllNews['main'][] = '
@@ -3024,8 +3027,6 @@ class Front_model
 					</div>
 
 				';
-
-              
             } else {
                 $htmlAllNews['sub'][] = '
 					<div class="col-md-4 col-12 mt-2">
@@ -3044,17 +3045,12 @@ class Front_model
 						</div>
 					</div>
                 ';
-
-              
-                
             }
-
-            
         }
-        
+
         $html['HmainNews'] = implode('', $htmlAllNews['main']);
         $html['SmainNews'] = implode('', $htmlAllNews['sub']);
-    
+
         $sqlAllNewsCat = "
                 SELECT
                 new_tb.*
@@ -3364,7 +3360,7 @@ class Front_model
 
         $sub = array();
         $sub['main'] = '';
-        $sub['right'] = array();      
+        $sub['right'] = array();
         foreach ($test['rows'] as $ks => $vs) {
 
             $img = 'front/assets/no-image-icon-15.jpg';
@@ -3551,8 +3547,6 @@ class Front_model
     }
 
 
-
-
     function NewsInteres($params = array())
     {
 
@@ -3644,7 +3638,7 @@ class Front_model
     //
     function getHashtag($params = array())
     {
-        
+
         $sql = "
 			SELECT
 				new_tb.*
@@ -3738,7 +3732,7 @@ class Front_model
                             $html['cat_name'] = $params['myid'];
                         }
                     } else {
-                 
+
                         $filters['WHERE'][] = "REPLACE( n.tag, '#', ' ' ) LIKE '%" . str_replace('#', '%', $params['myid'])  . "%'";
 
                         $html['cat_name'] = '#' . $params['myid'];
@@ -3843,7 +3837,7 @@ class Front_model
 									</div>
 								</div>
 							';
-                        } else {                          
+                        } else {
 
 
 
@@ -4016,17 +4010,15 @@ class Front_model
         $onCat = false;
         $onDetails = false;
         if (!empty($params['myid'])) {
-            
-            
-            if($params['id'] == 353){
+
+
+            if ($params['id'] == 353) {
                 $onDetails = true;
                 $filters['WHERE'][] = "tb_vdos.id = " . $params['myid'] . "";
-            }else{
+            } else {
                 $onCat = true;
-                $filters['WHERE'][] = "tb_vdos.cat_id = " . $params['myid'] ." ";
+                $filters['WHERE'][] = "tb_vdos.cat_id = " . $params['myid'] . " ";
             }
-            
-           
         } else {
 
             if (in_array($params['id'], array(3, 8))) {
@@ -4049,7 +4041,7 @@ class Front_model
         $filters['WHERE'][] = "tb_vdos.release_time < NOW()";
         $filters['WHERE'][] = "tb_vdos.status_id = 1";
         $filters['WHERE'][] = "c.types = 2";
-       
+
 
         if (empty($_REQUEST['ajax'])) {
 
@@ -4082,8 +4074,8 @@ class Front_model
         $data['sql'] = genCond_($sql, $filters);
 
         $sql = genCond_($sql, $filters);
-        
-       
+
+
 
         $test = createPage($data, true);
 
@@ -4109,28 +4101,28 @@ class Front_model
         } else {
             $action_query = $this->dao->fetchAll($sql);
         }
-      
+
         $myVideos = array();
         foreach ($action_query  as $ka => $va) {
 
-           
 
-           
-            
+
+
+
             $vdoImg = "front/assets/no-image-icon-15.jpg";
-            
+
             //no-image-icon-15
-            if(!empty($va->img)){
-                $vdoImg = $va->img;                
+            if (!empty($va->img)) {
+                $vdoImg = $va->img;
             }
-            
+
 
             $ex = explode('/', $va->youtube_link);
 
             $code = $ex[count($ex) - 1];
 
             // $va->myImg = '<img class="my-ifrm" style="width: 100%;" src="https://img.youtube.com/vi/' . $code . '/0.jpg" />';
-            $va->myImg = '<img class="responsive_img" style="width: 100%;" src="'.$vdoImg.'" />';
+            $va->myImg = '<img class="responsive_img" style="width: 100%;" src="' . $vdoImg . '" />';
             $va->myImgHead = '<img class="responsive_img headVideo" style="width: 100%;" src="https://img.youtube.com/vi/' . $code . '/0.jpg" />';
 
             $va->detail = html_entity_decode($va->detail);
@@ -4160,8 +4152,7 @@ class Front_model
 
 					</div>
 				';
-            } 
-            else if($onDetails == true){
+            } else if ($onDetails == true) {
                 $html['videoDetail'] = '
                         <iframe class="videoSize my-ifrm" style="width: 100%; height:500px;" src="' . $va->youtube_link . '" title="' . $va->name . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
@@ -4169,12 +4160,11 @@ class Front_model
 
                         ' . $va->detail . '
                 ';
-            }            
-            else {
+            } else {
                 $va->nomalBlock = '
 					<div class="card h-100">
 
-						<a class="link-find" href="#" data-id="' . $va->id . '"><img class="my-ifrm" style="width: 100%;height: 300px;" src="'.$vdoImg.'" /></a>
+						<a class="link-find" href="#" data-id="' . $va->id . '"><img class="my-ifrm" style="width: 100%;height: 300px;" src="' . $vdoImg . '" /></a>
 
 						<div class="card-body">
 
@@ -4248,15 +4238,15 @@ class Front_model
                 $list = array();
                 foreach ($vn as $ka => $va) {
 
-                   
+
                     $vdoImg = "front/assets/no-image-icon-15.jpg";
-            
+
                     //no-image-icon-15
-                    if(!empty($va->img)){                        
+                    if (!empty($va->img)) {
                         $vdoImg = $va->img;
                     }
-                    
-                    
+
+
                     $ifrm1 = $va->myImg;
 
 
@@ -4271,16 +4261,16 @@ class Front_model
 
                         $list[1][] = '
 
-                        <div class=" '.$active.'">
+                        <div class=" ' . $active . '">
                         <a class="link-find" href="#" data-id="' . $va->id . '">
-                            <div class="d-block w-100">'. $ifrm1 .'</div>
+                            <div class="d-block w-100">' . $ifrm1 . '</div>
                             <div class="d-md-block" style="padding: 10px;">
                                
                                 <h3 class="limit-line font-mobile" style="color: #000000;">' . $va->name . '</h3>
                                 <div class="headnews-carousel" style="padding-top: 15px;">
-                                    <span class="tagspan">'.$va->catalogName.'</span>
+                                    <span class="tagspan">' . $va->catalogName . '</span>
                                     
-                                    <label style="margin-top: 2px;">'.getDayHour($va->time_update, $now).'</label>
+                                    <label style="margin-top: 2px;">' . getDayHour($va->time_update, $now) . '</label>
                                 </div>
                             </div>
                             </a>
@@ -4311,7 +4301,7 @@ class Front_model
 							<div class="col-xl-6 col-lg-6 col-md-12 col-12 mb-2">
                                 <div class="card h-100">
 
-                                    <a class="link-find" href="#" data-id="' . $va->id . '"><img class="responsive_img" src="'.$vdoImg.'" /></a>
+                                    <a class="link-find" href="#" data-id="' . $va->id . '"><img class="responsive_img" src="' . $vdoImg . '" /></a>
             
                                     <div class="card-body px-2">
             
@@ -4339,17 +4329,17 @@ class Front_model
                 }
 
                 $active = '';
-                if($kn == 0){
+                if ($kn == 0) {
                     $active = 'active';
                 }
-                if($ka !='block_a'){
+                if ($ka != 'block_a') {
                     $btnCas[] = '';
-                }else{
+                } else {
                     $btnCas[] = '
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="'.$kn.'" class="'.$active.'" aria-current="true" aria-label="Slide 1"></button>     
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="' . $kn . '" class="' . $active . '" aria-current="true" aria-label="Slide 1"></button>     
                     ';
                 }
-                
+
 
 
                 $cat_vdos[$kn] = '
@@ -4369,15 +4359,14 @@ class Front_model
                     </div>
                 </div>
                 ';
-                
             } else {
-                
+
                 foreach ($vn as $ka => $va) {
 
                     $txt = timeToText($va->time_update);
                     $vdos_head_cat = array();
 
-                    
+
 
                     if (!isset($ggg[$kn])) {
                         $ggg[$kn] = array();
@@ -4398,7 +4387,7 @@ class Front_model
                     }
                 }
 
-               
+
 
                 $btn_all = '
 					<h2 style="font-weight: bold; margin-bottom: 0px;">
@@ -4409,13 +4398,13 @@ class Front_model
 				';
 
                 $hr = '<hr style="margin-top: 6px;">';
-                
+
                 $load = 'load-new-more';
-               
+
                 if (!empty($params['myid'])) {
                     // $load = 'load-new-more';
 
-                    $html['title'] = $params['title'] . ' : ' . $vn[0]->catalogName ;
+                    $html['title'] = $params['title'] . ' : ' . $vn[0]->catalogName;
                     $btn_all = '';
                     $hr = '';
 
@@ -4432,11 +4421,7 @@ class Front_model
                         </div>
 
                     ';
-
-                    
                 }
-                
-                
             }
         }
         // var_dump($cat_vdos);
@@ -4464,9 +4449,9 @@ class Front_model
 
         $html['cat_vdosssss'] = '<div class="big-contents">' . implode('<br>', $cat_vdos)  . '</div>';
         $html['cat_vdos'] = '<div class="big-contents">' . implode('<br>', $cat_vdos)  . '</div>';
-  
 
-        if (!empty($params['myid'])){
+
+        if (!empty($params['myid'])) {
             $html['cat_vdos'] = '
 			<br>
 			<br>
@@ -4533,7 +4518,7 @@ class Front_model
 			</script>
 		';
         }
-        
+
 
 
         $html['vdos_head_cat'] = '';
@@ -4545,7 +4530,8 @@ class Front_model
         return $html;
     }
 
-    function VideoByCatago($params){
+    function VideoByCatago($params)
+    {
 
         $start = 0;
         $rowperpage = 3;
@@ -4554,8 +4540,8 @@ class Front_model
         // exit;
 
         $loadmore = !empty($_REQUEST['loadmore']) ? true : false;
-        
-        if($loadmore){
+
+        if ($loadmore) {
             $start = $_REQUEST['start'];
             $rowperpage = $_REQUEST['rowperpage'];
         }
@@ -4576,45 +4562,45 @@ class Front_model
 
         $total = 0;
         $count = "SELECT count(*) as allCounts FROM tb_catalog";
-        
-        foreach ($this->dao->fetchAll($count) as $kcp => $vcp){
+
+        foreach ($this->dao->fetchAll($count) as $kcp => $vcp) {
             $total = $vcp->allCounts;
         }
 
-        
+
         $list = [];
         $vdoImg = "front/assets/no-image-icon-15.jpg";
-        foreach($this->dao->fetchAll($sql) as $k => $v){
-        
+        foreach ($this->dao->fetchAll($sql) as $k => $v) {
+
 
             $sqls = "
                 SELECT 
                     * 
                 FROM tb_vdos v
-                WHERE v.cat_id = '".$v->id."' AND v.release_time < NOW() AND v.status_id = 1
+                WHERE v.cat_id = '" . $v->id . "' AND v.release_time < NOW() AND v.status_id = 1
                 ORDER BY
                     v.time_update DESC
                 LIMIT 0,3";
 
-                $html = []; $ids = [];
-            foreach($this->dao->fetchAll($sqls) as $kv => $vv){
-                
+            $html = [];
+            $ids = [];
+            foreach ($this->dao->fetchAll($sqls) as $kv => $vv) {
+
                 $ids[] = $vv->cat_id;
 
                 $vdoImg = "front/assets/no-image-icon-15.jpg";
-            
+
                 //no-image-icon-15
-                if(!empty($vv->img)){
+                if (!empty($vv->img)) {
                     $vdoImg = $vv->img;
-                    
                 }
-                
-             
-                    $html[] = '
+
+
+                $html[] = '
                     <div class="col-lg-4">
                         <div class="card h-100">
     
-                            <a class="link-find" href="#" data-id="' . $vv->id . '"><img class="responsive_img" src="'.$vdoImg.'" /></a>
+                            <a class="link-find" href="#" data-id="' . $vv->id . '"><img class="responsive_img" src="' . $vdoImg . '" /></a>
                             <div class="card-body" style="padding: 1rem 1rem;">
     
                                 <p class="mt-1 card-text limit-line-newscol text-muted my-min-height" style="">
@@ -4629,13 +4615,10 @@ class Front_model
     
                         </div>
                     </div>
-                    ';  
-                
-                         
-
+                    ';
             }
 
-            if(in_array($v->id, $ids) ){
+            if (in_array($v->id, $ids)) {
                 $btn_all = '
                     <h2 style="font-weight: bold; margin-bottom: 0px;">
                         <a href="' . front_link($params['id'], @$v->id) . '">' . @$v->name . '</a>
@@ -4652,7 +4635,7 @@ class Front_model
                         grid-template-columns: auto 10%;">  ' . $btn_all . ' </div>
                     <div class="container">
                     ' . $hr . '
-                        <div class="row " style="grid-row-gap: 20px;" data-content="">' . implode('',$html) . '</div>
+                        <div class="row " style="grid-row-gap: 20px;" data-content="">' . implode('', $html) . '</div>
 
                 </div>
                 ';
@@ -4661,15 +4644,15 @@ class Front_model
             // if(!empty($params['myid'])){
             //     $list[] ='';
             // }
-            
 
-            
+
+
         }
 
-        if($loadmore){
+        if ($loadmore) {
             $json_data = array(
                 'success' => 1,
-                'loadmorevdo' => implode('',$list)
+                'loadmorevdo' => implode('', $list)
             );
 
             echo json_encode($json_data);
@@ -4677,14 +4660,14 @@ class Front_model
         }
 
 
-        $html['byCats'] = implode('',$list);
+        $html['byCats'] = implode('', $list);
         $html['byCats'] .= '
             <input type="hidden" id="start" value="0">
-            <input type="hidden" id="rowperpage" value="'.$rowperpage .'">
-            <input type="hidden" id="totalrecords" value="'.$total .'">
+            <input type="hidden" id="rowperpage" value="' . $rowperpage . '">
+            <input type="hidden" id="totalrecords" value="' . $total . '">
         ';
 
-        if(empty($params['myid']) ){
+        if (empty($params['myid'])) {
             $html['byCatss'] = '
             <script>
                 checkWindowSize();
@@ -4708,7 +4691,7 @@ class Front_model
                         $(\'#start\').val(start);
         
                         $.ajax({
-                            url: \''.front_link($params['id'],'VideoByCatago').'\',
+                            url: \'' . front_link($params['id'], 'VideoByCatago') . '\',
                             type: \'get\',
                             data: {
                                 loadmore: 1,
@@ -4755,17 +4738,17 @@ class Front_model
             </script>
         ';
         }
-        
 
-    
-        
+
+
+
         return $html;
-        
     }
 
 
-    function changeImags(){
-        $sql='
+    function changeImags()
+    {
+        $sql = '
             SELECT 
                 f.img_path,
                 f.id,
@@ -4778,11 +4761,11 @@ class Front_model
             ORDER BY f.time_update DESC; 
         ';
 
-        foreach($this->dao->fetchAll($sql) as $k => $v){
+        foreach ($this->dao->fetchAll($sql) as $k => $v) {
             var_dump($v);
 
             $sqls = "
-                UPDATE `tb_news` SET `img` = '".$v->img_path."' WHERE `tb_news`.`id` = '".$v->file_ref_id."';
+                UPDATE `tb_news` SET `img` = '" . $v->img_path . "' WHERE `tb_news`.`id` = '" . $v->file_ref_id . "';
             ";
 
             $a = $this->dao->execDatas($sqls);
@@ -4790,6 +4773,4 @@ class Front_model
             var_dump($a);
         }
     }
-
-    
 }

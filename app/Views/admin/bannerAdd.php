@@ -124,43 +124,44 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            <div class="form-upload">
-                <div class="dropzone-wrapper">
-                    <div class="dropzone-desc">
-                        <p><b>รูปภาพตัวอย่าง</b></p>
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                        <p class="text-danger" style="display: none;" id="text-alert-image">
-                            (ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p>
-                    </div>
-                    <input type="file" name="img_logo" class="dropzone">
-                </div>
-                <div class="preview-zone hidden">
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <div><b>แสดงรูปตัวอย่าง</b></div>
-                            <div class="box-tools pull-right"></div>
+            <form action="<?php echo front_link(23) ?>">
+                <div class="form-upload">
+                    <div class="dropzone-wrapper">
+                        <div class="dropzone-desc">
+                            <p><b>รูปภาพตัวอย่าง</b></p>
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
+                            <p class="text-danger" style="display: none;" id="text-alert-image">
+                                (ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p>
                         </div>
-                        <div class="box-body"></div>
+                        <input type="file" name="banner" class="dropzone">
+                    </div>
+                    <div class="preview-zone hidden">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <div><b>แสดงรูปตัวอย่าง</b></div>
+                                <div class="box-tools pull-right"></div>
+                            </div>
+                            <div class="box-body"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- dragdrop -->
+                <!-- dragdrop -->
         </div>
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-            <form action="">
-                <div class="form-blog">
-                    <label for="" class="form-label">ชื่อแบนเนอร์</label>
-                    <input type="text" class="form-add-blog" name="headerpost" value="" placeholder="">
-                </div>
-                <div class="form-blog">
-                    <label for="" class="form-label">URL</label>
-                    <input type="text" class="form-add-blog" name="date" value="" placeholder="">
-                </div>
-                <div class="">
-                    <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
-                    <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
-                </div>
+
+            <div class="form-blog">
+                <label for="" class="form-label">ชื่อแบนเนอร์</label>
+                <input type="text" class="form-add-blog" name="headerpost" value="" placeholder="">
+            </div>
+            <div class="form-blog">
+                <label for="" class="form-label">URL</label>
+                <input type="text" class="form-add-blog" name="date" value="" placeholder="">
+            </div>
+            <div class="">
+                <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
+                <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
+            </div>
             </form>
         </div>
     </div>
