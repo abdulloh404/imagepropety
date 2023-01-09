@@ -758,13 +758,10 @@ class Front_model
 
     function signin($param)
     {
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 4d09adb260173a25d5d749232c2df24245f3dcad
         $configs['email'] = array('require' => 1, 'format' => 'email');
         $configs['password'] = array('require' => 1);
 
@@ -824,7 +821,7 @@ class Front_model
                 $errors = array(
                     'success' => 1,
                     'message' => 'ยินดีต้อนรับ',
-                    'redirect' => front_link(14)
+                    'redirect' => front_link($link_id)
                 );
             } else {
                 $errors = array(
@@ -1548,7 +1545,7 @@ class Front_model
 
             $error = array('error' => $this->upload->display_errors());
 
-            $this->load->view('BannerAdd', $error);
+            $this->load->view('Admin.BannerAdd', $error);
         } else {
             print_r('Banner Uploaded Successfully.');
             exit;

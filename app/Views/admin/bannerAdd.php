@@ -165,17 +165,16 @@
             </form>
         </div>
     </div>
-</div>
 
-<script src="./assets/js/ckeditor.js"></script>
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch(error => {
-        console.error(error);
-    });
-</script>
+    <script src="./assets/js/ckeditor.js"></script>
+    <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
 
 
-<!-- dragdrop file -->
-<script src="./assets/js/dragdropFile.js"></script>
+    <!-- dragdrop file -->
+    <script src="./assets/js/dragdropFile.js"></script>
