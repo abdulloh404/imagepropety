@@ -11,7 +11,7 @@
 <body>
 
 	<!-- nav -->
-    <?php echo view('components/navbar') ?>
+    <?php echo view('components/adminnavbar') ?>
     <!-- nav -->
     <?php echo $page; ?>
     <div class="fixed-bottom">

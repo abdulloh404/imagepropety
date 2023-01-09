@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="button-group">
-                            <button type="submit">เข้าสู่ระบบ</button>
+                            <button type="submit"><a href="<?php echo front_link(14) ?>">เข้าสู่ระบบ</a></button>
                             <button type="reset">เคลียร์</button>
                         </div>
                     </div>
