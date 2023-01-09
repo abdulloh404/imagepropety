@@ -774,10 +774,6 @@ class Front_model
 
     function signin($param)
     {
-
-        
-     
-
         $configs['email'] = array('require' => 1, 'format' => 'email');
         $configs['password'] = array('require' => 1);
         
@@ -837,7 +833,7 @@ class Front_model
                 $errors = array(
                     'success' => 1,
                     'message' => 'ยินดีต้อนรับ',
-                    'redirect' => front_link($link_id)
+                    'redirect' => front_link(14)
                 );
             } else {
                 $errors = array(

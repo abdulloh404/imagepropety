@@ -118,9 +118,9 @@
             var table = $('#dataTable').DataTable({
                 responsive: true,
                 language: {
-                    url: './assets/json/language.json',
+                    url: 'page/admin-assets/json/language.json',
                 },
-                ajax: './assets/data/registerData.txt',
+                ajax: 'page/admin-assets/data/registerData.txt',
                 columnDefs: [{
                     targets: -1,
                     data: null,

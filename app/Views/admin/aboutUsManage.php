@@ -67,7 +67,7 @@
                         <tr>
                             <td>1</td>
                             <td>
-                                <img src="./assets/img/009.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/009.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>2010 Image Property Management Co., Ltd.</td>
                             <td><a class="btn btn-sm btn-success btn-edit" href="aboutUsEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
@@ -75,7 +75,7 @@
                         <tr>
                             <td>2</td>
                             <td>
-                                <img src="./assets/img/009.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/009.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>2009 "บ้านดี อยู่สบาย"</td>
                             <td><a class="btn btn-sm btn-success btn-edit" href="aboutUsEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
@@ -91,7 +91,7 @@
             var table = $('#dataTable').DataTable({
                 responsive: true,
                 language: {
-                    url: './assets/json/language.json'
+                    url: 'page/admin-assets/json/language.json'
                 }
             });
 

@@ -413,7 +413,7 @@
         </form>
     </div>
 
-    <script src="./assets/js/ckeditor.js"></script>
+    <script src="page/admin-assets/js/ckeditor.js"></script>
     <script>
         ClassicEditor
             .create(document.querySelector('#editor'))
@@ -438,4 +438,4 @@
     </script>
 
     <!-- dragdrop file -->
-    <script src="./assets/js/dragdropFile.js"></script>
+    <script src="page/admin-assets/js/dragdropFile.js"></script>

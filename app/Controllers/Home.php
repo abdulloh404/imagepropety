@@ -99,7 +99,7 @@ class Home extends BaseController {
 						SELECT 
 							* 
 						FROM aa_front_page 
-						WHERE id = 116 
+						WHERE id = 13
 					";
 					
 					foreach( $this->dao->fetchAll( $sql ) as $ka => $vaa ) {

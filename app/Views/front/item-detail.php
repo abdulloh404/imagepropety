@@ -385,7 +385,7 @@
                                 <span class="font-thb1 permonth">5,093.45</span><span>&nbsp;&nbsp;บาท</span>
                             </div>
                         </div>
-                        <div class="mb-3 d-flex justify-content-between align-items-end">
+                        <!-- <div class="mb-3 d-flex justify-content-between align-items-end">
                             <div>
                                 <p class="m-0">วงเงินกู้สูงสุด</p>
                             </div>
@@ -400,7 +400,7 @@
                             <div>
                                 <span class="font-thb2">12,733.62</span><span>&nbsp;&nbsp;บาท</span>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="my-4">
                             <h4>เอกสารกู้ซื้อบ้าน ก่อนยืมกู้ซื้อบ้าน<br> ควรเตรียมอะไรบ้าง</h4>
                         </div>

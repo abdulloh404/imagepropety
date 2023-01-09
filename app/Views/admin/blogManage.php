@@ -68,7 +68,7 @@
                         <tr>
                             <td>1</td>
                             <td>
-                                <img src="./assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>โครงการบ้านสังคมคุณภาพ #โฮมการ์เด้นวิลล์ สามยอด 2 พื้นที่กว้าง ไซส์ใหญ่ XXL</td>
                             <td>Thannakrit</td>
@@ -77,7 +77,7 @@
                         <tr>
                             <td>2</td>
                             <td>
-                                <img src="./assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>โครงการบ้านสังคมคุณภาพ #โฮมการ์เด้นวิลล์ สามยอด 2 พื้นที่กว้าง ไซส์ใหญ่ XXL</td>
                             <td>Thannakrit</td>
@@ -86,7 +86,7 @@
                         <tr>
                             <td>3</td>
                             <td>
-                                <img src="./assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>โครงการบ้านสังคมคุณภาพ #โฮมการ์เด้นวิลล์ สามยอด 2 พื้นที่กว้าง ไซส์ใหญ่ XXL</td>
                             <td>Thannakrit</td>
@@ -95,7 +95,7 @@
                         <tr>
                             <td>4</td>
                             <td>
-                                <img src="./assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>โครงการบ้านสังคมคุณภาพ #โฮมการ์เด้นวิลล์ สามยอด 2 พื้นที่กว้าง ไซส์ใหญ่ XXL</td>
                             <td>Thannakrit</td>
@@ -104,7 +104,7 @@
                         <tr>
                             <td>5</td>
                             <td>
-                                <img src="./assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+                                <img src="page/admin-assets/img/image-cover-blog.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
                             </td>
                             <td>โครงการบ้านสังคมคุณภาพ #โฮมการ์เด้นวิลล์ สามยอด 2 พื้นที่กว้าง ไซส์ใหญ่ XXL</td>
                             <td>Thannakrit</td>
@@ -121,7 +121,7 @@
             var table = $('#dataTable').DataTable({
                 responsive: true,
                 language: {
-                    url: './assets/json/language.json'
+                    url: 'page/admin-assets/json/language.json'
                 }
             });
 

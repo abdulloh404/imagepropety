@@ -25,6 +25,7 @@
     <script src="page/admin-assets/js/jquery.dataTables.min.js"></script>
     <script src="page/admin-assets/js/dataTables.responsive.min.js"></script>
     <script src="page/admin-assets/js/dataTables.rowReorder.min.js"></script>
-    
+    <script type="text/javascript" src="page/assets/js/jquery.form.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
