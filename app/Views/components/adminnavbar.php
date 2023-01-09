@@ -134,7 +134,7 @@
             <a class="navbar-brand" href="<?php echo front_link(1) ?>"><img src="page/admin-assets/img/logo.png" alt="" width="100px" height="45px"></a>
         </div>
         <div class="d-flex">
-            <a href="signIn.php" class="btn-signout"><i class="fas fa-sign-out-alt"></i>&nbsp; ลงชื่อออก</a>
+            <a href="logout" class="btn-signout"><i class="fas fa-sign-out-alt"></i>&nbsp; ลงชื่อออก</a>
         </div>
     </div>
 </nav>
