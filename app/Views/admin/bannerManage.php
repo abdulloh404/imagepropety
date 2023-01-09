@@ -48,7 +48,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="bannerAdd.php" class="btn-add-blog">
+            <a href="<?php echo front_link(22) ?>" class="btn-add-blog">
                 เพิ่มแบนเนอร์
             </a>
         </div>
@@ -66,7 +66,7 @@
                     <tr>
                         <td>1</td>
                         <td>
-                            <img src="assets/page/img/001.png" alt="" width="50px" height="50px"
+                            <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 1</td>
