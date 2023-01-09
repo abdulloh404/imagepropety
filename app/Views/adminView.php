@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php echo view('components/header') ?>
+<?php echo view('components/adminheader') ?>
 <!-- <link rel="stylesheet" href="page/assets/css/index.css">
 <link rel="stylesheet" href="page/assets/css/about.css">
 <link rel="stylesheet" href="page/assets/css/blog.css">

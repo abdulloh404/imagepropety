@@ -131,7 +131,7 @@
             <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas">
                 <i class="fas fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.php"><img src="./assets/img/logo.png" alt="" width="100px" height="45px"></a>
+            <a class="navbar-brand" href="<?php echo front_link(1) ?>"><img src="page/admin-assets/img/logo.png" alt="" width="100px" height="45px"></a>
         </div>
         <div class="d-flex">
             <a href="signIn.php" class="btn-signout"><i class="fas fa-sign-out-alt"></i>&nbsp; ลงชื่อออก</a>
@@ -149,14 +149,14 @@
             <button type="submit"><i class="fas fa-search"></i></button>
         </div>
         <ul class="side-menus">
-            <li><a href="index.php"><i class="fas fa-tachometer-alt"></i>&nbsp; แดชบอร์ด</a></li>
-            <li><a href="bannerManage.php"><i class="fas fa-image"></i>&nbsp; จัดการแบนเนอร์</a></li>
-            <li><a href="ourprojectManage.php"><i class="fas fa-building"></i>&nbsp; จัดการโครงการ</a></li>
-            <li><a href="registerData.php"><i class="fas fa-clipboard"></i>&nbsp; จัดการข้อมูลผู้ลงทะเบียน</a></li>
-            <li><a href="promotionManage.php"><i class="fas fa-star"></i></i>&nbsp; จัดการโปรโมชั่น</a></li>
-            <li><a href="blogManage.php"><i class="fas fa-ad"></i>&nbsp; จัดการข่าวสารและกิจกรรม</a></li>
-            <li><a href="aboutUsManage.php"><i class="fas fa-address-card"></i>&nbsp; จัดการเกี่ยวกับเรา</a></li>
-            <li><a href="contactusData.php"><i class="fas fa-file-contract"></i>&nbsp; จัดการติดต่อเรา</a></li>
+            <li><a href="<?php echo front_link(14) ?>"><i class="fas fa-tachometer-alt"></i>&nbsp; แดชบอร์ด</a></li>
+            <li><a href="<?php echo front_link(15) ?>"><i class="fas fa-image"></i>&nbsp; จัดการแบนเนอร์</a></li>
+            <li><a href="<?php echo front_link(16) ?>"><i class="fas fa-building"></i>&nbsp; จัดการโครงการ</a></li>
+            <li><a href="<?php echo front_link(17) ?>"><i class="fas fa-clipboard"></i>&nbsp; จัดการข้อมูลผู้ลงทะเบียน</a></li>
+            <li><a href="<?php echo front_link(18) ?>"><i class="fas fa-star"></i></i>&nbsp; จัดการโปรโมชั่น</a></li>
+            <li><a href="<?php echo front_link(19) ?>"><i class="fas fa-ad"></i>&nbsp; จัดการข่าวสารและกิจกรรม</a></li>
+            <li><a href="<?php echo front_link(20) ?>"><i class="fas fa-address-card"></i>&nbsp; จัดการเกี่ยวกับเรา</a></li>
+            <li><a href="<?php echo front_link(21) ?>"><i class="fas fa-file-contract"></i>&nbsp; จัดการติดต่อเรา</a></li>
         </ul>
     </div>
 </div>
