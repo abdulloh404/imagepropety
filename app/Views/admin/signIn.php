@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- head -->
-<?php include('./components/header.php') ?>
-<!-- head -->
-
 <style>
     body {
         background-color: #FFFFFF;
@@ -140,9 +136,7 @@
     </div>
 
     <!-- footer -->
-    <div class="fixed-bottom">
-    <?php include('./components/footer.php') ?>
-    </div>
+    
     
     <!-- footer -->
 

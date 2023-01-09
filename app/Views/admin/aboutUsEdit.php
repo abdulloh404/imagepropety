@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- head -->
-<?php include('./components/header.php') ?>
-<!-- head -->
-
 <style>
     /* dragdrop */
     .box {
@@ -190,10 +186,6 @@
 
     <!-- dragdrop file -->
     <script src="./assets/js/dragdropFile.js"></script>
-
-    <!-- footer -->
-    <?php include('./components/footer.php') ?>
-    <!-- footer -->
 
 </body>
 

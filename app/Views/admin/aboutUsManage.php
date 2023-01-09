@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- head -->
-<?php include('./components/header.php') ?>
-<!-- head -->
-
 <style>
     .collapes-add {
         display: flex;
@@ -112,10 +108,6 @@
             });
         });
     </script>
-
-    <!-- footer -->
-    <?php include('./components/footer.php') ?>
-    <!-- footer -->
 
 </body>
 
