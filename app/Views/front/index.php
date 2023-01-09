@@ -4,13 +4,17 @@
 <div class="container p-0">
     <div id="carouselOurProject" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <iframe width="100%" src="https://www.youtube.com/embed/NFXydCGKrd8?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" src="https://www.youtube.com/embed/NFXydCGKrd8?autoplay=1&mute=1"
+                    title="YouTube video player" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="carousel-item">
                 <img src="page/assets/img/banner-home-3.jpeg" class="d-block w-100" alt="">
@@ -65,7 +69,9 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                     <div class="d-flex justify-content-center align-items-center mb-3 bg-white p-2">
                         <img src="page/assets/img/search.png" width="20" alt="">
-                        <input type="text" class="form-control border-0 rounded-0 text-xl-center text-lg-center text-md-center text-start" style="font-size: x-large; width: 153px" id="" placeholder="พิมพ์คำค้นหา" required>
+                        <input type="text"
+                            class="form-control border-0 rounded-0 text-xl-center text-lg-center text-md-center text-start"
+                            style="font-size: x-large; width: 153px" id="" placeholder="พิมพ์คำค้นหา" required>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
