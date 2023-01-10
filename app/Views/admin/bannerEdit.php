@@ -118,7 +118,7 @@
     <div class="row">
         <div class="col-sm-6 mt-4 mb-2">
             <h2>แก้ไขแบนเนอร์</h2>
-            <a href="bannerManage.php" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
+            <a href="<?php echo front_link(15) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
         </div>
     </div>
     <div class="row">

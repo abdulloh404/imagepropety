@@ -71,7 +71,7 @@
                         </td>
                         <td>แบนเนอร์ 1</td>
 
-                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(24) ?>"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
@@ -82,7 +82,7 @@
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 2</td>
-                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(24) ?>"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
@@ -93,7 +93,7 @@
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 3</td>
-                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(23) ?>"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr> -->
