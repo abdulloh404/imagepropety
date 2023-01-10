@@ -79,7 +79,7 @@
 
 			<!-- เมนู -->
 			<!-- main-header opened -->
-			<?php echo view( 'admin/component/top_bar', $params ) ?>
+			<?php echo view( '__admin/component/top_bar', $params ) ?>
 			<!-- /main-header -->
 
 
