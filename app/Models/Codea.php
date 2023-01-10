@@ -5,24 +5,60 @@
 namespace App\Models;
 
 use App\Models\Db_model;
-
 use App\Models\Auth_model;
+use CodeIgniter\HTTP\Files\UploadedFile;
+use CodeIgniter\Config\Services;
 
-class Codea{
+
+class Codea
+{
 
 
 
-	function validationUri() {
 
-		
-		$datas['success'] = 1;
 
-		echo json_encode( $datas );
 
+	function uploadBanner($bannername)
+	{
+		$filename = $bannername;
+
+		$config['upload_path'] = '../uploads/';
+		$config['allowed_types'] = 'jpg|jpeg|png|gif';
+		$config['max_size'] = 0; // no limit
+		$config['max_width'] = 0;
+		$config['max_height'] = 0;
+		$config['file_name'] = $bannername;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('file_field')) {
+			$error = array('error' => $this->upload->display_errors());
+			print_r($error);
+		} else {
+			$data = array('upload_data' => $this->upload->data());
+			print_r($data);
+		}
+
+		// // Insert the file information into the database
+		// $sql = "INSERT INTO photos (filename, type, size) VALUES (?, ?, ?)";
+		// $stmt = mysqli_prepare($conn, $sql);
+		// mysqli_stmt_bind_param($stmt, "sss", $filename, $filetype, $filesize);
 	}
 
 
-	function uploadUrl( $params = array() ) {
+
+	function validationUri()
+	{
+
+
+		$datas['success'] = 1;
+
+		echo json_encode($datas);
+	}
+
+
+	function uploadUrl($params = array())
+	{
 
 		$model = 'Img_model';
 
@@ -30,46 +66,42 @@ class Codea{
 
 		$MakeImage = new $use_package();
 
-		$this->config = getConfig_( $params['config_id'] );
+		$this->config = getConfig_($params['config_id']);
 
 		$k_tb_name = $this->config->tb_main;
 
 		$upload_folders = 'upload/' . $k_tb_name . '';
 
 		$keep = array();
-		foreach ( explode( '/', $upload_folders ) as $ke => $ve ) {
+		foreach (explode('/', $upload_folders) as $ke => $ve) {
 
 			$keep[] = $ve;
 
-			if ( !is_dir( implode( '/', $keep ) ) ) {
-				@mkdir( implode( '/', $keep ) );
-
+			if (!is_dir(implode('/', $keep))) {
+				@mkdir(implode('/', $keep));
 			}
 		}
 
-		$allow_extensions = array( 'jpg', 'jpeg', 'png' );
+		$allow_extensions = array('jpg', 'jpeg', 'png');
 
-		foreach( $_FILES as $kf => $vf ) {
+		foreach ($_FILES as $kf => $vf) {
 
 			$file_name = $vf['name'];
 
-			$extension = getExtension( $vf['name'] );
+			$extension = getExtension($vf['name']);
 
-			if ( in_array( strtolower( $extension ), $allow_extensions ) ) {
+			if (in_array(strtolower($extension), $allow_extensions)) {
 
 
-				if (!empty( $params['parent_id'] ) ) {
+				if (!empty($params['parent_id'])) {
 
 					$parent_id = $params['parent_id'];
-
 				} else {
 
-					if( !empty( $_SESSION['parent_id'] ) ) {
+					if (!empty($_SESSION['parent_id'])) {
 
 						$parent_id = $_SESSION['parent_id'];
-
-					}
-					else {
+					} else {
 
 						$sql = "
 							SELECT
@@ -78,17 +110,16 @@ class Codea{
 
 						$parent_id = NULL;
 
-						$_SESSION['parent_id'] = $parent_id ;
-
+						$_SESSION['parent_id'] = $parent_id;
 					}
 				}
 
-				$img_path = $upload_folders . '/' . md5( $k_tb_name . '-' . $parent_id . '-'. $file_name .'' ) . '.' . $extension;
-				
+				$img_path = $upload_folders . '/' . md5($k_tb_name . '-' . $parent_id . '-' . $file_name . '') . '.' . $extension;
+
 				$option['cutImg']['w'] = 1200;
 
 				$option['cutImg']['h'] = 630;
- 				
+
 				$MakeImage->genImg(
 					$vf['tmp_name'],
 					$img_path,
@@ -98,17 +129,17 @@ class Codea{
 					$left = 0,
 					$top = 0,
 					$resize = true,
-					$option 
+					$option
 				);
 
 				$sql = "
 					INSERT INTO tb_ecom_file ( tb_name, img_path, file_path, file_ref_id, file_name, file_description, file_type, file_free_download, file_ordering, file_limit, file_access, file_time_limit )
 					SELECT
-						'". $k_tb_name ."' as tb_name,
-						'". $img_path ."' as img_path,
+						'" . $k_tb_name . "' as tb_name,
+						'" . $img_path . "' as img_path,
 						'e2.png' as file_path,
 						NULL as file_ref_id,
-						'". $file_name ."' as file_name,
+						'" . $file_name . "' as file_name,
 						NULL as file_description,
 						'product' as file_type,
 						0 as file_free_download,
@@ -118,7 +149,7 @@ class Codea{
 						0 as file_time_limit
 				";
 
-				$this->dao->execDatas( $sql );
+				$this->dao->execDatas($sql);
 			}
 		}
 
@@ -127,55 +158,54 @@ class Codea{
 			SELECT
 				*
 			FROM tb_ecom_file
-			WHERE tb_name = '". $k_tb_name ."'
-			AND file_ref_id = ". $parent_id ."
+			WHERE tb_name = '" . $k_tb_name . "'
+			AND file_ref_id = " . $parent_id . "
 
 		";
-		
-		$haveTitleFile = false;
-		foreach( $this->dao->fetchAll( $sql ) as $ka => $va ) {
 
-			if( $va->show_at_title == 1 ) {
+		$haveTitleFile = false;
+		foreach ($this->dao->fetchAll($sql) as $ka => $va) {
+
+			if ($va->show_at_title == 1) {
 
 				$haveTitleFile = true;
 			}
 		}
 
-		if( $haveTitleFile == false && !empty( $va ) ) {
+		if ($haveTitleFile == false && !empty($va)) {
 
 			$sql = "
 				UPDATE tb_ecom_file
 				SET show_at_title = 1
-				WHERE id = ". $va->id ."
+				WHERE id = " . $va->id . "
 			";
 
-			$this->dao->execDatas( $sql );
+			$this->dao->execDatas($sql);
 		}
 
-		$datas['redirect'] = front_link( $params['id'], 'formProduct/'. $parent_id .'' );
-		$datas['csrfHash'] = get_token( 'val' );
-		echo json_encode( $datas );
-
+		$datas['redirect'] = front_link($params['id'], 'formProduct/' . $parent_id . '');
+		$datas['csrfHash'] = get_token('val');
+		echo json_encode($datas);
 	}
 
 	//
 	// Run action add, edit data
-	public function action( $action_type, $pri_key = NULL, $params = array() ) {
-		
+	public function action($action_type, $pri_key = NULL, $params = array())
+	{
+
 		$this->request = service('request');
-	
+
 		$k_tb_name = $this->config->tb_main;
 
 		$upload_folders = 'upload/' . $k_tb_name . '';
 
 		$keep = array();
-		foreach ( explode('/', $upload_folders ) as $ke => $ve ) {
+		foreach (explode('/', $upload_folders) as $ke => $ve) {
 
 			$keep[] = $ve;
 
-			if ( !is_dir( implode( '/', $keep ) ) ) {
-				@mkdir( implode( '/', $keep ) );
-
+			if (!is_dir(implode('/', $keep))) {
+				@mkdir(implode('/', $keep));
 			}
 		}
 
@@ -202,62 +232,54 @@ class Codea{
 
 			$data['to_db'][$k_tb_name] = convertObJectToArray($getData);
 		}
-		
+
 		$params['myRequest'] = array();
-		
+
 		$params['myRequest'] = $_REQUEST;
-		
-		if( $params['id'] == 126 ) {
-			
-			
-			
-			
-			
-			unset( $_REQUEST['views'] );
-			
-			
-			
-		}
-		else {
-			
-			
-		}
-		
-		
 
-		foreach ( $_REQUEST as $kr => $vr ) {
+		if ($params['id'] == 126) {
 
-			$data['to_db'][$k_tb_name][$kr] = htmlspecialchars( trim( $vr ) );
+
+
+
+
+			unset($_REQUEST['views']);
+		} else {
+		}
+
+
+
+		foreach ($_REQUEST as $kr => $vr) {
+
+			$data['to_db'][$k_tb_name][$kr] = htmlspecialchars(trim($vr));
 			//$data['to_db'][$k_tb_name][$kr] = $vr;
 			//;
 		}
 
-		foreach ( $this->config->columns as $ka => $va ) {
+		foreach ($this->config->columns as $ka => $va) {
 
 			$va = convertObJectToArray($va);
-			if ( in_array($va['inputformat'], array( 'time' ) ) ) {
-				
-				if (!empty( $data['to_db'][$k_tb_name][$ka] ) ) {
-					
-					$ex = explode( ' ', $data['to_db'][$k_tb_name][$ka] );
+			if (in_array($va['inputformat'], array('time'))) {
+
+				if (!empty($data['to_db'][$k_tb_name][$ka])) {
+
+					$ex = explode(' ', $data['to_db'][$k_tb_name][$ka]);
 					$ex_date = array();
-					
-					if ( is_numeric( strpos( $ex[0], '-' ) ) ) {
 
-						$ex_date = explode('-', $ex[0] );
-						
-						
+					if (is_numeric(strpos($ex[0], '-'))) {
+
+						$ex_date = explode('-', $ex[0]);
 
 
-						if ( isset($ex_date[1], $ex_date[0], $ex_date[2]) && checkdate($ex_date[1], $ex_date[0],  $ex_date[2])) {
+
+
+						if (isset($ex_date[1], $ex_date[0], $ex_date[2]) && checkdate($ex_date[1], $ex_date[0],  $ex_date[2])) {
 
 							$data['to_db'][$k_tb_name][$ka] = gettime_($ex_date[2] . '-' . $ex_date[1] . '-' . $ex_date[0], 5) . ' ' . $ex[1];
 						}
 					}
 				}
-
-			}
-			else if ( in_array($va['inputformat'], array( 'money', 'number' ) ) ) {
+			} else if (in_array($va['inputformat'], array('money', 'number'))) {
 
 				$data['to_db'][$k_tb_name][$ka] = isset($data['to_db'][$k_tb_name][$ka]) ? removeMoneyComma($data['to_db'][$k_tb_name][$ka]) : NULL;
 			} else if ($va['inputformat'] == 'date') {
@@ -286,7 +308,7 @@ class Codea{
 
 			//
 			//
-			foreach ( $this->config->columns as $ka => $va ) {
+			foreach ($this->config->columns as $ka => $va) {
 
 
 				$va = convertObJectToArray($va);
@@ -308,52 +330,44 @@ class Codea{
 				} else if ($va['fix_val'] != '') {
 
 					$data['to_db'][$k_tb_name][$ka] = $va['fix_val'];
-				}
-				else if (!empty($va['forum']) || (!empty( $va['on_update'] ) && $action_type == 'edit') || (!empty($va['on_insert'] ) && $action_type == 'add' ) ) {
+				} else if (!empty($va['forum']) || (!empty($va['on_update']) && $action_type == 'edit') || (!empty($va['on_insert']) && $action_type == 'add')) {
 
 					if ($action_type == 'edit') {
 
-						$json = json_decode( $va['on_update'] );
-					} else if ( $action_type == 'add' ) {
+						$json = json_decode($va['on_update']);
+					} else if ($action_type == 'add') {
 
-						$json = json_decode( $va['on_insert'] );
+						$json = json_decode($va['on_insert']);
 					}
 
-					if (empty( $json->allow_key ) || ( $_REQUEST[$ka] == '' && !is_numeric( $_REQUEST[$ka] ) ) ) {
+					if (empty($json->allow_key) || ($_REQUEST[$ka] == '' && !is_numeric($_REQUEST[$ka]))) {
 
 
-						if ( !isset( $sqlStore[$ka] ) ) {
+						if (!isset($sqlStore[$ka])) {
 
-							
-							$sqlStore[$ka] = genJsonSql_( $json, $getData, $this->config, $this->main_data_before );
 
-							
+							$sqlStore[$ka] = genJsonSql_($json, $getData, $this->config, $this->main_data_before);
 						}
 
 
 						$replaces = array();
-						foreach ( $data['to_db'][$k_tb_name] as $kd => $vd ) {
+						foreach ($data['to_db'][$k_tb_name] as $kd => $vd) {
 
 							$replaces['[' . $kd . ']'] = "'" . $vd . "'";
-
 						}
 
-						$sqlStore[$ka] = str_replace( array_keys( $replaces ), $replaces, $sqlStore[$ka] );
+						$sqlStore[$ka] = str_replace(array_keys($replaces), $replaces, $sqlStore[$ka]);
 
-						$t = $this->dao->fetch( $sqlStore[$ka] );
+						$t = $this->dao->fetch($sqlStore[$ka]);
 
-						if ( !$t ) {
+						if (!$t) {
 
 							$stop_loop = false;
-
 						} else {
 
 							$data['to_db'][$k_tb_name][$ka] = $t->t;
 						}
 					}
-
-
-
 				} else if ($va['inputformat'] == 'date') {
 
 					if (!empty($data['to_db'][$k_tb_name][$ka])) {
@@ -390,58 +404,44 @@ class Codea{
 
 						$data['field'][$ka] = 'อีเมล์ไม่ถูกต้อง';
 					}
-				} else if ( $va['inputformat'] == 'password' ) {				
-					
+				} else if ($va['inputformat'] == 'password') {
 
-					if ( $action_type == 'edit' && $data['to_db'][$k_tb_name][$ka] == '' ) {
+
+					if ($action_type == 'edit' && $data['to_db'][$k_tb_name][$ka] == '') {
 
 						unset($data['to_db'][$k_tb_name][$ka]);
 					} else {
-						
-						
 
-						if ( empty($data['to_db'][$k_tb_name][$ka] ) ) {
+
+
+						if (empty($data['to_db'][$k_tb_name][$ka])) {
 
 							$data['field'][$ka] = 'กรุณากรอกรหัสผ่าน';
 						} else {
-							
-							if( $data['to_db'][$k_tb_name][$ka] != $data['to_db'][$k_tb_name][$ka.'-confirm'] ) {
-								
-								$data['field'][$ka.'-confirm'] = 'รหัสยืนยันไม่ตรงกับรหัสผ่าน';
-							}
-							else {								
-					
-								if( strlen( $data['to_db'][$k_tb_name][$ka] ) < 8 ) {
-									
-									
-									
+
+							if ($data['to_db'][$k_tb_name][$ka] != $data['to_db'][$k_tb_name][$ka . '-confirm']) {
+
+								$data['field'][$ka . '-confirm'] = 'รหัสยืนยันไม่ตรงกับรหัสผ่าน';
+							} else {
+
+								if (strlen($data['to_db'][$k_tb_name][$ka]) < 8) {
+
+
+
 									$data['field'][$ka] = 'กรุณาใส่พาสเวิร์ดขั้นต่ำ 8 ตัวอักษร';
-								
-								
-								}
-								else {
-									
-									if( preg_match( '@[a-z]@', $data['to_db'][$k_tb_name][$ka] ) ) {
-										
-										
-										$data['to_db'][$k_tb_name][$ka] = password_hash( $data['to_db'][$k_tb_name][$ka], PASSWORD_DEFAULT );
-									}
-									else {
-										
+								} else {
+
+									if (preg_match('@[a-z]@', $data['to_db'][$k_tb_name][$ka])) {
+
+
+										$data['to_db'][$k_tb_name][$ka] = password_hash($data['to_db'][$k_tb_name][$ka], PASSWORD_DEFAULT);
+									} else {
+
 										$data['field'][$ka] = 'รหัสยืนยันต้องมีอักษร a -  z อย่างน้อย 1 ตัวอักษร';
 									}
 								}
-		
-								
-								
-								
-								
 							}
-
-
 						}
-						
-						
 					}
 				} else if ($va['inputformat'] == 'csv') {
 
@@ -463,32 +463,30 @@ class Codea{
 						} else {
 
 
-								$file_name = explode('.', $_FILES[$ka]['name']);
+							$file_name = explode('.', $_FILES[$ka]['name']);
 
-								if (!empty($pri_key)) {
+							if (!empty($pri_key)) {
 
-									$file_id = $pri_key;
-								} else {
+								$file_id = $pri_key;
+							} else {
 
-									$sql = "
+								$sql = "
 										SELECT
 											MAX( " . $this->config->pri_key . " ) + 1 as t
 										FROM " . $k_tb_name;
 
-									$file_id = $this->dao->fetch($sql)->t;
-								}
+								$file_id = $this->dao->fetch($sql)->t;
+							}
 
 
 
-								$img_name = $upload_folders . '/' . md5($ka . '-' . $file_id) . '.' . $file_name[count($file_name) - 1];
+							$img_name = $upload_folders . '/' . md5($ka . '-' . $file_id) . '.' . $file_name[count($file_name) - 1];
 
 							$file_get_contents = file_get_contents($_FILES[$ka]['tmp_name']);
 
 							file_put_contents($img_name, $file_get_contents);
 
 							$data['to_db'][$k_tb_name][$ka] = $img_name;
-
-
 						}
 					} else {
 						unset($data['to_db'][$k_tb_name][$ka]);
@@ -497,8 +495,8 @@ class Codea{
 					$done[$ka] = 1;
 				}
 
-			
-				if ( ( isset($va[0]) && $va[0] == 1 ) && empty($data['to_db'][$k_tb_name][$ka])) {
+
+				if ((isset($va[0]) && $va[0] == 1) && empty($data['to_db'][$k_tb_name][$ka])) {
 
 					if (in_array($va['inputformat'], array('money', 'number'))) {
 
@@ -552,32 +550,29 @@ class Codea{
 					}
 				}
 
-				
+
 				if (!empty($va['input_type'])) {
 
 
 					$json = json_decode($va['input_type']);
 
-					if ( in_array( $json->type, array( 'text' ) ) ) {
-						
-						
+					if (in_array($json->type, array('text'))) {
+
+
 						$param['youtubelink'] = $data['to_db'][$k_tb_name][$ka];
-						
-						$data['to_db'][$k_tb_name][$ka] = embedvideo( $param );
-						
+
+						$data['to_db'][$k_tb_name][$ka] = embedvideo($param);
+
 						// exit;
-						
-						if( $data['to_db'][$k_tb_name][$ka] == false ) {
+
+						if ($data['to_db'][$k_tb_name][$ka] == false) {
 							$data['field'][$ka] = 'ลิ้งนี้ไม่สามารถแสดงภาพวีดีโอได้กรุณากรอกใหม่';
-						}
-						else{
-							
-							
+						} else {
 						}
 						// JAPAN UPLOAD
 					}
 					// else if ( in_array( $json->type, array( 'dropify' ) ) ) {					
-						
+
 					// 	$allow_extensions = array( 'mp4', 'mp3', 'mp4' );
 
 					// 	$file = $this->request->getFile('upload_video');
@@ -586,32 +581,32 @@ class Codea{
 					// 		$extension = getExtension($getName);
 
 					// 		if(!$file->isValid() && $file->hasMoved()){
-							             
+
 					// 			$data['field'][$ka] = $file->getErrorString(); //Debug BY CI4
-							
+
 					// 		}
 					// 		else {
 					// 			$fileSize = $file->getSizeByUnit('mb');
-								
-								
+
+
 
 					// 			if (in_array(strtolower($extension), $allow_extensions) && $fileSize <= $json->maxSize ){
 					// 				$newName = $file->getRandomName();
-									
+
 					// 				$img_path = 'uploads/tb_posts/' . $newName;
 					// 				$file->move( 'upload/tb_vdos/', $newName );					
-									
+
 					// 				$data['to_db'][$k_tb_name][$ka] = 'upload/tb_vdos/'. $newName;
 					// 			}else{
 					// 				$data['field'][$ka] = 'นามสกุลไม่ถูกต้อง หรือ ขนาดไฟล์ต้องน้อยกว่า 1024 MB';
-									
+
 					// 			}
-								
+
 					// 		}
-							
-							
+
+
 					// 	}else{
-							
+
 					// 		if( !empty( $va[0] ) ) {
 					// 			$data['field'][$ka] = 'กรุณาเลือกวิดีโอที่ท่านต้องการ';
 					// 		}
@@ -619,172 +614,142 @@ class Codea{
 					// 			unset( $data['to_db'][$k_tb_name][$ka] );
 					// 			//$data['field'][$ka] = 'กรุณาเลือกวิดีโอที่ท่านต้องการ';
 					// 		}
-							
+
 					// 	}
-						
 
-						
+
+
 					// }
-					else if ( in_array( $json->type, array( 'dropifys' ) ) ) {					
-						
-						$allow_extensions = array( 'jpg', 'png', 'jpeg' );
-						
-						$file = $this->request->getFile('img');
-						
-						if( !empty( $file ) ){
-							$getName = $file->getName();						
-							$extension = getExtension($getName);
-							
-							if(!$file->isValid() && $file->hasMoved()){
-							             
-								$data['field'][$ka] = $file->getErrorString(); //Debug BY CI4
-							
-							}
-							else {
-								$fileSize = $file->getSizeByUnit('mb');
-								
-								
+					else if (in_array($json->type, array('dropifys'))) {
 
-								if (in_array(strtolower($extension), $allow_extensions) ){
+						$allow_extensions = array('jpg', 'png', 'jpeg');
+
+						$file = $this->request->getFile('img');
+
+						if (!empty($file)) {
+							$getName = $file->getName();
+							$extension = getExtension($getName);
+
+							if (!$file->isValid() && $file->hasMoved()) {
+
+								$data['field'][$ka] = $file->getErrorString(); //Debug BY CI4
+
+							} else {
+								$fileSize = $file->getSizeByUnit('mb');
+
+
+
+								if (in_array(strtolower($extension), $allow_extensions)) {
 									$newName = $file->getRandomName();
-									
+
 									// $img_path = 'uploads/tb_posts/' . $newName;
-									$file->move( 'upload/tb_vdos/', $newName );					
-									
-									$data['to_db'][$k_tb_name][$ka] = 'upload/tb_vdos/'. $newName;
-								}else{
+									$file->move('upload/tb_vdos/', $newName);
+
+									$data['to_db'][$k_tb_name][$ka] = 'upload/tb_vdos/' . $newName;
+								} else {
 									$data['field'][$ka] = 'นามสกุลไม่ถูกต้อง';
-									
 								}
-								
 							}
-							
-							
-						}else{
-							
-							if( !empty( $va[0] ) ) {
+						} else {
+
+							if (!empty($va[0])) {
 								$data['field'][$ka] = 'กรุณาเลือกรูปภาพที่ท่านต้องการ';
-							}
-							else {
-								unset( $data['to_db'][$k_tb_name][$ka] );
+							} else {
+								unset($data['to_db'][$k_tb_name][$ka]);
 								//$data['field'][$ka] = 'กรุณาเลือกวิดีโอที่ท่านต้องการ';
 							}
-							
 						}
-						
+					} else if (in_array($json->type, array('CoverNews'))) {
 
-						
-					}else if ( in_array( $json->type, array( 'CoverNews' ) ) ) {					
-						
-						$allow_extensions = array( 'jpg', 'png', 'jpeg' );
-						
+						$allow_extensions = array('jpg', 'png', 'jpeg');
+
 						$file = $this->request->getFile('img');
-						
-						if( !empty( $file ) ){
-							$getName = $file->getName();						
-							$extension = getExtension($getName);
-							
-							if(!$file->isValid() && $file->hasMoved()){
-							             
-								$data['field'][$ka] = $file->getErrorString(); //Debug BY CI4
-							
-							}
-							else {
-								$fileSize = $file->getSizeByUnit('mb');
-								
-								
 
-								if (in_array(strtolower($extension), $allow_extensions) ){
+						if (!empty($file)) {
+							$getName = $file->getName();
+							$extension = getExtension($getName);
+
+							if (!$file->isValid() && $file->hasMoved()) {
+
+								$data['field'][$ka] = $file->getErrorString(); //Debug BY CI4
+
+							} else {
+								$fileSize = $file->getSizeByUnit('mb');
+
+
+
+								if (in_array(strtolower($extension), $allow_extensions)) {
 									$newName = $file->getRandomName();
-									
+
 									// $img_path = 'uploads/tb_posts/' . $newName;
-									$file->move( $upload_folders, $newName );
-									
-									$imgs = $upload_folders.'/'. $newName;
-									
+									$file->move($upload_folders, $newName);
+
+									$imgs = $upload_folders . '/' . $newName;
+
 									$data['to_db'][$k_tb_name][$ka] = $imgs;
-								}else{
+								} else {
 									$data['field'][$ka] = 'นามสกุลไม่ถูกต้อง';
-									
 								}
-								
 							}
-							
-							
-						}else{
-							
-							if( !empty( $va[0] ) ) {
+						} else {
+
+							if (!empty($va[0])) {
 								$data['field'][$ka] = 'กรุณาเลือกรูปภาพที่ท่านต้องการ';
-							}
-							else {
-								unset( $data['to_db'][$k_tb_name][$ka] );
+							} else {
+								unset($data['to_db'][$k_tb_name][$ka]);
 								//$data['field'][$ka] = 'กรุณาเลือกวิดีโอที่ท่านต้องการ';
 							}
-							
 						}
-						
+					} else if (in_array($json->type, array('hashtag'))) {
 
-						
-					}
-					else if ( in_array( $json->type, array( 'hashtag' ) ) ) {
-
-						if (isset( $_REQUEST[$ka] ) ) {
+						if (isset($_REQUEST[$ka])) {
 
 							$text = $_REQUEST[$ka];
-							
-							$text = str_replace( '#', ' ' , $text );
-							$text = trim( $text );
-							
+
+							$text = str_replace('#', ' ', $text);
+							$text = trim($text);
+
 
 							$keep = array();
 
-							foreach( explode( ' ', $text ) as $ke => $ve ) {
-								
-								if( empty( $ve ) ) {
-									continue;
-								}
-								
-								if( $ve == '#' ) {
+							foreach (explode(' ', $text) as $ke => $ve) {
+
+								if (empty($ve)) {
 									continue;
 								}
 
+								if ($ve == '#') {
+									continue;
+								}
 
-								if( strpos( $ve, '#' ) === FALSE ) {
 
-								
+								if (strpos($ve, '#') === FALSE) {
+
+
 
 									$keep[] = '#' . $ve;
-								}
-								else if( strpos( $ve, '#' ) == 0 ) {
+								} else if (strpos($ve, '#') == 0) {
 
-									
+
 									$keep[] = $ve;
 								}
-
-
 							}
 
-							$data['to_db'][$k_tb_name][$ka] = implode( ' ', $keep );
+							$data['to_db'][$k_tb_name][$ka] = implode(' ', $keep);
 
-							$data['to_db'][$k_tb_name][$ka] = htmlspecialchars( $data['to_db'][$k_tb_name][$ka] );
-
-
-
-						}
-						else {
+							$data['to_db'][$k_tb_name][$ka] = htmlspecialchars($data['to_db'][$k_tb_name][$ka]);
+						} else {
 
 							$data['to_db'][$k_tb_name][$ka] = NULL;
 						}
-					}
-					else if ($json->type == 'checkbox') {
+					} else if ($json->type == 'checkbox') {
 
 
 						if (isset($_REQUEST[$ka]))
 							$data['to_db'][$k_tb_name][$ka] = $_REQUEST[$ka];
 						else
 							$data['to_db'][$k_tb_name][$ka] = NULL;
-					}
-					else if ($json->type == 'file') {
+					} else if ($json->type == 'file') {
 
 						if (!empty($_FILES[$ka]['tmp_name'])) {
 
@@ -831,9 +796,7 @@ class Codea{
 
 
 								$data['to_db'][$k_tb_name][$ka] = $img_name;
-
-							}
-							else {
+							} else {
 
 								$data['field'][$ka] = 'อนุญาติไฟล์ประเภท ' . implode(', ', $allow_extensions);
 							}
@@ -845,27 +808,26 @@ class Codea{
 
 							unset($data['to_db'][$k_tb_name][$ka]);
 						}
-					}else if ( in_array($json->type, array( 'time2' ) ) ) {
+					} else if (in_array($json->type, array('time2'))) {
 						// var_dump('adad');exit;
-						if (!empty( $data['to_db'][$k_tb_name][$ka] ) ) {
-							
-							$ex = explode( ' ', $data['to_db'][$k_tb_name][$ka] );
+						if (!empty($data['to_db'][$k_tb_name][$ka])) {
+
+							$ex = explode(' ', $data['to_db'][$k_tb_name][$ka]);
 							$ex_date = array();
-							
-							if ( is_numeric( strpos( $ex[0], '-' ) ) ) {
-		
-								$ex_date = explode('-', $ex[0] );
-								
-								
-		
-		
-								if ( isset($ex_date[1], $ex_date[0], $ex_date[2]) && checkdate($ex_date[1], $ex_date[0],  $ex_date[2])) {
-		
+
+							if (is_numeric(strpos($ex[0], '-'))) {
+
+								$ex_date = explode('-', $ex[0]);
+
+
+
+
+								if (isset($ex_date[1], $ex_date[0], $ex_date[2]) && checkdate($ex_date[1], $ex_date[0],  $ex_date[2])) {
+
 									$data['to_db'][$k_tb_name][$ka] = gettime_($ex_date[2] . '-' . $ex_date[1] . '-' . $ex_date[0], 5) . ' ' . $ex[1];
 								}
 							}
 						}
-		
 					}
 				}
 			}
@@ -874,15 +836,15 @@ class Codea{
 				break;
 		}
 
-		
+
 
 		if ($action_type == 'delete') {
 			unset($data['field']);
 		}
 
-		if ( !empty($data['field'] ) ) {
+		if (!empty($data['field'])) {
 
-	
+
 			$data['success'] = 0;
 
 			echo json_encode($data);
@@ -893,13 +855,13 @@ class Codea{
 		///require_once  'require_valid.php';
 
 
-		if ( !empty( $this->config->before_action ) ) {
+		if (!empty($this->config->before_action)) {
 
-			$before_action = json_decode( $this->config->before_action );
+			$before_action = json_decode($this->config->before_action);
 
-			if ( is_object( $before_action ) ) {
+			if (is_object($before_action)) {
 
-				foreach ( $before_action as $ka => $va ) {
+				foreach ($before_action as $ka => $va) {
 
 					//
 					//Default param
@@ -951,9 +913,9 @@ class Codea{
 								unset($data['field'][$ka]);
 						}
 
-						if ( !empty($data['field'] ) ) {
+						if (!empty($data['field'])) {
 
-							
+
 							$data['success'] = 0;
 							echo json_encode($data);
 							exit();
@@ -970,19 +932,19 @@ class Codea{
 		if (!empty($data['to_db'][$k_tb_name])) {
 
 			$data['to_db'][$k_tb_name]['user_id'] = $_SESSION['user_id'];
-			foreach ( $data['to_db'][$k_tb_name] as $ka => $va ) {
+			foreach ($data['to_db'][$k_tb_name] as $ka => $va) {
 
-				if ( in_array( $ka, $showColumns ) ) {
+				if (in_array($ka, $showColumns)) {
 
 					$saveDatas[$ka] = $va;
 				}
 			}
 
-//arr($saveDatas);
+			//arr($saveDatas);
 
-			if ( $action_type == 'delete' ) {
+			if ($action_type == 'delete') {
 
-				if ( !$this->dao->delete_( $this->config->tb_main, array( $this->config->pri_key => $pri_key )) ) {
+				if (!$this->dao->delete_($this->config->tb_main, array($this->config->pri_key => $pri_key))) {
 
 					$data['message'] = 'ไม่สามารถข้อมูลนี้ได้เนืองจากความเชื่อมโยงของเอกสาร';
 					$data['field']['test'] = $data['message'];
@@ -995,15 +957,14 @@ class Codea{
 
 
 				$data['success'] = 1;
-				$data['redirect'] = front_link( $params['id'] );
-				echo json_encode( $data );
+				$data['redirect'] = front_link($params['id']);
+				echo json_encode($data);
 				exit();
-			}
-			else if ( $action_type == 'add' ) {
+			} else if ($action_type == 'add') {
 
-				$pri_key = $this->dao->insert_( $k_tb_name, $saveDatas);
+				$pri_key = $this->dao->insert_($k_tb_name, $saveDatas);
 
-				if ( empty( $pri_key ) ) {
+				if (empty($pri_key)) {
 
 
 					$data['message'] = 'มีการกรอกข้อมูลซ้ำ';
@@ -1017,19 +978,16 @@ class Codea{
 
 				$data['parent_id'] = $pri_key;
 				$data['success'] = 1;
-
-
-
 			} else if ($action_type == 'edit') {
 
 
-				if ( !in_array('time_update', array_keys( $this->config->columns ) ) ) {
+				if (!in_array('time_update', array_keys($this->config->columns))) {
 					unset($saveDatas['time_update']);
 				}
 
 				$cond = $this->config->pri_key . " = '" . $pri_key . "'";
 
-				if ( !$this->dao->update_( $k_tb_name, $saveDatas, $cond ) ) {
+				if (!$this->dao->update_($k_tb_name, $saveDatas, $cond)) {
 
 					$data['message'] = 'มีการกรอกข้อมูลซ้ำ';
 					$data['field']['test'] = $data['message'];
@@ -1042,43 +1000,40 @@ class Codea{
 
 				$data['success'] = 1;
 				$data['parent_id'] = $pri_key;
-
-
 			}
-			
-			
+
+
 			$sql = "
 				UPDATE tb_ecom_file 
-				SET file_ref_id = ". $data['parent_id'] ."
+				SET file_ref_id = " . $data['parent_id'] . "
 				 	
 				WHERE (  file_ref_id IS NULL OR file_ref_id = 0 )
-				AND tb_name = '". $k_tb_name ."'
+				AND tb_name = '" . $k_tb_name . "'
 					 
 			
 			";
-			
-			$this->dao->execDatas( $sql );
-			
-			if( isset( $data['to_db'][$k_tb_name]['status_id'] )  && $data['to_db'][$k_tb_name]['status_id'] == 1 && false ) {
-				$data['redirect'] = front_link( $params['id'] );
-			}
-			else {
-				
-				$data['redirect'] = front_link( $params['id'], 'formProduct/'. $data['parent_id'] .'' );
+
+			$this->dao->execDatas($sql);
+
+			if (isset($data['to_db'][$k_tb_name]['status_id'])  && $data['to_db'][$k_tb_name]['status_id'] == 1 && false) {
+				$data['redirect'] = front_link($params['id']);
+			} else {
+
+				$data['redirect'] = front_link($params['id'], 'formProduct/' . $data['parent_id'] . '');
 			}
 
 			echo json_encode($data);
 
 
-			if ( !empty( $this->config->after_action ) ) {
-	
-				$after_action = json_decode( $this->config->after_action );
+			if (!empty($this->config->after_action)) {
 
-				if ( is_object( $after_action ) ) {
+				$after_action = json_decode($this->config->after_action);
 
-					foreach ( $after_action as $ka => $va ) {
+				if (is_object($after_action)) {
 
- 
+					foreach ($after_action as $ka => $va) {
+
+
 						//
 						//Default param
 						$param = array(
@@ -1086,12 +1041,12 @@ class Codea{
 							'parent_id' => $data['parent_id'],
 							'myRequest' => $params['myRequest']
 						);
-						
-						if ( isset( $param['close'] ) ) {
+
+						if (isset($param['close'])) {
 							continue;
 						}
-						
-						call_user_func( $ka, $param );
+
+						call_user_func($ka, $param);
 					}
 				}
 			}
@@ -1102,7 +1057,8 @@ class Codea{
 
 	//
 	//
-	function __construct($getView = array()) {
+	function __construct($getView = array())
+	{
 
 		//echo getSkipId( 'admin_model_config_columns', 'config_columns_id', $skip = array() );exit;
 
@@ -1117,15 +1073,16 @@ class Codea{
 
 	//
 	//
-	function load_rows( $params = array() ) {
+	function load_rows($params = array())
+	{
 
-		$config = getConfig_( $params['config_id'] );
+		$config = getConfig_($params['config_id']);
 
 		$sql = "SHOW columns FROM {$config->tb_main} WHERE Field='order_number';";
 
-		$row = $this->dao->fetch( $sql );
+		$row = $this->dao->fetch($sql);
 
-		$has_order_number = $row!=null;
+		$has_order_number = $row != null;
 
 		$request = \Config\Services::request();
 
@@ -1133,8 +1090,8 @@ class Codea{
 		$ids = @$GET['ids'];
 		$orders = @$GET['orders'];
 
-		if($has_order_number && $ids && (count($ids)>0) && (count($ids)==count($orders)) ) {
-			foreach( $ids as $key=>$id ) {
+		if ($has_order_number && $ids && (count($ids) > 0) && (count($ids) == count($orders))) {
+			foreach ($ids as $key => $id) {
 				/*
 				$sql = "UPDATE {$config->tb_main} SET order_number='".intval($orders[$key])."' WHERE id='".intval($id)."';";
 				$this->dao->execDatas( $sql );*/
@@ -1142,7 +1099,7 @@ class Codea{
 		}
 
 		$tds = array();
-		$test = json_decode( '{}' );
+		$test = json_decode('{}');
 		$test->data = 'order_number';
 		$test->name = 'order_number';
 		$test->title = 'ลำดับ';
@@ -1150,64 +1107,58 @@ class Codea{
 		$test->class = 'C dfffddfdf';
 		$test->orderable = 0;
 		$tds[] = $test;
-		$disabledSort[] = count( $tds ) - 1;
+		$disabledSort[] = count($tds) - 1;
 
 
-		foreach( json_decode( $config->multi_tables ) as $kc => $column ) {
+		foreach (json_decode($config->multi_tables) as $kc => $column) {
 
-			if( isset( $column->type ) ) {
+			if (isset($column->type)) {
 
-				if( $column->type == 'checkbox' ) {
+				if ($column->type == 'checkbox') {
 					//continue;
-					$test = json_decode( '{}' );
+					$test = json_decode('{}');
 					$test->data = $kc;
 					$test->name = $kc;
 					$test->title = '<input type="checkbox" class="checkall" />';
 					$test->width = '100px';
 					$test->class = 'C';
 					$tds[] = $test;
-					$disabledSort[] = count( $tds ) - 1;
-				}
-				else {
+					$disabledSort[] = count($tds) - 1;
+				} else {
 
-					$test = json_decode( '{}' );
+					$test = json_decode('{}');
 					$test->data = $kc;
 					$test->name = $kc;
 					$test->title = 'การจัดการ';
 					$test->width = '150px';
 					$test->class = 'C';
 					$tds[] = $test;
-					$disabledSort[] = count( $tds ) - 1;
+					$disabledSort[] = count($tds) - 1;
 				}
-
-			}
-			else {
+			} else {
 
 				$dsasa[count($tds)] = $kc;
 
 				$test = '{}';
-				$test = json_decode( $test );
+				$test = json_decode($test);
 				$test->data = $kc;
 				$test->name = $kc;
 
-				if( isset( $column->label ) ) {
+				if (isset($column->label)) {
 
 					$test->title = $column->label;
-				}
-				else if( isset( $config->columns[$kc] ) ) {
+				} else if (isset($config->columns[$kc])) {
 
 					$test->title = $config->columns[$kc]->label;
-				}
-				else {
+				} else {
 					$test->title = $kc;
 				}
 
-				$test->width = isset( $column->w )? $column->w: '150px';
+				$test->width = isset($column->w) ? $column->w : '150px';
 				$test->class = 'gogo ';
-				$test->class .=  isset( $column->a )? $column->a: 'C';
+				$test->class .=  isset($column->a) ? $column->a : 'C';
 				$tds[] = $test;
 			}
-
 		}
 
 		/*
@@ -1221,197 +1172,173 @@ class Codea{
 		*/
 
 
-		if( !empty( $_REQUEST['ajax'] ) ) {
+		if (!empty($_REQUEST['ajax'])) {
 
 			// var_dump($_REQUEST);
 			// exit;
 			//
 			//load ajax datas
 			$params['length'] = 10;
-			$params['start'] = isset( $_REQUEST['start'] ) ? $_REQUEST['start']: 0;
+			$params['start'] = isset($_REQUEST['start']) ? $_REQUEST['start'] : 0;
 			$fromDate = @$_REQUEST['from_date'];
 			$toDate = @$_REQUEST['to_date'];
 			$sql = $config->main_sql;
 			$filters = array();
 
 			$keep = array();
-			if( !empty( $_REQUEST['search']['value'] ) ) {
+			if (!empty($_REQUEST['search']['value'])) {
 
-				foreach( json_decode( $config->multi_tables ) as $km => $vm ) {
+				foreach (json_decode($config->multi_tables) as $km => $vm) {
 
-					if( isset( $vm->type ) ) {
+					if (isset($vm->type)) {
 						continue;
 					}
 
-					if(preg_match('/"/', $_REQUEST['search']['value']) ){
+					if (preg_match('/"/', $_REQUEST['search']['value'])) {
 						$texts = html_entity_decode($_REQUEST['search']['value']);
-						$keep[] = "". $km ." LIKE '%". addslashes($texts) ."%'";
-					}else if(preg_match("/'/u", $_REQUEST['search']['value']) ){
-						$keep[] = "". $km ." LIKE '%". addslashes($_REQUEST['search']['value']) ."%'";
-						
-					}else{					
-						$keep[] = "". $km ." LIKE '%". str_replace( ' ', " ", ($_REQUEST['search']['value']) ) ."%'";
+						$keep[] = "" . $km . " LIKE '%" . addslashes($texts) . "%'";
+					} else if (preg_match("/'/u", $_REQUEST['search']['value'])) {
+						$keep[] = "" . $km . " LIKE '%" . addslashes($_REQUEST['search']['value']) . "%'";
+					} else {
+						$keep[] = "" . $km . " LIKE '%" . str_replace(' ', " ", ($_REQUEST['search']['value'])) . "%'";
 					}
-
-					
-
 				}
 			}
 
-			if( !empty( $keep ) ) {
-				$filters['HAVING'][] = '( '.  implode( ' OR ', $keep ) .' )';
+			if (!empty($keep)) {
+				$filters['HAVING'][] = '( ' .  implode(' OR ', $keep) . ' )';
 			}
 
 
-			if( !empty( $config->more_filter_sql ) ) {
-				
-				foreach( json_decode( $config->more_filter_sql ) as $km => $vm ) {
+			if (!empty($config->more_filter_sql)) {
+
+				foreach (json_decode($config->more_filter_sql) as $km => $vm) {
 
 					$filters[$km][] = $vm->sql;
 				}
 			}
 
 
-	//	$sort = 'ORDER BY ' . ($has_order_number?'order_number':$config->pri_key) . ' DESC';
+			//	$sort = 'ORDER BY ' . ($has_order_number?'order_number':$config->pri_key) . ' DESC';
 
 			$sort = 'ORDER BY ' . $config->pri_key . ' DESC';
 
 
-			if( isset( $_REQUEST['order'] ) &&   isset( $dsasa[$_REQUEST['order'][0]['column']] )  ) {
-				$sort = 'ORDER BY '. $dsasa[$_REQUEST['order'][0]['column']] .' '. $_REQUEST['order'][0]['dir'];
-			}
-
-			else if ( !empty( $config->main_sql_sort ) ) {
+			if (isset($_REQUEST['order']) &&   isset($dsasa[$_REQUEST['order'][0]['column']])) {
+				$sort = 'ORDER BY ' . $dsasa[$_REQUEST['order'][0]['column']] . ' ' . $_REQUEST['order'][0]['dir'];
+			} else if (!empty($config->main_sql_sort)) {
 
 				$sort = $config->main_sql_sort;
 			}
 
 			$filters['sort'] = $sort;
 
-			$daterange = ''; 
-			if($fromDate != '' && $toDate != ''){
-				if($fromDate == $toDate){
-					$daterange = "cast(n.release_time as Date) = '".$fromDate."'";
-				}else{
-					$daterange = "cast(n.release_time as Date) BETWEEN '".$fromDate."' AND '".$toDate."'";
-				}     
-			}else if($fromDate != '' && $toDate == ''){
-				$daterange = "cast(n.release_time as Date) >= '".$fromDate."'";
-			}else if($fromDate == '' && $toDate != ''){
-				$daterange = "cast(n.release_time as Date) <= '".$toDate."'";
+			$daterange = '';
+			if ($fromDate != '' && $toDate != '') {
+				if ($fromDate == $toDate) {
+					$daterange = "cast(n.release_time as Date) = '" . $fromDate . "'";
+				} else {
+					$daterange = "cast(n.release_time as Date) BETWEEN '" . $fromDate . "' AND '" . $toDate . "'";
+				}
+			} else if ($fromDate != '' && $toDate == '') {
+				$daterange = "cast(n.release_time as Date) >= '" . $fromDate . "'";
+			} else if ($fromDate == '' && $toDate != '') {
+				$daterange = "cast(n.release_time as Date) <= '" . $toDate . "'";
 			}
-			
-			if(@$daterange != ''){
+
+			if (@$daterange != '') {
 				$filters['WHERE'][] = $daterange;
 			}
-			
-			$sql = genCond_( $sql, $filters, $sort );
-			
-			$total = count( $this->dao->fetchAll( $sql ) );
 
-			$sql .= " LIMIT ".$params['start'].",".$params['length'];
+			$sql = genCond_($sql, $filters, $sort);
 
-			
+			$total = count($this->dao->fetchAll($sql));
+
+			$sql .= " LIMIT " . $params['start'] . "," . $params['length'];
+
+
 
 			$rows = array();
-			foreach( $this->dao->fetchAll( $sql ) as $ka => $row ) {
+			foreach ($this->dao->fetchAll($sql) as $ka => $row) {
 
 				$tds = array();
 				//if($has_order_number)
-					//$tds['order_number'] = $row->order_number;
+				//$tds['order_number'] = $row->order_number;
 				//else
 
 				$tds['order_number'] = $params['start'] + 1 + $ka;
 
-				foreach( json_decode( $config->multi_tables ) as $kc => $vc ) {
+				foreach (json_decode($config->multi_tables) as $kc => $vc) {
 
-					if( isset( $vc->type ) ) {
+					if (isset($vc->type)) {
 
-						if( $vc->type == 'checkbox' ) {
+						if ($vc->type == 'checkbox') {
 							//continue;
-							$tds[$kc] = '<input type="checkbox" name="checkme[]" value="'. $row->id .'" />';
-						}
-						else {
-							
+							$tds[$kc] = '<input type="checkbox" name="checkme[]" value="' . $row->id . '" />';
+						} else {
 
-							$option['edit'] = '<a style="margin-right: 10px;" href="'. front_link( $params['id'], 'formProduct/'. $row->id .'' ) .'"><i class="fa fa-edit"></i></a>';
-							
-							$option['delete'] = '<button id="btnDelete" type="button" class="btn p-0" style="color:red;" data-link="'. $row->id .'"><i class="fa fa-trash"></i></button>';
+
+							$option['edit'] = '<a style="margin-right: 10px;" href="' . front_link($params['id'], 'formProduct/' . $row->id . '') . '"><i class="fa fa-edit"></i></a>';
+
+							$option['delete'] = '<button id="btnDelete" type="button" class="btn p-0" style="color:red;" data-link="' . $row->id . '"><i class="fa fa-trash"></i></button>';
 							// $option['delete'] = '<button id="btnDelete" type="button" class="btn p-0" style="color:red;" data-link="'. front_link( $params['id'], 'deleteData/'. $row->id  .'' ) .'"><i class="fa fa-trash"></i></button>';
-							
+
 							$links = array();
-							
-							if( !empty( $vc->page_id ) ) {
-								
-								$links[] = '<a style="margin-right: 10px;" target="blank_" href="'. front_link( $vc->page_id, '/'. $row->id .'' ) .'"><i class="fa fa-search"></i></a>';
 
-							}
-							
-							if( !isset( $vc->buttons ) ) {
-								$vc->buttons = array( 'edit', 'delete' );
-								
+							if (!empty($vc->page_id)) {
+
+								$links[] = '<a style="margin-right: 10px;" target="blank_" href="' . front_link($vc->page_id, '/' . $row->id . '') . '"><i class="fa fa-search"></i></a>';
 							}
 
-							foreach( $vc->buttons as $kb => $vb ) {
+							if (!isset($vc->buttons)) {
+								$vc->buttons = array('edit', 'delete');
+							}
+
+							foreach ($vc->buttons as $kb => $vb) {
 								$links[] = $option[$vb];
 							}
-							
 
-							$tds[$kc] = implode( '', $links );
-							
 
+							$tds[$kc] = implode('', $links);
 						}
-
-
-					}
-					else {
+					} else {
 						$val = NULL;
 
-						if( isset( $row->$kc ) ) {
+						if (isset($row->$kc)) {
 
-							if( isset( $config->columns[$kc] ) ) {
+							if (isset($config->columns[$kc])) {
 
-								$val = getVal( $row->$kc, $config->columns[$kc], $status = 'r', $row );
+								$val = getVal($row->$kc, $config->columns[$kc], $status = 'r', $row);
+							} else {
 
-							}
-							else {
 
-								
 								$val = $row->$kc;
 							}
-							
-							
 						}
 						// var_dump($row);exit;
-						if( isset( $vc->link_edit ) ) {
-							$tds[$kc] = '<a target="blank_" href="'. front_link( $params['id'], 'formProduct/'. $row->id .'' ) .'">'. $val .'</a>';
-						}else if( isset( $vc->Japan_link_news ) ) {
-							
-							$tds[$kc] = '<a target="blank_" href="'. newsLink($row->id) .'">'. $val .'</a>';
-						}else if( isset( $vc->Japan_linkCat ) ) {
-							
-							$tds[$kc] = '<a target="blank_" href="'. front_link(4, $row->cat_id) .'">'. $val .'</a>';
-						}else if( isset( $vc->Japan_linkCatVideo ) ) {
-							
-							if($params['id'] == 110){
-								$tds[$kc] = '<a target="blank_"  href="'. front_link(3, $row->cat_id) .'">'. $val .'</a>';
-							}else if($params['id'] == 113){
-								$tds[$kc] = '<a target="blank_" href="'. front_link(8, $row->cat_id) .'">'. $val .'</a>';
-							}else if($params['id'] == 107){								
-								$tds[$kc] = '<a target="blank_" href="'. front_link(10, $row->cat_id) .'">'. $val .'</a>';
+						if (isset($vc->link_edit)) {
+							$tds[$kc] = '<a target="blank_" href="' . front_link($params['id'], 'formProduct/' . $row->id . '') . '">' . $val . '</a>';
+						} else if (isset($vc->Japan_link_news)) {
+
+							$tds[$kc] = '<a target="blank_" href="' . newsLink($row->id) . '">' . $val . '</a>';
+						} else if (isset($vc->Japan_linkCat)) {
+
+							$tds[$kc] = '<a target="blank_" href="' . front_link(4, $row->cat_id) . '">' . $val . '</a>';
+						} else if (isset($vc->Japan_linkCatVideo)) {
+
+							if ($params['id'] == 110) {
+								$tds[$kc] = '<a target="blank_"  href="' . front_link(3, $row->cat_id) . '">' . $val . '</a>';
+							} else if ($params['id'] == 113) {
+								$tds[$kc] = '<a target="blank_" href="' . front_link(8, $row->cat_id) . '">' . $val . '</a>';
+							} else if ($params['id'] == 107) {
+								$tds[$kc] = '<a target="blank_" href="' . front_link(10, $row->cat_id) . '">' . $val . '</a>';
 							}
-						}else if($params['id'] == 128){
+						} else if ($params['id'] == 128) {
 							$tds[$kc] = htmlspecialchars($val);
-						}else{
+						} else {
 
 							$tds[$kc] = $val;
 						}
-						
-						
-					
-
-
-
 					}
 				}
 
@@ -1420,32 +1347,30 @@ class Codea{
 				// arr($tds[$kc]);exit;
 			}
 
-			
-			
-			$ajaxObj = json_decode( '{}' );
+
+
+			$ajaxObj = json_decode('{}');
 			$ajaxObj->data = $rows;
 			$ajaxObj->recordsTotal = $total;
 			$ajaxObj->recordsFiltered = $total;
-			$ajaxObj->draw = isset( $_REQUEST['draw'] ) ? $_REQUEST['draw']: 1;
-			echo json_encode( $ajaxObj );
+			$ajaxObj->draw = isset($_REQUEST['draw']) ? $_REQUEST['draw'] : 1;
+			echo json_encode($ajaxObj);
 
 			exit;
-
-		}
-		else {
+		} else {
 
 			//
 			//view table
 			$params['topButtons'] = '
 				<div class="d-flex my-xl-auto right-content">
 					<div class="pe-1  mb-xl-0">
-						<a class="btn btn-primary" href="'. front_link( $params['id'], 'formProduct' ) .'" role="button"><i class="fas fa-plus"></i> เพิ่ม</a>
+						<a class="btn btn-primary" href="' . front_link($params['id'], 'formProduct') . '" role="button"><i class="fas fa-plus"></i> เพิ่ม</a>
 					</div>
 					<div class="pe-1  mb-xl-0">
 						<button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> ลบ</button>
 					</div>
 					<div class="pe-1  mb-xl-0">
-						<a href="'. front_link( 312 ) .'" type="button" class="btn btn-success"><i class="fas fa-eye"></i> ดูแบบแคตตาล๊อก</a>
+						<a href="' . front_link(312) . '" type="button" class="btn btn-success"><i class="fas fa-eye"></i> ดูแบบแคตตาล๊อก</a>
 					</div>
 
 					<div class="pe-1  mb-xl-0">
@@ -1455,14 +1380,14 @@ class Codea{
 			';
 
 
-			$buttons = json_encode( array( "excel" ) );
+			$buttons = json_encode(array("excel"));
 
-			$buttons = json_encode( array( "excel" ) );
+			$buttons = json_encode(array("excel"));
 			//$buttons = json_encode( array() );
 
-			$disabledSort = json_encode( $disabledSort );
+			$disabledSort = json_encode($disabledSort);
 
-			$onRowReorder = $has_order_number?'table.on( "row-reorder", function ( e, diff, edit ) {
+			$onRowReorder = $has_order_number ? 'table.on( "row-reorder", function ( e, diff, edit ) {
 							ids = [];
 							orders = [];
 							for ( var i=0, ien=diff.length ; i<ien ; i++ ) {
@@ -1475,13 +1400,13 @@ class Codea{
 								ids[i] = id;
 								orders[i] = position;
 							}
-						});':'';
-			$reorderAssets = $has_order_number?'<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css" />
-				<script src="https://cdn.datatables.net/rowreorder/1.2.6/js/dataTables.rowReorder.min.js"></script>':'';
-			
-			$pages = array(105,109,122,127,110,113,107,114);
+						});' : '';
+			$reorderAssets = $has_order_number ? '<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css" />
+				<script src="https://cdn.datatables.net/rowreorder/1.2.6/js/dataTables.rowReorder.min.js"></script>' : '';
+
+			$pages = array(105, 109, 122, 127, 110, 113, 107, 114);
 			$dateFillter = '';
-			if(in_array($params['id'],$pages)){
+			if (in_array($params['id'], $pages)) {
 				$dateFillter = '
 					<table cellspacing="5" cellpadding="5">
 						<tbody>
@@ -1496,10 +1421,10 @@ class Codea{
 					</table>
 				';
 			}
-			
+
 
 			$params['datastable'] = '
-				'.$dateFillter.'
+				' . $dateFillter . '
 				<table id="musion-datatable" class="table table-striped mg-b-0 text-md-nowrap">
 
 					<thead></thead>
@@ -1518,7 +1443,7 @@ class Codea{
 				<script src="table/pdfmake.min.js"></script>
 				<script src="table/vfs_fonts.js"></script>
 
-				'.$reorderAssets.'
+				' . $reorderAssets . '
 
 				<script>
 					var editor;
@@ -1529,7 +1454,7 @@ class Codea{
 						$( \'.multi-delete\' ).click( function() {
 							
 							let vals = $(\'[name="checkme[]"]:checked\').serialize()
-							url = \''. front_link( $params['id'], 'deleteRows' ) .'\';
+							url = \'' . front_link($params['id'], 'deleteRows') . '\';
 							
 							order_status = \'\';
 							Swal.fire({
@@ -1607,7 +1532,7 @@ class Codea{
 								return true;
 							},
 							ajax: {
-								url:"'. front_link( $params['id'], 'load_rows', array( 'ajax' => 1 ) ) .'",
+								url:"' . front_link($params['id'], 'load_rows', array('ajax' => 1)) . '",
 								type: "GET",
 								data: function ( d ) {
 									return $.extend( {}, d, {
@@ -1654,14 +1579,14 @@ class Codea{
 								}
 							},
 
-							columns:'. json_encode( $tds ) .',
-							columnDefs: [{orderable: false, targets: '. $disabledSort .'}],
+							columns:' . json_encode($tds) . ',
+							columnDefs: [{orderable: false, targets: ' . $disabledSort . '}],
 							rowReorder: true,
 							scrollY: 500,
 							paging: true,
 							pagingType: "simple_numbers",
 							lengthChange: false,
-							buttons: '. $buttons .',
+							buttons: ' . $buttons . ',
 							responsive: true,
 							select: true,
 							language: {
@@ -1674,7 +1599,7 @@ class Codea{
 							.buttons()
 							.container()
 							.appendTo( "#musion-datatable-wrapper .col-md-6:eq(0)");
-						'.$onRowReorder.'
+						' . $onRowReorder . '
 
 						$(\'#min, #max\').on(\'change\', function () {
 							table.ajax.reload();
@@ -1687,88 +1612,83 @@ class Codea{
 				
 
 			';
-			
+
 			//arr( $config );exit;
 			$params['addButton'] = '';
-			if( empty( $config->no_add ) ) {
+			if (empty($config->no_add)) {
 				$params['addButton'] = '
-				<a class="" href="'.front_link( $params['id'], 'formProduct' ).'"><button class="btn btn-primary m-2">เพิ่ม</button></a>
+				<a class="" href="' . front_link($params['id'], 'formProduct') . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>
 				<button class="btn btn-danger multi-delete">ลบ</button>
 				';
 			}
 
-		
 
-			
-		
+
+
+
 
 			return $params;
-
 		}
-
-
-
-
-
 	}
 
 	//
 	//
-	function getTable( $datas, $config = array(), $params = array() ) {
+	function getTable($datas, $config = array(), $params = array())
+	{
 
 		//arr( $config->config_id );exit;
 		$status = 'ready';
 		///$status = 'edit';
-	///	$status = 'add';
+		///	$status = 'add';
 		$r = 0;
-		foreach( $datas as $kg => $vg ) {
+		foreach ($datas as $kg => $vg) {
 
 			$tds = array();
 
-			foreach( $config->columns as $kc => $vc ) {
+			foreach ($config->columns as $kc => $vc) {
 
-				if( empty( $vc->show ) ) {
+				if (empty($vc->show)) {
 					continue;
 				}
 
 
-				$tds['edit'][] = '<td class="'. $vc->a .'">dsdfdfs</td>';
+				$tds['edit'][] = '<td class="' . $vc->a . '">dsdfdfs</td>';
 			}
 
-			$vals = convertObJectToArray( $vg );
+			$vals = convertObJectToArray($vg);
 
-			$gogo = $this->renderBlocks( $config, $vals, 2,  'ready' );
+			$gogo = $this->renderBlocks($config, $vals, 2,  'ready');
 
 
 			$trs['ready'][$vg->id] = '<tr>
 
-				<td class="">'. ( $r + 1  ) .'</td>
-				'. implode( '', $gogo[1] ) .'
+				<td class="">' . ($r + 1) . '</td>
+				' . implode('', $gogo[1]) . '
 
 				<td class="C">
 
 
-					<a data-id="'. $vg->id .'" class="delete-row" title="ลบข้อมูล"><i class="fas fa-trash-alt"></i></a> &nbsp;&nbsp;
+					<a data-id="' . $vg->id . '" class="delete-row" title="ลบข้อมูล"><i class="fas fa-trash-alt"></i></a> &nbsp;&nbsp;
 
-					<a data-id="'. $vg->id .'" class="edit-row" title="แก้ไขข้อมูล"><i class="fa fa-edit"></i></a>
+					<a data-id="' . $vg->id . '" class="edit-row" title="แก้ไขข้อมูล"><i class="fa fa-edit"></i></a>
 
 				</td>
 			</tr>';
 
 
-			$gogo = $this->renderBlocks( $config, $vals, 2, 'form' );
+			$gogo = $this->renderBlocks($config, $vals, 2, 'form');
 
 			$trs['edit'][$vg->id] = '
 				<tr>
-					<td class="">'. ( $r + 1  ) .'</td>
-					'. implode( '', $gogo[1] ) .'
+					<td class="">' . ($r + 1) . '</td>
+					' . implode('', $gogo[1]) . '
 
 					<td class="C">
 
 
 						<a class="confirm-row" title="บันทึกข้อมูล"><i class="fa fa-save"></i></a>
 
-						<a data-id="'. $vg->id .'" class="cancel-row" title="ยกเลิก"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						<a data-id="' . $vg->id . '" class="cancel-row" title="ยกเลิก"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 
 					</td>
 				</tr>';
@@ -1781,35 +1701,35 @@ class Codea{
 
 		$tds['ready'][] = '<td class=""></td>';
 
-		foreach( $config->columns as $kc => $vc ) {
+		foreach ($config->columns as $kc => $vc) {
 
-			if( empty( $vc->show ) ) {
+			if (empty($vc->show)) {
 				continue;
 			}
 
 			$val = '';
 
-			
+
 
 			//$tds['add'][] = '<td class="'. $vc->a .'">ัััััััััััััััั</td>';
-			$tds['ready'][] = '<td class="'. $vc->a .'"></td>';
+			$tds['ready'][] = '<td class="' . $vc->a . '"></td>';
 		}
 
-		
+
 
 		$tds['ready'][] = '
-			<td class="'. @$vc->a .'"><a class="add-new-row"><i class="fa fa-plus-circle"></i></a></td>
+			<td class="' . @$vc->a . '"><a class="add-new-row"><i class="fa fa-plus-circle"></i></a></td>
 		';
 
-		$trs['ready']['rrrrrrrrrrr'] = '<tr>'. implode( '', $tds['ready'] ) .'</tr>';
+		$trs['ready']['rrrrrrrrrrr'] = '<tr>' . implode('', $tds['ready']) . '</tr>';
 
 
-		$gogo = $this->renderBlocks( $config, array(), 2, 'form' );
+		$gogo = $this->renderBlocks($config, array(), 2, 'form');
 		$trs['add'] = '<tr>
 			<td class=""></td>
-			'. implode( '', $gogo[1] ) .'
+			' . implode('', $gogo[1]) . '
 
-			<td class="'. @$vc->a .'">
+			<td class="' . @$vc->a . '">
 				<a data-id="rrrrrrrrrrr" class="cancel-row" title="ยกเลิก"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 				<a class="confirm-row"><i class="fa fa-save"></i></a>
 
@@ -1817,47 +1737,45 @@ class Codea{
 		</tr>';
 
 		$trHead = array();
-		$getTrOnStep = getTrOnStep( @$config->columns );
-		$maxRow = count( $getTrOnStep );
-		if(is_array($getTrOnStep)) foreach ( $getTrOnStep as $kl => $vl ) {
+		$getTrOnStep = getTrOnStep(@$config->columns);
+		$maxRow = count($getTrOnStep);
+		if (is_array($getTrOnStep)) foreach ($getTrOnStep as $kl => $vl) {
 
 			$ths = array();
-			if ( $kl == 0 )
-				$ths[] = '<th style="width: 5%;" rowspan="'. $maxRow .'">#</th>';
+			if ($kl == 0)
+				$ths[] = '<th style="width: 5%;" rowspan="' . $maxRow . '">#</th>';
 
-			foreach ( $vl as $kt => $vt ) {
+			foreach ($vl as $kt => $vt) {
 
-				if ( empty( $vt['label'] ) )
+				if (empty($vt['label']))
 					continue;
 
-				$w = 'width: '. $vt['w'] .'%;';
-				if( $vt['w'] == 0 ) {
+				$w = 'width: ' . $vt['w'] . '%;';
+				if ($vt['w'] == 0) {
 
 					$w = 'width: auto;';
 				}
-				$ths[] = '<th style="'. $w .'" colspan="'. $vt['merg'] .'" rowspan="'. $vt['h'] .'">'. $vt['label'] .'</th>';
-
+				$ths[] = '<th style="' . $w . '" colspan="' . $vt['merg'] . '" rowspan="' . $vt['h'] . '">' . $vt['label'] . '</th>';
 			}
 
-			if ( $kl == 0 )
-				$ths[] = '<th rowspan="'. $maxRow .'"></th>';
+			if ($kl == 0)
+				$ths[] = '<th rowspan="' . $maxRow . '"></th>';
 
-			$trHead[] = '<tr>'. implode( '', $ths ) .'</tr>';
-
+			$trHead[] = '<tr>' . implode('', $ths) . '</tr>';
 		}
 
-		return '<form method="post" action="'. front_link( $params['id'], 'save/'. $params['parent_id'] .'/'. $config->config_id .'', $get = array(), $token = false  ) .'"  enctype="multipart/form-data" >
+		return '<form method="post" action="' . front_link($params['id'], 'save/' . $params['parent_id'] . '/' . $config->config_id . '', $get = array(), $token = false) . '"  enctype="multipart/form-data" >
 
-				'. $params['secret'] .'
+				' . $params['secret'] . '
 
 				<input style="display: none" type="submit" value="hidden_submit" class="sub_hidden_submit">
-				<input type="hidden" name="'. PriKey .'" value="'. $params['parent_id'] .'" />
+				<input type="hidden" name="' . PriKey . '" value="' . $params['parent_id'] . '" />
 				<input type="hidden" name="action_type" value="" />
-				<table data-config="'. $config->config_id .'" class="bomb-form table key-buttons text-md-nowrap">'. implode( '', $trHead ) .''. implode( '', $trs[$status] ) .'</table>
+				<table data-config="' . $config->config_id . '" class="bomb-form table key-buttons text-md-nowrap">' . implode('', $trHead) . '' . implode('', $trs[$status]) . '</table>
 			</form>
 
 
-			<script>trs['. $config->config_id .'] = '. json_encode( $trs ) .'</script>
+			<script>trs[' . $config->config_id . '] = ' . json_encode($trs) . '</script>
 
 		';
 	}
@@ -1866,182 +1784,169 @@ class Codea{
 
 	//
 	//
-	function renderBlocks( $config, $vals = array(), $type = 1, $status = 'form' ) {
+	function renderBlocks($config, $vals = array(), $type = 1, $status = 'form')
+	{
 
 		$replace = array();
 
-		foreach( $config->columns as $kc => $vc ) {
+		foreach ($config->columns as $kc => $vc) {
 
-			if( empty( $vc->show ) ) {
+			if (empty($vc->show)) {
 				continue;
 			}
 
-			if( !empty( $vc->default_val ) ) {
-				
-				$val = isset( $vals[$kc] )? $vals[$kc]: $vc->default_val;
-				
+			if (!empty($vc->default_val)) {
+
+				$val = isset($vals[$kc]) ? $vals[$kc] : $vc->default_val;
+			} else {
+				$val = isset($vals[$kc]) ? $vals[$kc] : NULL;
 			}
-			else {
-				$val = isset( $vals[$kc] )? $vals[$kc]: NULL;
-			}
-			
+
 			//arr( $val );
 
-			
-				
+
+
 
 			$label = $vc->label;
-			
+
 			$inputName = $kc;
 
-			$spanRequire = '<span class="text-danger" data-name="'. $inputName .'" style="color: red;"></span>';
-			if( !empty( $vc->require ) )
-				$spanRequire = '<span class="text-danger" data-name="'. $inputName .'" style="color: red;">*</span>';
-			
-			if( $vc->inputformat == 'password' ) {
-				$spanRequire = '<span class="text-danger" data-name="'. $inputName .'" style="color: red;">*</span>';
-				
-				$spanRequire2 = '<span class="text-danger" data-name="'. $inputName .'-confirm" style="color: red;">*</span>';
-				
-			}
-			
-			if( $vc->inputformat == 'time' ) {
-				
-				$val = gettime_( $val, 19 );
+			$spanRequire = '<span class="text-danger" data-name="' . $inputName . '" style="color: red;"></span>';
+			if (!empty($vc->require))
+				$spanRequire = '<span class="text-danger" data-name="' . $inputName . '" style="color: red;">*</span>';
 
-				$replace['['. $kc .']'] = '
+			if ($vc->inputformat == 'password') {
+				$spanRequire = '<span class="text-danger" data-name="' . $inputName . '" style="color: red;">*</span>';
+
+				$spanRequire2 = '<span class="text-danger" data-name="' . $inputName . '-confirm" style="color: red;">*</span>';
+			}
+
+			if ($vc->inputformat == 'time') {
+
+				$val = gettime_($val, 19);
+
+				$replace['[' . $kc . ']'] = '
 					<div class="row row-sm" mt-3="">
 						<div class="input-group">
 							<div class="input-group-text">
 								<div class="input-group-text">
 									<i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
 								</div>
-							</div><input value="'. $val .'" name="'. $inputName .'" class="form-control" id="datetimepicker2" type="text" placeholder="MM/DD/YYYY">
+							</div><input value="' . $val . '" name="' . $inputName . '" class="form-control" id="datetimepicker2" type="text" placeholder="MM/DD/YYYY">
 						</div>
 					</div>
 				';
+			} else if ($vc->inputformat == 'password') {
 
-			}
-			else if( $vc->inputformat == 'password' ) {
+				$replace['[' . $kc . ']'] = '<input class="form-control"  type="password" name="' . $inputName . '" placeholder="' . $vc->label . '">';
 
-				$replace['['. $kc .']'] = '<input class="form-control"  type="password" name="'. $inputName .'" placeholder="'. $vc->label .'">';
-				
-				$replace['['. $kc .'-confirm]'] = '<input class="form-control" type="password" name="'. $inputName .'-confirm" placeholder="ยืนยัน'. $vc->label .'">';
+				$replace['[' . $kc . '-confirm]'] = '<input class="form-control" type="password" name="' . $inputName . '-confirm" placeholder="ยืนยัน' . $vc->label . '">';
+			} else if ($status != 'form') {
 
-			}
-			else if( $status != 'form' ) {
-				
-				$replace['['. $kc .']'] = getVal( $val, $vc, 'r' );
+				$replace['[' . $kc . ']'] = getVal($val, $vc, 'r');
+			} else if (!empty($vc->input_type)) {
 
-			}
-			else if( !empty( $vc->input_type ) ) {
-
-				$json_decode = json_decode( $vc->input_type );
+				$json_decode = json_decode($vc->input_type);
 
 
-				if($json_decode->type == 'timeup'){
+				if ($json_decode->type == 'timeup') {
 					$label = '';
 					$spanRequire = '';
-					$replace['['. $kc .']'] = '
-						<input type="hidden" value="'.date('Y-m-d H:i:s').'" name="'. $inputName .'" class="form-control">							
+					$replace['[' . $kc . ']'] = '
+						<input type="hidden" value="' . date('Y-m-d H:i:s') . '" name="' . $inputName . '" class="form-control">							
 					';
-				}else
-				if( $json_decode->type == 'time2' ) {
-				
-					$val = gettime_( $val, 19 );
-	
-					$replace['['. $kc .']'] = '
+				} else
+				if ($json_decode->type == 'time2') {
+
+					$val = gettime_($val, 19);
+
+					$replace['[' . $kc . ']'] = '
 						<div class="row row-sm" mt-3="">
 							<div class="input-group">
 								<div class="input-group-text">
 									<div class="input-group-text">
 										<i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
 									</div>
-								</div><input value="'. $val .'" name="'. $inputName .'" class="form-control" id="datetimepicker3" type="text" placeholder="MM/DD/YYYY">
+								</div><input value="' . $val . '" name="' . $inputName . '" class="form-control" id="datetimepicker3" type="text" placeholder="MM/DD/YYYY">
 							</div>
 						</div>
 					';
-	
-				}else 
+				} else 
 
-				if( $json_decode->type == 'CoverNews' ) {
+				if ($json_decode->type == 'CoverNews') {
 					//value="'. $val .'"
 					$d = array();
-					
+
 					$d[] = '
 						<div class="dropify-container">						
-							<input type="file" name="'. $inputName .'" class="dropify" data-default-file="'.$val.'" data-height="200" />
+							<input type="file" name="' . $inputName . '" class="dropify" data-default-file="' . $val . '" data-height="200" />
 
 							
 						</div>
 
 						
 					';
-					
-					$replace['['. $kc .']'] = ''. implode( '', $d ) .'';
-				
-				}else
-				if( $json_decode->type == 'dropifys' ) {
+
+					$replace['[' . $kc . ']'] = '' . implode('', $d) . '';
+				} else
+				if ($json_decode->type == 'dropifys') {
 					//value="'. $val .'"
 					$d = array();
-					
+
 					$d[] = '
 						<div class="dropify-container">						
-							<input type="file" name="'. $inputName .'" class="dropify" data-default-file="'.$val.'" data-height="200" />
+							<input type="file" name="' . $inputName . '" class="dropify" data-default-file="' . $val . '" data-height="200" />
 
 							
 						</div>
 
 						
 					';
-					
+
 					// if( !empty( $val ) ) {
 					// 	$d[] = '
 					// 		<div class="container">
-									
+
 					// 				<video style="width: 100%; background-color: black;" height="448" controls="" >
 					// 				<source src="'. $val .'" type="video/mp4">
 
 					// 				Your browser does not support HTML video.
 					// 				</video>
 
-				// 	<div>
-				// 	<input data-default-file="'. $val .'" class="form-control dropify" data-height="100"  type="file" name="'. $inputName .'" placeholder="'. $vc->label .'">
-				// </div>
+					// 	<div>
+					// 	<input data-default-file="'. $val .'" class="form-control dropify" data-height="100"  type="file" name="'. $inputName .'" placeholder="'. $vc->label .'">
+					// </div>
 					// 		</div>
 					// 	';
 					// }
-					
-					$replace['['. $kc .']'] = ''. implode( '', $d ) .'';
-				
-				}else if( $json_decode->type == 'text' ) {
-					
-					$replace['['. $kc .']'] = '<input class="form-control" value="'. $val .'" type="text" name="'. $inputName .'" placeholder="'. $vc->label .'">';
-				}
-				else if( $json_decode->type == 'hashtag' ) {
 
-					$val = htmlspecialchars_decode( $val  );
-					$val = strip_tags( $val, 'a'  );
-					$replace['['. $kc .']'] = '<input class="form-control" value="'. $val .'" type="text" name="'. $inputName .'" placeholder="'. $vc->label .'">';
-				}
-				else if( $json_decode->type == 'toggle' ) {
+					$replace['[' . $kc . ']'] = '' . implode('', $d) . '';
+				} else if ($json_decode->type == 'text') {
+
+					$replace['[' . $kc . ']'] = '<input class="form-control" value="' . $val . '" type="text" name="' . $inputName . '" placeholder="' . $vc->label . '">';
+				} else if ($json_decode->type == 'hashtag') {
+
+					$val = htmlspecialchars_decode($val);
+					$val = strip_tags($val, 'a');
+					$replace['[' . $kc . ']'] = '<input class="form-control" value="' . $val . '" type="text" name="' . $inputName . '" placeholder="' . $vc->label . '">';
+				} else if ($json_decode->type == 'toggle') {
 
 					$on = '';
-					if( $val == $json_decode->param->options->on ) {
+					if ($val == $json_decode->param->options->on) {
 						$on = ' on';
 					}
 
-					$replace['['. $kc .']'] = '
+					$replace['[' . $kc . ']'] = '
 						<div class="main-toggle-group-demo">
-							<div class="main-toggle'. $on .'" style="">
-								<span></span><input class="toggle-val" type="hidden" value="'. $val .'" name="'. $inputName .'" />
+							<div class="main-toggle' . $on . '" style="">
+								<span></span><input class="toggle-val" type="hidden" value="' . $val . '" name="' . $inputName . '" />
 							</div>
 						</div>
 
 						<script>
 						$( function() {
 
-							options = '. $vc->input_type .'
+							options = ' . $vc->input_type . '
 							$( \'.main-toggle\' ).click( function(){
 
 								me = $( this );
@@ -2059,26 +1964,22 @@ class Codea{
 						});
 						</script>
 					';
-				}
-				else if( $json_decode->type == 'comment' ) {
+				} else if ($json_decode->type == 'comment') {
 
-					if( $json_decode->ckeditor == true ) {
+					if ($json_decode->ckeditor == true) {
 
-						$replace['['. $kc .']'] = '<textarea style="" name="'. $inputName .'" class="form-control" rows="5">'. $val .'</textarea>
+						$replace['[' . $kc . ']'] = '<textarea style="" name="' . $inputName . '" class="form-control" rows="5">' . $val . '</textarea>
 
 						';
-					}
-					else {
+					} else {
 
-						$replace['['. $kc .']'] = '<textarea name="'. $inputName .'" class="form-control" rows="5">'. $val .'</textarea>';
-
+						$replace['[' . $kc . ']'] = '<textarea name="' . $inputName . '" class="form-control" rows="5">' . $val . '</textarea>';
 					}
-				}
-				else if ( $json_decode->type == 'select' ) {
+				} else if ($json_decode->type == 'select') {
 
 					$filter = '';
 
-					if (!empty( $json_decode->filter ) ) {
+					if (!empty($json_decode->filter)) {
 
 						$cond = 'HAVING';
 
@@ -2090,12 +1991,12 @@ class Codea{
 					}
 
 
-					$sql = str_replace( array( '%filter;' ), array( $filter ), $json_decode->sql );
+					$sql = str_replace(array('%filter;'), array($filter), $json_decode->sql);
 
 
 					$json_decode->sql = $sql;
 
-					$sql = genJsonSql( $json_decode, NULL, NULL, NULL );
+					$sql = genJsonSql($json_decode, NULL, NULL, NULL);
 
 					if (isset($json_decode->replaceSql)) {
 
@@ -2116,244 +2017,216 @@ class Codea{
 					$pri_key = $pri_key[count($pri_key) - 1];
 
 					$options = array();
-					
+
 					$name = 0;
-					
-					if( empty( $vc->$name ) ) {
-						
+
+					if (empty($vc->$name)) {
+
 						$options[] = '<option value="0">ไม่ระบุ</option>';
 					}
-					
-					foreach ( $this->dao->fetchAll($sql) as $kb => $vb ) {
+
+					foreach ($this->dao->fetchAll($sql) as $kb => $vb) {
 						$desc = getDesc($vb, $json_decode->desc);
 
 						$options[] = '<option ' . select($vb->$pri_key, $val) . ' value="' . $vb->$pri_key . '">' . $desc . '</option>';
 					}
 
-					if( isset( $json_decode->multiple ) ) {
-						$replace['['. $kc .']'] = '<select multiple="multiple" class="testselect2" name="' . $inputName . '">' . implode( '', $options ) . '</select>';
+					if (isset($json_decode->multiple)) {
+						$replace['[' . $kc . ']'] = '<select multiple="multiple" class="testselect2" name="' . $inputName . '">' . implode('', $options) . '</select>';
+					} else {
+
+						$replace['[' . $kc . ']'] = '<select class="form-control select2-no-search" name="' . $inputName . '">' . implode('', $options) . '</select>';
 					}
-					else {
-
-						$replace['['. $kc .']'] = '<select class="form-control select2-no-search" name="' . $inputName . '">' . implode( '', $options ) . '</select>';
-					}
+				} else {
+					$replace['[' . $kc . ']'] = '<input type="file" name="' . $inputName . '" class="dropify" data-height="200" data-default-file="' . $val . '"/>';
 				}
-				else{
-					$replace['['. $kc .']'] = '<input type="file" name="'. $inputName .'" class="dropify" data-height="200" data-default-file="'.$val.'"/>';
+			} else if ($vc->inputformat == 'number') {
+				$replace['[' . $kc . ']'] = '<input class="form-control" value="' . $val . '" type="number" name="' . $inputName . '" placeholder="' . $vc->label . '">';
+			} else if ($vc->inputformat == 'date') {
+				$replace['[' . $kc . ']'] = '<input class="form-control" value="' . $val . '" type="date" name="' . $inputName . '" placeholder="' . $vc->label . '">';
+			} else if (!empty($vc->on_update) || !empty($vc->on_insert)) {
 
-				}
-			}
-			else if( $vc->inputformat == 'number' ) {
-				$replace['['. $kc .']'] = '<input class="form-control" value="'. $val .'" type="number" name="'. $inputName .'" placeholder="'. $vc->label .'">';
-			}
-			else if( $vc->inputformat == 'date' ) {
-				$replace['['. $kc .']'] = '<input class="form-control" value="'. $val .'" type="date" name="'. $inputName .'" placeholder="'. $vc->label .'">';
-			}
-			else if ( !empty( $vc->on_update ) || !empty( $vc->on_insert ) ) {
+				$replace['[' . $kc . ']'] = getVal($val, $vc, 'r') . '';
+			} else {
 
-				$replace['['. $kc .']'] = getVal( $val, $vc, 'r' ) . '';
-			}
-			else {
-
-				$replace['['. $kc .']'] = '<input class="form-control" value="'. $val .'" type="text" name="'. $inputName .'" placeholder="'. $vc->label .'">';
+				$replace['[' . $kc . ']'] = '<input class="form-control" value="' . $val . '" type="text" name="' . $inputName . '" placeholder="' . $vc->label . '">';
 			}
 
-			if( $vc->inputformat == 'password' ) {
+			if ($vc->inputformat == 'password') {
 
-				
-				if( $type == 1 ) {
-					
+
+				if ($type == 1) {
+
 					$gogo[$vc->position][$kc] = '
-						<div class="'. $vc->div_class .'">
+						<div class="' . $vc->div_class . '">
 							<div class="form-group">
-								<span>'. $label .'</span> 
-								'. $spanRequire .''. $replace['['. $kc .']'] .'
+								<span>' . $label . '</span> 
+								' . $spanRequire . '' . $replace['[' . $kc . ']'] . '
 								
 							</div>
 							
 						</div>
 						
-						<div class="'. $vc->div_class .'">
+						<div class="' . $vc->div_class . '">
 							<div class="form-group">
-								<span>ยืนยัน'. $label .'</span> 
-								'. $spanRequire2 .''. $replace['['. $kc .'-confirm]'] .'
+								<span>ยืนยัน' . $label . '</span> 
+								' . $spanRequire2 . '' . $replace['[' . $kc . '-confirm]'] . '
 								
 							</div>
 							
 						</div>
 					';
-					
-				}
-				else {
+				} else {
 
-					$gogo[1][$kc] = '<td>'. $replace['['. $kc .']'] .'</td>';
+					$gogo[1][$kc] = '<td>' . $replace['[' . $kc . ']'] . '</td>';
 				}
-			}
-			else {
-				
-				if( $type == 1 ) {
-					
-					$gogo[$vc->position][$kc] = '<div class="'. $vc->div_class .'"><div class="form-group"><span>'. $label .'</span> '. $spanRequire .''. $replace['['. $kc .']'] .'</div></div>';
-					
-				}
-				else {
+			} else {
 
-					$gogo[1][$kc] = '<td>'. $replace['['. $kc .']'] .'</td>';
+				if ($type == 1) {
+
+					$gogo[$vc->position][$kc] = '<div class="' . $vc->div_class . '"><div class="form-group"><span>' . $label . '</span> ' . $spanRequire . '' . $replace['[' . $kc . ']'] . '</div></div>';
+				} else {
+
+					$gogo[1][$kc] = '<td>' . $replace['[' . $kc . ']'] . '</td>';
 				}
 			}
-
-
-
 		}
 
-		
+
 		return $gogo;
-
 	}
 
 
 
 	//
 	//
-	function save( $params = array() ) {
+	function save($params = array())
+	{
 
-		$request = service('request');		
+		$request = service('request');
 
-		if( !empty( $_REQUEST['action_type'] ) ) {
+		if (!empty($_REQUEST['action_type'])) {
 
-			$this->config = getConfig_( $params['config_id'] );
+			$this->config = getConfig_($params['config_id']);
 
-			$this->main_data_before = json_decode( '{}' );
-
-			$sql = "
-
-				SELECT
-					* FROM
-				". $this->config->tb_main ."
-				WHERE ". $this->config->pri_key ." = ". $params['parent_id'] ."
-
-			";
-
-			foreach( $this->dao->fetchAll( $sql ) as $ka => $va ) {
-
-				$this->main_data_before = $va;
-			}
-
-			if( !empty( $params['sub_config_id'] ) ) {
-
-				$this->config = getConfig_( $params['sub_config_id'] );
-
-
-				$action_type = 'delete';
-
-				$this->action( $action_type, $_REQUEST['pri_key'], $params );
-
-			}
-			else {
-
-				$action_type = 'delete';
-
-
-				$this->action( $action_type, $params['parent_id'], $params );
-			}
-		}
-		else {
-
-			$this->config = getConfig_( $params['config_id'] );
-
-			$this->main_data_before = json_decode( '{}' );
+			$this->main_data_before = json_decode('{}');
 
 			$sql = "
 
 				SELECT
 					* FROM
-				". $this->config->tb_main ."
-				WHERE ". $this->config->pri_key ." = ". $params['parent_id'] ."
+				" . $this->config->tb_main . "
+				WHERE " . $this->config->pri_key . " = " . $params['parent_id'] . "
 
 			";
 
-			foreach( $this->dao->fetchAll( $sql ) as $ka => $va ) {
+			foreach ($this->dao->fetchAll($sql) as $ka => $va) {
+
+				$this->main_data_before = $va;
+			}
+
+			if (!empty($params['sub_config_id'])) {
+
+				$this->config = getConfig_($params['sub_config_id']);
+
+
+				$action_type = 'delete';
+
+				$this->action($action_type, $_REQUEST['pri_key'], $params);
+			} else {
+
+				$action_type = 'delete';
+
+
+				$this->action($action_type, $params['parent_id'], $params);
+			}
+		} else {
+
+			$this->config = getConfig_($params['config_id']);
+
+			$this->main_data_before = json_decode('{}');
+
+			$sql = "
+
+				SELECT
+					* FROM
+				" . $this->config->tb_main . "
+				WHERE " . $this->config->pri_key . " = " . $params['parent_id'] . "
+
+			";
+
+			foreach ($this->dao->fetchAll($sql) as $ka => $va) {
 
 				$this->main_data_before = $va;
 			}
 
 
-			if( !empty( $params['sub_config_id'] ) ) {
-				$this->config = getConfig_( $params['sub_config_id'] );
-
-				
-				if( !empty( $_REQUEST['pri_key'] ) ) {
+			if (!empty($params['sub_config_id'])) {
+				$this->config = getConfig_($params['sub_config_id']);
 
 
-					$action_type = 'edit';
-				}
-				else {
-
-					$action_type = 'add';
-
-				}
-
-				$this->action( $action_type, $_REQUEST['pri_key'], $params );
-
-			}
-			else {
-
-				
-				if( !empty( $params['parent_id'] ) ) {
+				if (!empty($_REQUEST['pri_key'])) {
 
 
 					$action_type = 'edit';
-				}
-				else {
+				} else {
 
 					$action_type = 'add';
-
 				}
 
-				$this->action( $action_type, $params['parent_id'], $params );
+				$this->action($action_type, $_REQUEST['pri_key'], $params);
+			} else {
+
+
+				if (!empty($params['parent_id'])) {
+
+
+					$action_type = 'edit';
+				} else {
+
+					$action_type = 'add';
+				}
+
+				$this->action($action_type, $params['parent_id'], $params);
 			}
 		}
-
-
-
-
 	}
 
-	function deleteRows($params){
+	function deleteRows($params)
+	{
 
 		$rowsIds = @$_REQUEST['checkme'];
 
-		$this->config = getConfig_( $params['config_id'] );
-		
+		$this->config = getConfig_($params['config_id']);
+
 		$k_tb_name = $this->config->tb_main;
 		$json = [];
-		
-		
 
-		if(!empty($rowsIds)){
-			foreach($rowsIds as $k => $v){
-				
+
+
+		if (!empty($rowsIds)) {
+			foreach ($rowsIds as $k => $v) {
+
 				$sql = "
-					DELETE FROM ". $k_tb_name ."
-					WHERE id = ". $v ."
+					DELETE FROM " . $k_tb_name . "
+					WHERE id = " . $v . "
 				
 				";
 
-				$result = $this->dao->execDatas( $sql );
-				if($result){
+				$result = $this->dao->execDatas($sql);
+				if ($result) {
 					$json = array(
 						"success" => true,
 						"msg" => 'ลบรายการสำเร็จ'
 					);
-				}else{
+				} else {
 					$json = array(
 						"success" => false,
 						"msg" => 'ขออภัยไม่สามารถทำรายการได้ เนื่องจากอาจมีการใช้งานร่วมกันกับข้อมูลอื่น'
 					);
 				}
-				
 			}
-		}else{
+		} else {
 			$json = array(
 				"success" => false,
 				"msg" => 'ไม่พบรายการที่ต้องการลบ'
@@ -2365,13 +2238,14 @@ class Codea{
 	}
 
 
-	function deleteData( $params = array() ) {
+	function deleteData($params = array())
+	{
 
-		$this->config = getConfig_( $params['config_id'] );
-		
+		$this->config = getConfig_($params['config_id']);
+
 		$k_tb_name = $this->config->tb_main;
 
-		if(isset($_REQUEST['val'])){
+		if (isset($_REQUEST['val'])) {
 			// $sql = "
 			// 	SELECT 
 			// 		n.*,v.*
@@ -2385,17 +2259,17 @@ class Codea{
 			// exit;
 
 			$sql = "
-				DELETE FROM ". $k_tb_name ."
-				WHERE id = ". $_REQUEST['val'] ."
+				DELETE FROM " . $k_tb_name . "
+				WHERE id = " . $_REQUEST['val'] . "
 			";
-			
 
-			if($this->dao->execDatas( $sql )){
+
+			if ($this->dao->execDatas($sql)) {
 				$errors = [
 					'success' => true,
 					'msg' => 'ลบรายการสำเร็จ'
 				];
-			}else{
+			} else {
 				$errors = [
 					'success' => false,
 					'msg' => 'ขออภัยไม่สามารถทำรายการได้ เนื่องจากอาจมีการใช้งานร่วมกันกับข้อมูลอื่น'
@@ -2404,111 +2278,110 @@ class Codea{
 
 			echo json_encode($errors);
 		}
-
 	}
-	
-	function deleteImgs( $params = array() ) {
+
+	function deleteImgs($params = array())
+	{
 
 
-//arr( $params );exit;
+		//arr( $params );exit;
 
-		$this->config = getConfig_( $params['config_id'] );
-		
+		$this->config = getConfig_($params['config_id']);
+
 		$k_tb_name = $this->config->tb_main;
 
 		$sql = "
 			DELETE FROM tb_ecom_file
-			WHERE id = ". $params['parent_id'] ."
-			AND tb_name = '". $k_tb_name ."'
+			WHERE id = " . $params['parent_id'] . "
+			AND tb_name = '" . $k_tb_name . "'
 		";
 
-		$this->dao->execDatas( $sql );
+		$this->dao->execDatas($sql);
 
-		header( "Location:". comeBack() );
+		header("Location:" . comeBack());
 
 		exit;
-
 	}
-	
-	
 
 
-	function formProduct( $params = array() ) {
+
+
+	function formProduct($params = array())
+	{
 
 
 		$imgsBlock = '';
-		unset( $_SESSION['parent_id'] );
+		unset($_SESSION['parent_id']);
 
-		$config = getConfig_( $params['config_id'] );
+		$config = getConfig_($params['config_id']);
 
 
 		$sql = $config->main_sql;
 
 		$filters = array();
 
-		$filters['HAVING'][] = "id = ". $params['parent_id'] ."";
+		$filters['HAVING'][] = "id = " . $params['parent_id'] . "";
 
-		$sql = genCond_( $sql, $filters );
+		$sql = genCond_($sql, $filters);
 
 		$vals = array();
-		foreach( $this->dao->fetchAll( $sql ) as $ka => $va ) {
+		foreach ($this->dao->fetchAll($sql) as $ka => $va) {
 
-			$vals = convertObJectToArray( $va );
+			$vals = convertObJectToArray($va);
 
 			break;
 		}
 
 
-	//	arr( $vals );exit;
+		//	arr( $vals );exit;
 
 		$parentDatas = array();
-		foreach( $vals as $kv => $vv ) {
-			$parentDatas['['. $kv .']'] = $vv;
+		foreach ($vals as $kv => $vv) {
+			$parentDatas['[' . $kv . ']'] = $vv;
 		}
 
 
-		$gogo = $this->renderBlocks( $config, $vals );
+		$gogo = $this->renderBlocks($config, $vals);
 
 		$boxsTitle['HEAD'] = 'ทั่วไป';
 		$boxsTitle['BL'] = 'ข้อมูล';
 
 		$keep = array();
 
-//arr( $params );
-		if(  in_array( $params['config_id'], array( 2, 3, 5, 6, 614, 78, 19 ) ) ) {
+		//arr( $params );
+		if (in_array($params['config_id'], array(2, 3, 5, 6, 614, 78, 19))) {
 
-			if( empty(  $params['parent_id'] ) ) {
-				
+			if (empty($params['parent_id'])) {
+
 				$sql = "
 					SELECT
 						*
 					FROM tb_ecom_file
 					WHERE (  file_ref_id IS NULL OR file_ref_id = 0 )
-					AND tb_name = '". $config->tb_main ."'
+					AND tb_name = '" . $config->tb_main . "'
 					ORDER BY
 						file_ordering ASC,
 						id ASC
 				";
-			}
-			else {
-				
+			} else {
+
 				$sql = "
 					SELECT
 						*
 					FROM tb_ecom_file
-					WHERE ( file_ref_id = ". $params['parent_id'] ." OR file_ref_id IS NULL OR file_ref_id = 0 )
-					AND tb_name = '". $config->tb_main ."'
+					WHERE ( file_ref_id = " . $params['parent_id'] . " OR file_ref_id IS NULL OR file_ref_id = 0 )
+					AND tb_name = '" . $config->tb_main . "'
 					ORDER BY
 						file_ordering ASC,
 						id ASC
 				";
 			}
-			
-				//arr( $sql );exit;
-				$imgs = array();
-				foreach( $this->dao->fetchAll( $sql ) as $ka => $va ) {
 
-				if( !file_exists( $_SERVER['DOCUMENT_ROOT'] . '/' . $va->img_path ) ) {
+			//arr( $sql );exit;
+			$imgs = array();
+			foreach ($this->dao->fetchAll($sql) as $ka => $va) {
+
+				if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $va->img_path)) {
 					//continue;
 				}
 
@@ -2520,9 +2393,9 @@ class Codea{
 						<div class="col-md-12">
 							<div class="post-file-upload-row dz-image-preview dz-success dz-complete pull-left" id="">
 								<div class="preview" style="width:85px; display: inline">
-									<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="'. $va->img_path .'" style="height: 85px;">
+									<img data-dz-thumbnail="" class="upload-thumbnail-sm" alt="40569.jpg" src="' . $va->img_path . '" style="height: 85px;">
 
-									<a href="'. front_link( $params['id'], 'deleteImgs/'. $va->id .'' ) .'">
+									<a href="' . front_link($params['id'], 'deleteImgs/' . $va->id . '') . '">
 										<span data-dz-remove="" class="delete" style="margin: 20px;">
 											<i class="fas fa-trash"></i>
 										</span>
@@ -2539,7 +2412,7 @@ class Codea{
 				';
 			}
 
-			
+
 
 			$imgsBlock = '
 			
@@ -2597,7 +2470,7 @@ class Codea{
 							<div class="row row-sm">
 								<div class="form-group post-dropzone">
 									<div class="post-file-dropzone-scrollbar hide">
-										<div class="post-file-previews clearfix b-t" id="irtbomknyhjfduy" style="align-items: center;grid-template-columns: auto auto auto auto auto auto;">  '. implode( '<br>', $imgs ) .'</div>
+										<div class="post-file-previews clearfix b-t" id="irtbomknyhjfduy" style="align-items: center;grid-template-columns: auto auto auto auto auto auto;">  ' . implode('<br>', $imgs) . '</div>
 
 									</div>
 
@@ -2621,8 +2494,8 @@ class Codea{
 					};
 					var data = {};
 
-					AppHelper.csrfTokenName = "'. get_token( 'name' ) .'";
-					AppHelper.csrfHash = "'. $params['token_val'] .'";
+					AppHelper.csrfTokenName = "' . get_token('name') . '";
+					AppHelper.csrfHash = "' . $params['token_val'] . '";
 
 					data[AppHelper.csrfTokenName] = AppHelper.csrfHash;
 
@@ -2733,7 +2606,7 @@ class Codea{
 					};
 
 					$( document ).ready(function () {
-						var uploadUrl = "'. front_link( $params['id'], 'uploadUrl/'. $params['parent_id'] .'',  array(), false ) .'";
+						var uploadUrl = "' . front_link($params['id'], 'uploadUrl/' . $params['parent_id'] . '',  array(), false) . '";
 						var validationUri = "";
 						var dropzone = attachDropzoneWithForm("#notes-dropzone", uploadUrl, validationUri );
 					});
@@ -2741,42 +2614,42 @@ class Codea{
 			';
 		}
 
-		
-			foreach( $gogo as $kp => $vp ) {
 
-				$title = isset( $boxsTitle[$kp] )? $boxsTitle[$kp]: 'ข้อมูล ' . $kp;
-	
-				$keep[] = '
+		foreach ($gogo as $kp => $vp) {
+
+			$title = isset($boxsTitle[$kp]) ? $boxsTitle[$kp] : 'ข้อมูล ' . $kp;
+
+			$keep[] = '
 					<div class="">
 						<div class="">
 							<div class="">
 	
 							</div>
 							<div class="">
-								<div class="row">'. implode( '', $vp ) .'</div>
-								'.$imgsBlock.'
+								<div class="row">' . implode('', $vp) . '</div>
+								' . $imgsBlock . '
 							</div>
 						</div>
 					</div>
 				';
-			}
-		
-		
+		}
 
-		$sql="";
 
-		if( $params['id'] == 126 ){
-			
+
+		$sql = "";
+
+		if ($params['id'] == 126) {
+
 			$sql = "
 				SELECT 
 					* 
 				FROM role_permission 
-				WHERE role_id = ". $params['parent_id'] ." 
+				WHERE role_id = " . $params['parent_id'] . " 
 			";
-			
+
 			$keepRolePermission = array();
-			foreach( $this->dao->fetchAll( $sql ) as $ka => $va ){
-				
+			foreach ($this->dao->fetchAll($sql) as $ka => $va) {
+
 				$keepRolePermission[$va->page_id] = $va;
 			}
 
@@ -2790,80 +2663,75 @@ class Codea{
 			
 				ORDER BY order_number ASC
 			";
-			
-	
+
+
 			// arr($sqlPro);exit;
-			$roleArray[] = array( 'label' => 'ไม่แสดง', 'value' => 1 );
-			$roleArray[] = array( 'label' => 'แสดง', 'value' => 2 );
+			$roleArray[] = array('label' => 'ไม่แสดง', 'value' => 1);
+			$roleArray[] = array('label' => 'แสดง', 'value' => 2);
 			//$roleArray[] = array( 'label' => 'ทั้งหมด', 'value' => 3 );
 
-			foreach( getAdminMenu( NULL, true, 'bbbbbbbbbbbb' ) as $ka => $va ){
-				
-				if( !empty( $va->every_body_login ) ) {
+			foreach (getAdminMenu(NULL, true, 'bbbbbbbbbbbb') as $ka => $va) {
+
+				if (!empty($va->every_body_login)) {
 					continue;
 				}
-				
+
 				$check = '';
-				if( isset( $keepRolePermission[$va->id] ) ) {
+				if (isset($keepRolePermission[$va->id])) {
 					$check = ' checked ';
 				}
-				
-				
-				
+
+
+
 				$keepRole = array();
-				
-				$checked = ''; $text = '';
-				if($va->id == 109){
+
+				$checked = '';
+				$text = '';
+				if ($va->id == 109) {
 					$text = '( กรุณาเลือกสิทธิ์นี้ทุกครั้ง )';
 					$checked = 'checked';
 				}
 
 				$keepRole[] = '				
-					<input '. $check .' type="checkbox" id="rols'.$va->id.'" name="views['.$va->id.']" value="1" '.$checked.'>
-					<label for="rols'.$va->id.'">สามารถใช้ได้</label>
+					<input ' . $check . ' type="checkbox" id="rols' . $va->id . '" name="views[' . $va->id . ']" value="1" ' . $checked . '>
+					<label for="rols' . $va->id . '">สามารถใช้ได้</label>
 				';
-				
-				
+
+
 				$role[] = '
 				<div class="col-4">
-					<span>จัดการสิทธิ์ <span class="text-danger">'.$va->title.' '.$text.'</span></span>
-					<ul>'. implode( '<br>', $keepRole ) .'</ul>
+					<span>จัดการสิทธิ์ <span class="text-danger">' . $va->title . ' ' . $text . '</span></span>
+					<ul>' . implode('<br>', $keepRole) . '</ul>
 				</div>
 				
 			';
-	
-				
-	
 			}
-	
-	
-			$keep[]='
+
+
+			$keep[] = '
 				<div class="row">
-					'.implode('',$role).'
+					' . implode('', $role) . '
 				</div>
 			';
-		
 		}
-		
 
-		if( !empty( $params['sub_config_id'] ) ) {
+
+		if (!empty($params['sub_config_id'])) {
 
 
 			$params['params'] = $params;
 
-			$params['token_val'] = get_token( 'val' );
+			$params['token_val'] = get_token('val');
 
 			$tabName = 'tab1';
 
 			$active = NULL;
-
-		}
-		else {
+		} else {
 
 
 			$params['params'] = $params;
 
-			$params['token_val'] = get_token( 'val' );
+			$params['token_val'] = get_token('val');
 
 			$tabName = 'tab1';
 
@@ -2874,28 +2742,28 @@ class Codea{
 		}
 
 
-		$tabs[] = '<li><a href="'. front_link( $params['id'], 'formProduct/'. $params['parent_id'] .'' ) .'" class="nav-link'. $active .'" >ทั่วไป/ข้อมูล/ลิ้งค์</a> '. getConfigLink( $params ) .'</li>';
+		$tabs[] = '<li><a href="' . front_link($params['id'], 'formProduct/' . $params['parent_id'] . '') . '" class="nav-link' . $active . '" >ทั่วไป/ข้อมูล/ลิ้งค์</a> ' . getConfigLink($params) . '</li>';
 
 
 		$params['tabPanes'] = '';
 		$params['tabPanes'] .= '<script>trs = []</script>';
 
 		$params['tabPanes'] .= '
-			<div class="tab-pane'. $active .'" id="tab1">
+			<div class="tab-pane' . $active . '" id="tab1">
 				<div class="">
 					<div class="row row-sm">
 
-						<form method="post" action="'. front_link( $params['id'], 'save/'. $params['parent_id'] .'', $get = array(), $token = false  ) .'"  enctype="multipart/form-data" >
+						<form method="post" action="' . front_link($params['id'], 'save/' . $params['parent_id'] . '', $get = array(), $token = false) . '"  enctype="multipart/form-data" >
 
-							'. $params['secret'] .'
+							' . $params['secret'] . '
 
 							<input style="display: none" type="submit" value="hidden_submit" class="hidden_submit">
 
-							<input type="hidden" name="'. PriKey .'" value="'. $params['parent_id'] .'" />
+							<input type="hidden" name="' . PriKey . '" value="' . $params['parent_id'] . '" />
 
 							
 
-							'. implode( '', $keep ) .'
+							' . implode('', $keep) . '
 
 						</form>
 					</div>
@@ -2904,31 +2772,31 @@ class Codea{
 		';
 
 		$buttons = array();
-		
-		$toviews[105] = newsLink( $params['parent_id'] );
+
+		$toviews[105] = newsLink($params['parent_id']);
 		// var_dump($params);
-		if( isset(  $toviews[$params['id']] ) && !empty($params['parent_id']) ) {
-			
-			$buttons[] = '<a target="_blank" href="'. $toviews[$params['id']] .'" class="btn btn-secondary" style="background-color: #ff6f00;">ดูตัวอย่าง</a>';
+		if (isset($toviews[$params['id']]) && !empty($params['parent_id'])) {
+
+			$buttons[] = '<a target="_blank" href="' . $toviews[$params['id']] . '" class="btn btn-secondary" style="background-color: #ff6f00;">ดูตัวอย่าง</a>';
 		}
-		
+
 		$buttons[] = '<input type="submit" value="บันทึกข้อมูล" class="btn btn-primary hidden_submit" style="">';
-		$buttons[] = '<a href="'. front_link( $params['id'] ) .'" class="btn btn-secondary">ย้อนกลับไปที่รายการ</a>';
-		
+		$buttons[] = '<a href="' . front_link($params['id']) . '" class="btn btn-secondary">ย้อนกลับไปที่รายการ</a>';
+
 		$linksUrls = '';
-		if(!empty($params['parent_id'])){
-			$linksUrls = '/'.$params['parent_id'];
+		if (!empty($params['parent_id'])) {
+			$linksUrls = '/' . $params['parent_id'];
 		}
 		// '. $this->form_mode .'
 		$params['form'] = '
-			<form method="POST" action="'. front_link( $params['id'], 'save'. $linksUrls .'', $get = array(), $token = false  ) .'"  enctype="multipart/form-data" >
+			<form method="POST" action="' . front_link($params['id'], 'save' . $linksUrls . '', $get = array(), $token = false) . '"  enctype="multipart/form-data" >
 			
 			 
-				'. $params['secret'] .'
-				<input type="hidden" name="'. PriKey .'" value="'. $params['parent_id'] .'" />				
-				'. implode( '', $keep ) .'
+				' . $params['secret'] . '
+				<input type="hidden" name="' . PriKey . '" value="' . $params['parent_id'] . '" />				
+				' . implode('', $keep) . '
 				<div class="form-group mb-0 mt-3 justify-content-end">
-					<div>'. implode( ' ', $buttons ) .'</div>
+					<div>' . implode(' ', $buttons) . '</div>
 				</div>
 			</form>
 		';
@@ -2937,51 +2805,52 @@ class Codea{
 
 		$params['tabs_menu'] = '
 			<div class="tabs-menu1">
-				<ul class="nav panel-tabs main-nav-line">'. implode( '', $tabs ) .'</ul>
+				<ul class="nav panel-tabs main-nav-line">' . implode('', $tabs) . '</ul>
 			</div>
 		';
 
 		$params['datastable '] = 'fdd';
 		//$params['page'] =
 
-		echo view( '__admin/aa_form', $params );
+		echo view('__admin/aa_form', $params);
 
 		//return view( 'adminView', $params );
 
 	}
 
-	function switchAct($params){
-		
-		if(!empty($_REQUEST)){
+	function switchAct($params)
+	{
+
+		if (!empty($_REQUEST)) {
 			$vals = $_REQUEST['code'];
 			$type = $_REQUEST['type'];
-			
+
 			$config = getConfig($params['config_id']);
 
-			$sql = "SELECT show_at_first FROM ".$config->tb_main." WHERE id ='".$vals."'";
+			$sql = "SELECT show_at_first FROM " . $config->tb_main . " WHERE id ='" . $vals . "'";
 			$query = getDb()->fetch($sql);
-			
+
 			$datas = [];
-			if($query){
-				if($query->show_at_first == 2){
+			if ($query) {
+				if ($query->show_at_first == 2) {
 					$datas = [
 						'show_at_first' => 1,
 						'time_update' => date('Y-m-d H:i:s')
 					];
-				}else{
+				} else {
 					$datas = [
 						'show_at_first' => 2,
 						'time_update' => date('Y-m-d H:i:s')
 					];
 				}
-				
-				$res = getDb()->update_($config->tb_main, $datas,'id = "'.$vals.'"');
-				if($res){
+
+				$res = getDb()->update_($config->tb_main, $datas, 'id = "' . $vals . '"');
+				if ($res) {
 					$errors = [
 						'success' => true,
 						'msg' => 'บันทึกสำเร็จ'
 					];
-				}else{
+				} else {
 					$errors = [
 						'success' => false,
 						'msg' => 'ขออภัยไม่สามารถทำรายการได้'
@@ -2989,7 +2858,7 @@ class Codea{
 				}
 				echo json_encode($errors);
 				exit;
-			}else{
+			} else {
 				$errors = [
 					'success' => false,
 					'msg' => 'ไม่พบรายการ'
@@ -2997,16 +2866,7 @@ class Codea{
 				echo json_encode($errors);
 				exit;
 			}
-			
-
-			
-		
-
 		}
 		exit;
 	}
-	
-	
-
-
 }

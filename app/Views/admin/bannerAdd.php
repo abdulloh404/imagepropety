@@ -124,7 +124,7 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            <form action="<?php echo front_link(25) ?>" method="GET">
+            <form method="get" enctype="multipart/form-data" action="<?php echo front_link(25) ?>">
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
@@ -134,7 +134,7 @@
                             <p class="text-danger" style="display: none;" id="text-alert-image">
                                 (ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p>
                         </div>
-                        <input type="file" name="bannername" class="dropzone">
+                        <input type="file" name="file" class="dropzone">
                     </div>
                     <div class="preview-zone hidden">
                         <div class="box box-solid">
@@ -150,10 +150,10 @@
         </div>
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
 
-            <div class="form-blog">
+            <!-- <div class="form-blog">
                 <label for="" class="form-label">ชื่อแบนเนอร์</label>
-                <input type="text" class="form-add-blog" name="headerpost" value="" placeholder="">
-            </div>
+                <input type="text" class="form-add-blog" name="title" value="" placeholder="">
+            </div> -->
             <!-- <div class="form-blog">
                 <label for="" class="form-label">URL</label>
                 <input type="text" class="form-add-blog" name="date" value="" placeholder="">

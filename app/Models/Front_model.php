@@ -1534,52 +1534,6 @@ class Front_model
         return $params;
     }
 
-    public function uploadBanner($bannername, $headpost)
-    {
-
-        echo "XXXXXXXXXXXXXX";
-
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            // Check if file was uploaded without errors
-            if (isset($_FILES["banner"]) && $_FILES["banner"]["error"] == 0) {
-                $allowed = array("jpg" => "../public/upload/tb_banners/", "jpeg" => "../public/upload/tb_banners/", "png" => "../public/upload/tb_banners/");
-                $filename = $_FILES["banner"]["name"];
-                $filetype = $_FILES["banner"]["type"];
-                $filesize = $_FILES["banner"]["size"];
-
-                // Verify file extension
-                $ext = pathinfo($filename, PATHINFO_EXTENSION);
-                if (!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-
-                // Verify file size - 5MB maximum
-                $maxsize = 5 * 1024 * 1024;
-                if ($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-
-                // Verify MYME type of the file
-                if (in_array($filetype, $allowed)) {
-                    // Check whether file exists before uploading it
-                    if (file_exists("../public/upload/tb_banners/" . $filename)) {
-                        echo $filename . " is already exists.";
-                    } else {
-                        move_uploaded_file($_FILES["banner"]["tmp_name"], "../public/upload/tb_banners/" . $filename);
-                        echo "Your file was uploaded successfully.";
-                    }
-                } else {
-                    echo "Error: There was a problem uploading your file. Please try again.";
-                }
-            } else {
-                echo "Error: " . $_FILES["banner"]["error"];
-            }
-        }
-
-        // // Insert the file information into the database
-        // $sql = "INSERT INTO photos (filename, type, size) VALUES (?, ?, ?)";
-        // $stmt = mysqli_prepare($conn, $sql);
-        // mysqli_stmt_bind_param($stmt, "sss", $filename, $filetype, $filesize);
-        // mysqli_stmt_execute($stmt);
-        // mysqli_stmt_close($stmt);
-    }
-
 
     function managetemplates($param)
     {

@@ -269,7 +269,7 @@ class Admin_model
             //$li[] = '<li id="item-' . $v->id . '"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' . $v->name . '</li>';
             $i++;
         }
-        
+
         $html['listCata'] =  implode('', $div);
         $html['listCata'] .= '<input class="typeThemes" type="hidden" name="types" value="video">';
         return $html;
@@ -448,10 +448,10 @@ class Admin_model
 
         // // var_dump($configs);exit;
 
-       
-        
-       
-       
+
+
+
+
 
 
         $check_form = check_form($result, $configs);
@@ -465,7 +465,7 @@ class Admin_model
             exit;
         }
 
-        
+
         if (isset($result['addUser'])) {
 
             $sql = "
@@ -551,7 +551,7 @@ class Admin_model
             WHERE aa_users.id = " . $_SESSION['user_id'] . " LIMIT 0,1";
         $keep = array();
 
-       
+
         $gArray = array('ชาย', 'หญิง', 'อื่น ๆ');
         $statusArray = array('โสด', 'สมรส');
         $eduArray = array('ต่ำกว่าปริญญาตรี', 'ปริญญาตรี', 'ปริญญาโท', 'สูงกว่าปริญญาโท');
@@ -597,11 +597,11 @@ class Admin_model
 
 
 
-        
 
-        if(isset($_SESSION['u'])){
+
+        if (isset($_SESSION['u'])) {
             $emails = $_SESSION['u']->email;
-        }else{
+        } else {
             $emails = '';
         }
 
@@ -1062,7 +1062,7 @@ class Admin_model
                                 <label class="form-label">อีเมล</label> 
                             </div>
                             <div class="col-md-9">
-                                <input type="email" name="email" class="form-control" placeholder="email@email.com" value="'.$emails.'">
+                                <input type="email" name="email" class="form-control" placeholder="email@email.com" value="' . $emails . '">
                                 <span class="text-danger" data-name="email">*</span>
                             </div>
                         </div>
