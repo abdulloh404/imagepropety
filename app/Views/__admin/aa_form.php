@@ -13,11 +13,9 @@
 	<meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4" />
 
 
-	<!-- Title -->
-	<title>สวพ.FM91</title>
+	<title>ImageProperty</title>
 
-	<!-- Favicon -->
-	<link rel="icon" href="admin/assets/img/brand/favicon.png" type="image/x-icon" />
+    <link rel="icon" type="image/x-icon" href="page/admin-assets/img/logo.png">
 
 	<link href="admin/assets/css/dropify.min.css" rel="stylesheet">
 
@@ -93,7 +91,13 @@
 
 		<!-- เมนู -->
 		<!-- main-header opened -->
-		<?php echo view('__admin/component/top_bar', $params) ?>
+		<?php //echo view('__admin/component/top_bar', $params) ?>
+		<?php echo view('components/adminheader') ?>
+
+
+		<!-- nav -->
+		<?php echo view('components/adminnavbar') ?>
+
 		<!-- /main-header -->
 
 
@@ -244,7 +248,7 @@
 
 		<!-- Footer opened -->
 
-		<?php echo view('__admin/component/footer', $params) ?>
+		<?php //echo view('admin/component/footer', $params) ?>
 
 
 		<!-- Footer closed -->
