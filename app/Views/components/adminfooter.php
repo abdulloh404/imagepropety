@@ -18,4 +18,17 @@
             79 หมู่ 8 ถนนมิตรภาพ-หนองคาย ต.หมื่นไวย อ.เมืองนครราชสีมา จ.นครราชสีมา 30000
         </div>
     </div>
+    <!-- <div class="main-footer ht-40">
+        <div class="container-fluid pd-t-0-f ht-100p">
+            <p>© <span class="main-color">Image Property Management Co,.Ltd</span> website -All Rights Reserve 2022 
+            <?php 
+            if(isset($_SESSION['u']) && $_SESSION['u']->super_admin == 1){
+                echo getConfigLink( $params );
+            }else{
+                echo '';
+            }
+            ?>
+        </p>
+        </div>
+    </div> -->
 </footer>

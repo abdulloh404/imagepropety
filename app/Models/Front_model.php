@@ -2751,6 +2751,13 @@ class Front_model
         return implode("", $newsHighlights);
     }
 
+    public function functest($params){
+        $sql = "
+        SELECT text1 FROM `tb_policy` WHERE `id`= 1;";
+        
+        $params['html'] = htmlspecialchars_decode($this->dao->fetchAll($sql)[0]->text1);
+        return $params;
+    }
 
     public function newsDetail($params)
     {
