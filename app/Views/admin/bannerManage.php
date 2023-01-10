@@ -71,18 +71,18 @@
                         </td>
                         <td>แบนเนอร์ 1</td>
 
-                        <td><a class="btn btn-sm btn-success btn-edit" href="bannerEdit.php"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>2</td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 2</td>
-                        <td><a class="btn btn-sm btn-success btn-edit" href="bannerEdit.php"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
@@ -93,10 +93,10 @@
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 3</td>
-                        <td><a class="btn btn-sm btn-success btn-edit" href="bannerEdit.php"><i
+                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php front_link(23) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
