@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Db_model;
 
 use App\Models\Auth_model;
+use CodeIgniter\Config\Services;
 
 class Front_model
 {
@@ -1533,88 +1534,115 @@ class Front_model
         return $params;
     }
 
-    function bannerUpload()
+    public function uploadBanner($bannername, $headpost)
     {
-        $config['upload_path']   = './public/uploads/tb_banner/';
-        $config['allowed_types'] = 'jpg|png';
-        $config['max_size']      = 1024;
 
-        $this->load->library('upload', $config);
+        echo "XXXXXXXXXXXXXX";
 
-        if (!$this->upload->do_upload('banner')) {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            // Check if file was uploaded without errors
+            if (isset($_FILES["banner"]) && $_FILES["banner"]["error"] == 0) {
+                $allowed = array("jpg" => "../public/upload/tb_banners/", "jpeg" => "../public/upload/tb_banners/", "png" => "../public/upload/tb_banners/");
+                $filename = $_FILES["banner"]["name"];
+                $filetype = $_FILES["banner"]["type"];
+                $filesize = $_FILES["banner"]["size"];
 
-            $error = array('error' => $this->upload->display_errors());
+                // Verify file extension
+                $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                if (!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
 
-            $this->load->view('Admin.BannerAdd', $error);
-        } else {
-            print_r('Banner Uploaded Successfully.');
-            exit;
+                // Verify file size - 5MB maximum
+                $maxsize = 5 * 1024 * 1024;
+                if ($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+
+                // Verify MYME type of the file
+                if (in_array($filetype, $allowed)) {
+                    // Check whether file exists before uploading it
+                    if (file_exists("../public/upload/tb_banners/" . $filename)) {
+                        echo $filename . " is already exists.";
+                    } else {
+                        move_uploaded_file($_FILES["banner"]["tmp_name"], "../public/upload/tb_banners/" . $filename);
+                        echo "Your file was uploaded successfully.";
+                    }
+                } else {
+                    echo "Error: There was a problem uploading your file. Please try again.";
+                }
+            } else {
+                echo "Error: " . $_FILES["banner"]["error"];
+            }
         }
+
+        // // Insert the file information into the database
+        // $sql = "INSERT INTO photos (filename, type, size) VALUES (?, ?, ?)";
+        // $stmt = mysqli_prepare($conn, $sql);
+        // mysqli_stmt_bind_param($stmt, "sss", $filename, $filetype, $filesize);
+        // mysqli_stmt_execute($stmt);
+        // mysqli_stmt_close($stmt);
     }
 
 
-    // function managetemplates($param)
-    // {
-    //     $request = service('request');
-    //     $result = $request->getVar();
+    function managetemplates($param)
+    {
+        $request = service('request');
+        $result = $request->getVar();
 
-    //     // $img = $request->getFile('banner');
-    //     $img1 = $request->getFile('banner1');
+        // $img = $request->getFile('banner');
+        $img1 = $request->getFile('banner1');
 
-    //     // var_dump($result,$img,$img1);exit;
+        // var_dump($result,$img,$img1);exit;
 
-    //     if (empty($img1)) {
-    //         // echo 'EMPTY';
-    //         $errors = array(
-    //             'success' => 1,
-    //             'message' => 'Success',
-    //             'redirect' => front_link(111)
-    //         );
-    //         // $sql = "UPDATE tb_banner SET img = '".$result['first_name']."', last_name = '".$result['last_name']."', company = '".$result['company']."', gender = '".$result['flexRadioDefault']."', email = '".$result['email']."', phone = '".$result['phone']."' WHERE id = ".$_SESSION['user_id']."";
+        if (empty($img1)) {
+            // echo 'EMPTY';
+            $errors = array(
+                'success' => 1,
+                'message' => 'Success',
+                'redirect' => front_link(111)
+            );
+            // $sql = "UPDATE tb_banner SET img = '".$result['first_name']."', last_name = '".$result['last_name']."', company = '".$result['company']."', gender = '".$result['flexRadioDefault']."', email = '".$result['email']."', phone = '".$result['phone']."' WHERE id = ".$_SESSION['user_id']."";
 
-    //         // $data_res = $this->dao->execDatas($sql);
+            // $data_res = $this->dao->execDatas($sql);
 
-    //         // if($data_res){
-    //         //     // SendEmail($result);
-    //         //     $errors = array(
-    //         //                 'success' => 1,
-    //         //                 'message' => 'Success',
-    //         //                 'redirect' => front_link(111)
-    //         //             );
-    //         //     echo json_encode( $errors );
-    //         // }else{
-    //         //         $errors = array(
-    //         //         'success' => 0,
-    //         //         'message' => 'ERROR'
-    //         //     );
-    //         //     echo json_encode($errors);
-    //         // }
+            // if($data_res){
+            //     // SendEmail($result);
+            //     $errors = array(
+            //                 'success' => 1,
+            //                 'message' => 'Success',
+            //                 'redirect' => front_link(111)
+            //             );
+            //     echo json_encode( $errors );
+            // }else{
+            //         $errors = array(
+            //         'success' => 0,
+            //         'message' => 'ERROR'
+            //     );
+            //     echo json_encode($errors);
+            // }
 
-    //     } else {
-    //         //echo 'NOT EMPTY';
-    //         $Newname = $img1->getRandomName();
-    //         $img1->move('uploads', $Newname);
-    //         $sql = "INSERT INTO tb_banner (img) VALUES ('" . $Newname . "')";
+        } else {
+            //echo 'NOT EMPTY';
+            $Newname = $img1->getRandomName();
+            $img1->move('uploads', $Newname);
+            $sql = "INSERT INTO tb_banner (img) VALUES ('" . $Newname . "')";
 
-    //         $data_res = $this->dao->execDatas($sql);
+            $data_res = $this->dao->execDatas($sql);
 
-    //         if ($data_res) {
-    //             // SendEmail($result);
-    //             $errors = array(
-    //                 'success' => 1,
-    //                 'message' => 'Success',
-    //                 'redirect' => front_link(111)
-    //             );
-    //             echo json_encode($errors);
-    //         } else {
-    //             $errors = array(
-    //                 'success' => 0,
-    //                 'message' => 'ERROR'
-    //             );
-    //             echo json_encode($errors);
-    //         }
-    //     }
-    // }
+            if ($data_res) {
+                // SendEmail($result);
+                $errors = array(
+                    'success' => 1,
+                    'message' => 'Success',
+                    'redirect' => front_link(111)
+                );
+                echo json_encode($errors);
+            } else {
+                $errors = array(
+                    'success' => 0,
+                    'message' => 'ERROR'
+                );
+                echo json_encode($errors);
+            }
+        }
+    }
 
     function get_newdetail($param = array())
     {
