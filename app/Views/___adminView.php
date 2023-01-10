@@ -124,7 +124,7 @@
     <div class="page">
 
 
-        <?php echo view('admin/component/top_bar', $params) ?>
+        <?php echo view('__admin/component/top_bar', $params) ?>
 
 
         <div class="jumps-prevent" style="padding-top: 53.2969px;"></div>
@@ -138,7 +138,7 @@
         <!-- Footer opened -->
 
 
-        <?php echo view('admin/component/footer', $params) ?>
+        <?php echo view('__admin/component/footer', $params) ?>
         <!-- Footer closed -->
 
     </div>

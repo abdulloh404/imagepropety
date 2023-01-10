@@ -2944,7 +2944,7 @@ class Codea{
 		$params['datastable '] = 'fdd';
 		//$params['page'] =
 
-		echo view( 'admin/aa_form', $params );
+		echo view( '__admin/aa_form', $params );
 
 		//return view( 'adminView', $params );
 

@@ -56,7 +56,7 @@
 
 			<!-- เมนู -->
 			<!-- main-header opened -->
-			<?php echo view( 'admin/component/top_bar', $params ) ?>
+			<?php echo view( '__admin/component/top_bar', $params ) ?>
 			<!-- /main-header -->
 
 
@@ -350,7 +350,7 @@
 
 
 			<!-- Footer opened -->
-			<?php echo view( 'admin/component/footer', $params ) ?>
+			<?php echo view( '__admin/component/footer', $params ) ?>
 			<!-- Footer closed -->
 
 		</div>
