@@ -48,7 +48,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="<?php echo front_link(22) ?>" class="btn-add-blog">
+            <a href="<?php echo front_link(23) ?>" class="btn-add-blog">
                 เพิ่มแบนเนอร์
             </a>
         </div>
