@@ -13,34 +13,34 @@ use CodeIgniter\Config\Services;
 class Codea
 {
 
-
-	// public function __construct()
-	// {
-	// 	parent::__construct();
-	// 	$this->load->helper(array('form', 'frontlink'));
-	// }
-
-
 	function uploadBanner($params = array())
 	{
-		$filename = array("bannername");
 
-		$config['upload_path'] = '../uploads/';
-		$config['allowed_types'] = 'jpg|jpeg|png|gif';
-		$config['max_size'] = 0; // no limit
-		$config['max_width'] = 0;
-		$config['max_height'] = 0;
-		$config['file_name'] = array("bannername");
+		$file = file('banner');
+		$extension = $file->getClientOriginalExtension();
+		$filename = time() . '.' . $extension;
+		$file->move(public_path('/uploads-images'), $filename);
+		$request['image'] = $filename;
 
-		$this->load->library('upload', $config);
 
-		if (!$this->upload->do_upload('file_field')) {
-			$error = array('error' => $this->upload->display_errors());
-			print_r($error);
-		} else {
-			$data = array('upload_data' => $this->upload->data());
-			print_r($data);
-		}
+		// $filename = array("bannername");
+
+		// $config['upload_path'] = '../uploads/';
+		// $config['allowed_types'] = 'jpg|jpeg|png|gif';
+		// $config['max_size'] = 0; // no limit
+		// $config['max_width'] = 0;
+		// $config['max_height'] = 0;
+		// $config['file_name'] = array("bannername");
+
+		// $this->load->library('upload', $config);
+
+		// if (!$this->upload->do_upload('file_field')) {
+		// 	$error = array('error' => $this->upload->display_errors());
+		// 	print_r($error);
+		// } else {
+		// 	$data = array('upload_data' => $this->upload->data());
+		// 	print_r($data);
+		// }
 
 		// Insert the file information into the database
 		// $sql = "INSERT INTO photos (filename, type, size) VALUES (?, ?, ?)";
