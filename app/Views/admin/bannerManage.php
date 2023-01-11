@@ -75,7 +75,7 @@
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
                         <td>2</td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
@@ -96,7 +96,7 @@
                         <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
-                    </tr> -->
+                    </tr>
                 </tbody>
             </table>
         </div>
