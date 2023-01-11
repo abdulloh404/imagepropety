@@ -13,11 +13,6 @@ use CodeIgniter\Config\Services;
 class Codea
 {
 
-
-
-
-
-
 	function uploadBanner($bannername)
 	{
 		$filename = $bannername;
