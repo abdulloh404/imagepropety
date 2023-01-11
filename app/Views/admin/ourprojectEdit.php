@@ -167,7 +167,7 @@
         <div class="row">
             <div class="col-sm-6 mt-4 mb-2">
                 <h2>แก้ไขโครงการ</h2>
-                <a href="ourprojectManage.php" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
+                <a href="<?php echo front_link(16) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
         </div>
         <form action="">

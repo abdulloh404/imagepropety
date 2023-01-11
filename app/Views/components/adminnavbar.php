@@ -159,7 +159,7 @@
             <li><a href="<?php echo front_link(20) ?>"><i class="fas fa-address-card"></i>&nbsp; จัดการเกี่ยวกับเรา</a>
             </li>
             <li><a href="<?php echo front_link(21) ?>"><i class="fas fa-file-contract"></i>&nbsp; จัดการติดต่อเรา</a>
-            <li><a href="<?php echo front_link(352) ?>"><i class="fas fa-file-certificate"></i>&nbsp; จัดการ PDPA</a>
+            <li><a href="<?php echo front_link(352) ?>"><i class="fas fa-user-lock"></i></i>&nbsp; จัดการ PDPA</a>
             </li>
         </ul>
     </div>

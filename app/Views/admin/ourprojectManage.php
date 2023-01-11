@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a href="ourprojectAdd.php" class="btn-add-blog">
+                <a href="<?php echo front_link(357) ?>" class="btn-add-blog">
                     เพิ่มโครงการ
                 </a>
             </div>
@@ -73,7 +73,7 @@
                             <td>โฮมการ์เด้นวิลล์ บายพาส</td>
                             <td>2.39</td>
                             <td>จอหอ-บายพาส</td>
-                            <td><a class="btn btn-sm btn-success btn-edit" href="ourprojectEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(358) ?>"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -83,7 +83,7 @@
                             <td>โฮมการ์เด้นวิลล์ บายพาส</td>
                             <td>2.39</td>
                             <td>จอหอ-บายพาส</td>
-                            <td><a class="btn btn-sm btn-success btn-edit" href="ourprojectEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(358) ?>"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                         <tr>
                             <td>3</td>
@@ -93,7 +93,7 @@
                             <td>โฮมการ์เด้นวิลล์ บายพาส</td>
                             <td>2.39</td>
                             <td>จอหอ-บายพาส</td>
-                            <td><a class="btn btn-sm btn-success btn-edit" href="ourprojectEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(358) ?>"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -103,7 +103,7 @@
                             <td>โฮมการ์เด้นวิลล์ บายพาส</td>
                             <td>2.39</td>
                             <td>จอหอ-บายพาส</td>
-                            <td><a class="btn btn-sm btn-success btn-edit" href="ourprojectEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(358) ?>"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                         <tr>
                             <td>5</td>
@@ -113,7 +113,7 @@
                             <td>โฮมการ์เด้นวิลล์ บายพาส</td>
                             <td>2.39</td>
                             <td>จอหอ-บายพาส</td>
-                            <td><a class="btn btn-sm btn-success btn-edit" href="ourprojectEdit.php"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(358) ?>"><i class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                     </tbody>
                 </table>

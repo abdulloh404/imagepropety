@@ -13,7 +13,15 @@
 
 <footer>
     <div class="footer">
-        <div class="text-center mt-2">Copyright © 2023 <strong>Image Property Management Co,.Ltd</strong> All rights reserved.</div>
+        <div class="text-center mt-2">Copyright © 2023 <strong>Image Property Management Co,.Ltd</strong> All rights reserved.
+            <?php 
+                if(isset($_SESSION['u']) && $_SESSION['u']->super_admin == 1){
+                    echo getConfigLink( $params );
+                }else{
+                    echo '';
+                }
+            ?>
+        </div>
         <div class="text-center mb-3">บริษัท อิมเมจ พร็อพเพอตี้ แมเนจเม้นท์ จำกัด
             79 หมู่ 8 ถนนมิตรภาพ-หนองคาย ต.หมื่นไวย อ.เมืองนครราชสีมา จ.นครราชสีมา 30000
         </div>
