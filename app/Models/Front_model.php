@@ -755,6 +755,13 @@ class Front_model
         return $test;
     }
 
+    function add_project($param){
+        $request = service('request');
+        $img1 = $request->getFile('img_logo');
+        var_dump($_REQUEST);exit;
+        return $_REQUEST;
+    }
+
 
 
     function signin($param)

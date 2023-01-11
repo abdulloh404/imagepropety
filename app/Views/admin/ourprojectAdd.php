@@ -170,7 +170,8 @@
                 <a href="<?php echo front_link(16) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
         </div>
-        <form action="">
+        <form method="POST" action="">
+            <?php echo $secret ?>
             <div class="row">
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
                     <!-- dragdrop -->
@@ -228,7 +229,7 @@
                         <h3>ข้อมูลเบื้องต้น</h3>
                     </div>
                     <div class="col-12">
-                        <div id="editor"></div>
+                        <textarea name="detail" display="none" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -236,7 +237,7 @@
                         <h3>แบบบ้าน</h3>
                     </div>
                     <div class="col-12">
-                        <div id="editor-1"></div>
+                        <textarea name="plan" display="none" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -244,7 +245,7 @@
                         <h3>สิ่งอำนวยความสะดวก</h3>
                     </div>
                     <div class="col-12">
-                        <div id="editor-2"></div>
+                        <textarea name="equipment" display="none" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -402,40 +403,137 @@
                             <label for="text" class="col col-form-label">หัวข้อสถานที่</label>
                             <input type="text" class="form-control" id="text">
                         </div>
-                        <div id="editor-3"></div>
+                        <textarea name="nearby_detail" display="none" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
             </div>
             <div class="">
                 <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
-                <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
+                <button type="submit" class="btn btn-primary mt-3 mb-2 submit">ตกลง</button>
             </div>
         </form>
     </div>
 
     <script src="page/admin-assets/js/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#editor-1'))
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#editor-2'))
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#editor-3'))
-            .catch(error => {
-                console.error(error);
-            });
+        $.each($( 'textarea' ),function(index,value) {
+			ClassicEditor.create( value, {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'alignment', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                        'link', '|',
+                        'bulletedList', 'numberedList', 'todoList',
+                        
+                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor', '|',
+                        'code', 'codeBlock', '|',
+                        'insertTable', '|',
+                        'outdent', 'indent', '|',
+                        'uploadImage','mediaEmbed', 'blockQuote', '|',
+                        'undo', 'redo','SourceEditing','htmlEmbed'
+                    ],
+                    shouldNotGroupWhenFull: true,
+                    plugins: [ 'HtmlEmbed' ],
+                    htmlEmbed: {
+                        showPreviews: true,
+                        sanitizeHtml: ( inputHtml ) => {
+                            // Strip unsafe elements and attributes, e.g.:
+                            // the `<script>` elements and `on*` attributes.
+                            const outputHtml = sanitize( inputHtml );
+
+                            return {
+                                html: outputHtml,
+                                // true or false depending on whether the sanitizer stripped anything.
+                                hasChanged: true
+                            };
+                        }
+                    }
+                }
+            } )
+            .then( editor => {
+                // editor.execute( 'ckfinder' );
+                window.editor = editor;
+            } )
+            .catch( err => {
+                console.error( err.stack );
+            } );
+		});
     </script>
+    
+        <script type="text/javascript" src="page/assets/js/jquery.form.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+			$(function() {
+
+
+				$('.submit').click(function() {
+
+					myForm = $(this).parents('form');
+                    console.log(myForm.attr('action'))
+
+					var completed = '0%';
+
+					$(myForm).ajaxForm({
+
+						beforeSubmit: function(data, form, options) {
+
+							var data = {};
+
+							options["url"] = myForm.attr('action');
+						}/* ,
+						complete: function(response) {
+
+							protect = 0;
+
+							data = $.parseJSON(response.responseText);
+
+							//	$('.text-danger').html('<i class="fa fa-check" style="color: green;"></i>');
+
+							if (data.token_val)
+								$('[name="<?php echo get_token('name') ?>"]').val(data.token_val);
+
+							if (data.success == 0) {
+
+
+								Swal.fire({
+									title: data.message,
+									text: '',
+									icon: 'error',
+									confirmButtonText: 'ตกลง'
+								}).then(function() {
+
+									
+
+									for (x in data.field) {
+
+										$('.text-danger[data-name="' + x + '"]').html(data.field[x]);
+									}
+
+								});
+
+								return false;
+							}
+
+							Swal.fire({
+								title: data.message,
+								text: '',
+								icon: 'success',
+								confirmButtonText: 'ตกลง'
+							}).then(function() {
+								window.location = data.redirect;
+							});
+
+
+
+
+
+						} */
+					});
+				});
+
+			});
+		</script>
 
     <!-- dragdrop file -->
     <script src="page/admin-assets/js/dragdropFile.js"></script>
