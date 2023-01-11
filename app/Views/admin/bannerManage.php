@@ -66,7 +66,7 @@
                     <tr>
                         <td>1</td>
                         <td>
-                            <img src="./assets/img/001.png" alt="" width="50px" height="50px"
+                            <img src="public/upload/tb_banners/banner1.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
                         <td>แบนเนอร์ 1</td>
