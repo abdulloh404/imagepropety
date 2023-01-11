@@ -13,16 +13,24 @@ use CodeIgniter\Config\Services;
 class Codea
 {
 
-	function uploadBanner($bannername)
+
+	// public function __construct()
+	// {
+	// 	parent::__construct();
+	// 	$this->load->helper(array('form', 'frontlink'));
+	// }
+
+
+	function uploadBanner($params = array())
 	{
-		$filename = $bannername;
+		$filename = array("bannername");
 
 		$config['upload_path'] = '../uploads/';
 		$config['allowed_types'] = 'jpg|jpeg|png|gif';
 		$config['max_size'] = 0; // no limit
 		$config['max_width'] = 0;
 		$config['max_height'] = 0;
-		$config['file_name'] = $bannername;
+		$config['file_name'] = array("bannername");
 
 		$this->load->library('upload', $config);
 
@@ -34,7 +42,7 @@ class Codea
 			print_r($data);
 		}
 
-		// // Insert the file information into the database
+		// Insert the file information into the database
 		// $sql = "INSERT INTO photos (filename, type, size) VALUES (?, ?, ?)";
 		// $stmt = mysqli_prepare($conn, $sql);
 		// mysqli_stmt_bind_param($stmt, "sss", $filename, $filetype, $filesize);
