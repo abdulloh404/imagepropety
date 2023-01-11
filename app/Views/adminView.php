@@ -14,9 +14,10 @@
     <?php echo view('components/adminnavbar') ?>
     <!-- nav -->
     <?php echo $page; ?>
-    <div class="fixed-bottom">
-    	<?php echo view('components/adminfooter') ?>
-    </div>
+    <?php echo view('components/adminfooter') ?>
+    <!-- <div class="fixed-bottom">
+    	<?php //echo view('components/adminfooter') ?>
+    </div> -->
 
 </body>
 

@@ -815,7 +815,7 @@ class Front_model
                 $link_id = 1;
                 foreach ($getAdminMenu as $km => $vm) {
 
-                    $link_id = 105;
+                    $link_id = 14;
                     break;
                 }
 
