@@ -498,13 +498,13 @@
             },
         });
 
-        $('.calculate').click(function(){
+        $('.calculate').click(function() {
             event.preventDefault();
             base = $('.base').val()
             peroid = $('.peroid').val()
-            mrr = ($('.mrr').val()*1)+100
-            interest = ($('.interest').val()*1)+100
-            cal = (base*mrr*interest)/(100*100*peroid*12)
+            mrr = ($('.mrr').val() * 1) + 100
+            interest = ($('.interest').val() * 1) + 100
+            cal = (base * mrr * interest) / (100 * 100 * peroid * 12)
             $('.permonth').html(cal.toFixed(2));
         })
     </script>
