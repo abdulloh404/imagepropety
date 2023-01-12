@@ -124,7 +124,7 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            <form method="get" enctype="multipart/form-data" action="<?php echo front_link(25) ?>">
+            <form id="upload-form" method="GET" enctype="multipart/form-data" action=" <?php echo front_link(25) ?>">
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
@@ -134,7 +134,7 @@
                             <p class="text-danger" style="display: none;" id="text-alert-image">
                                 (ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p>
                         </div>
-                        <input type="file" name="file" class="dropzone">
+                        <input type="file" name="banner_file" id="banner_file" class="dropzone">
                     </div>
                     <div class="preview-zone hidden">
                         <div class="box box-solid">
@@ -150,31 +150,101 @@
         </div>
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
 
-            <!-- <div class="form-blog">
+            <div class="form-blog">
                 <label for="" class="form-label">ชื่อแบนเนอร์</label>
-                <input type="text" class="form-add-blog" name="title" value="" placeholder="">
-            </div> -->
+                <input type="text" class="form-add-blog" name="banner_name" id="banner_name" value="" placeholder="">
+            </div>
             <!-- <div class="form-blog">
                 <label for="" class="form-label">URL</label>
                 <input type="text" class="form-add-blog" name="date" value="" placeholder="">
-            </div> -->
-            <div class="">
-                <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
-                <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
             </div>
-            </form>
+            <div class=""> -->
+            <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
+            <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
         </div>
-    </div>
+        </form>
 
-    <script src="./assets/js/ckeditor.js"></script>
-    <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
+
+        <!-- AJAX Form uplaods -->
+        <script>
+        $(document).ready(function() {
+            $("#upload-form").submit(function(e) {
+                e.preventDefault(); // prevent the form from submitting normally
+                var formData = new FormData(this);
+                $.ajax({
+                    url: <?php echo front_link(25) ?>,
+                    type: "GET",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+
+                        // handle success
+                        Swal.fire({
+                            title: data.message,
+                            text: 'อัปโหลดรูปภาพสำเร็จ',
+                            icon: 'success',
+                            confirmButtonText: 'ตกลง'
+                        }).then(function() {
+                            //location.reload();
+                            window.location = data
+                                .redirect;
+                        });
+
+                        // document.write("Uplaods sucees")
+                        // console.log(data);
+                    },
+                    error: function(error) {
+                        // handle errors
+
+                        Swal.fire({
+                            title: data.message,
+                            text: 'อัปโหลดรูปภาพล้มเหลว',
+                            icon: 'error',
+                            confirmButtonText: 'ตกลง'
+                        }).then(function() {
+
+                        });
+
+                        // document.write("Uplaods fail")
+                        // console.log(error);
+                    }
+                });
+            });
         });
-    </script>
+        </script>
 
 
-    <!-- dragdrop file -->
-    <script src="./assets/js/dragdropFile.js"></script>
+
+
+
+
+
+
+
+    </div>
+</div>
+
+<script src="./assets/js/ckeditor.js"></script>
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+        console.error(error);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- dragdrop file -->
+<script src="./assets/js/dragdropFile.js"></script>
