@@ -172,7 +172,7 @@
                 e.preventDefault(); // prevent the form from submitting normally
                 var formData = new FormData(this);
                 $.ajax({
-                    url: <?php echo front_link(25) ?>,
+                    front_link: <?php echo front_link(25) ?>,
                     type: "GET",
                     data: formData,
                     contentType: false,

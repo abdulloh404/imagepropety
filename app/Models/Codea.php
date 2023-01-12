@@ -14,7 +14,6 @@ use App\Controllers;
 
 class Codea
 {
-
 	protected $request;
 	public function __construct(RequestInterface $request = null)
 	{
@@ -28,18 +27,16 @@ class Codea
 		$file = $this->request->getFile('banner_file');
 		$bannerName = $this->request->getVar('banner_name');
 
-		if (empty($_FILES['banner_file']['banner_name'])) {
+		if (empty($_FILES['banner_file'])) {
 			echo ('File is empty');
-			echo ("<br>$bannerName  'and'  $file");
+			echo ("<br>$bannerName and $file");
 			// echo ($file . "and " . $bannerName);
 			// exit;
 		}
 
 		// Move file to public storages
 		if ($file->isValid() && !$file->hasMoved()) {
-
 			$file->move('../../public/upload/tb_banners/', $bannerName);
-
 
 			//Insert in database if required
 
@@ -51,6 +48,8 @@ class Codea
 			$db = \Config\Database::connect();
 			$this->db->table('tb_banners')->insert($data);
 		}
+
+		return json_encode(['status' => true, 'message' => 'File Uploaded']);
 	}
 }
 
