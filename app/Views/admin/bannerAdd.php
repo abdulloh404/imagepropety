@@ -124,7 +124,7 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            <form id="upload-form" method="GET" enctype="multipart/form-data" action=" <?php echo front_link(25) ?>">
+            <form id="upload-form">
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
@@ -172,7 +172,7 @@
                 e.preventDefault(); // prevent the form from submitting normally
                 var formData = new FormData(this);
                 $.ajax({
-                    front_link: <?php echo front_link(25) ?>,
+                    url: "<?= base_url('banner/BannerSilde') ?>",
                     type: "GET",
                     data: formData,
                     contentType: false,
