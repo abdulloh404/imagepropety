@@ -20,7 +20,7 @@ class Codea
 		$this->request = $request ?? service('request');
 	}
 
-	function uploadBanner()
+	function uploadBanner($file, $bannerName)
 	{
 		// Insert in database if required
 
