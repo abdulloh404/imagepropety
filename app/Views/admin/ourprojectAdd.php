@@ -175,7 +175,7 @@
                 <a href="<?php echo front_link(16) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
         </div>
-        <form method="GET" action="" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data">
             <?php echo $secret ?>
             <div class="row">
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
