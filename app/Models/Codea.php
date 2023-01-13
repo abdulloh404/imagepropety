@@ -4,13 +4,13 @@
 //
 namespace App\Models;
 
+use App\Controllers;
 use App\Models\Db_model;
 use App\Models\Auth_model;
 use CodeIgniter\HTTP\File;
 use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
-use App\Controllers;
 
 class Codea
 {
@@ -22,34 +22,51 @@ class Codea
 
 	function uploadBanner()
 	{
-		// Insert in database if required
+		if (isset($_FILES['banner_file'])) {
+			$file = $_FILES['banner_file'];
+			$bannerName = $_POST['banner_name'];
+			$fileName = $file['name'];
+			$fileTmpName = $file['tmp_name'];
+			$fileSize = $file['size'];
+			$fileError = $file['error'];
+			$fileType = $file['type'];
 
-		$file = $this->request->getFile('banner_file');
-		$bannerName = $this->request->getVar('banner_name');
 
-		if (empty($_FILES['banner_file'])) {
-			echo ('File is empty');
-			echo ("<br>$bannerName and $file");
-			// echo ($file . "and " . $bannerName);
-			// exit;
+			echo ("SSSSSSSSSSSSS");
+			exit;
+
+			$fileExt = explode('.', $fileName);
+			$fileActualExt = strtolower(end($fileExt));
+
+			$allowed = array('jpg', 'jpeg', 'png', 'gif');
+
+			if (in_array($fileActualExt, $allowed)) {
+				if ($fileError === 0) {
+					if ($fileSize < 1000000) {
+						$fileNameNew = uniqid('', true) . "." . $fileActualExt;
+						$fileDestination = 'uploads/' . $fileNameNew;
+						move_uploaded_file($fileTmpName, $fileDestination);
+						// Insert in database if required
+						$data = [
+							'name' => $bannerName,
+							'path' => $fileDestination,
+							'created_at' => date('Y-m-d H:i:s')
+						];
+						$db = new PDO('mysql:host=localhost;dbname=your_db_name', 'username', 'password');
+						$query = "INSERT INTO banner_table (name,path,created_at) VALUES (:name,:path,:created_at)";
+						$stmt = $db->prepare($query);
+						$stmt->execute($data);
+						echo 'File Uploaded';
+					} else {
+						echo 'File too big';
+					}
+				} else {
+					echo 'Error uploading file';
+				}
+			} else {
+				echo 'Invalid file type';
+			}
 		}
-
-		// Move file to public storages
-		if ($file->isValid() && !$file->hasMoved()) {
-			$file->move('../../public/upload/tb_banners/', $bannerName);
-
-			//Insert in database if required
-
-			$data = [
-				'name' => $bannerName,
-				'path' => 'public/upload/tb_banners/' . $bannerName,
-				'created_at' => date('Y-m-d H:i:s')
-			];
-			$db = \Config\Database::connect();
-			$this->db->table('tb_banners')->insert($data);
-		}
-
-		// return json_encode(['status' => true, 'message' => 'File Uploaded']);
 	}
 }
 

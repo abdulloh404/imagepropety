@@ -124,7 +124,9 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            <form id="upload-form" enctype="multipart/form-data" action="<?php echo front_link(25) ?>">
+            </form>
+            <form id="upload-form-banner" enctype="multipart/form-data"
+                action="<?php echo base_url('/adminbannerupload') ?>">
 
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
@@ -155,10 +157,10 @@
                 <label for="" class="form-label">ชื่อแบนเนอร์</label>
                 <input type="text" class="form-add-blog" name="banner_name" id="banner_name" value="" placeholder="">
             </div>
-            <div class="form-blog">
+            <!-- <div class="form-blog">
                 <label for="" class="form-label">Description</label>
                 <input type="text" class="form-add-blog" name="Description" value="" placeholder="">
-            </div>
+            </div> -->
             <div class="">
                 <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
                 <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
@@ -169,12 +171,13 @@
             <!-- AJAX Form uplaods -->
             <script>
             $(document).ready(function() {
-                $("#upload-form").submit(function(e) {
+                $("#uplodwadwad-form-banner").submit(function(e) {
                     e.preventDefault(); // prevent the form from submitting normally
                     var formData = new FormData(this);
                     $.ajax({
-                        url: "<?php echo front_link(15) ?>",
+                        url: "<?php echo base_url('/adminbannerupload'); ?>",
                         type: "GET",
+                        enctype: "multipart/form-data",
                         data: formData,
                         contentType: false,
                         processData: false,

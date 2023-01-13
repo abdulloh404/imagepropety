@@ -8,17 +8,26 @@
 <link rel="stylesheet" href="page/assets/css/contact-us.css"> -->
 
 
+
+<!-- Ajax form -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <body>
 
-	<!-- nav -->
+    <!-- nav -->
     <?php echo view('components/adminnavbar') ?>
     <!-- nav -->
     <?php echo $page; ?>
     <?php echo view('components/adminfooter') ?>
     <!-- <div class="fixed-bottom">
-    	<?php //echo view('components/adminfooter') ?>
+    	<?php //echo view('components/adminfooter') 
+        ?>
     </div> -->
 
 </body>
+
+
+
 
 </html>
