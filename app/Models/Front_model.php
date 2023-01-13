@@ -755,11 +755,12 @@ class Front_model
         return $test;
     }
 
-    function add_project($param =array()){
+    function add_project($param = array())
+    {
 
         //var_dump($_REQUEST);
-        foreach($_REQUEST as $k => $v){
-            if($k == 'gallary'){
+        foreach ($_REQUEST as $k => $v) {
+            if ($k == 'gallary') {
                 continue;
             }
             $configs[$k] = array('require' => 1);
@@ -778,14 +779,14 @@ class Front_model
         /* var_dump($configs);
         exit; */
 
-		$upload_folders = 'upload/tb_project';
-        if(!empty($_FILES['img_logo'])){
+        $upload_folders = 'upload/tb_project';
+        if (!empty($_FILES['img_logo'])) {
             $file = $_FILES['img_logo'];
-            $type = explode('/',$file['type'])[1];
-            $img_path = $upload_folders . '/' . md5($file['name'] . '-'. rand()).'.'.$type;
-            $fadsf = file_get_contents( $file['tmp_name'] );
+            $type = explode('/', $file['type'])[1];
+            $img_path = $upload_folders . '/' . md5($file['name'] . '-' . rand()) . '.' . $type;
+            $fadsf = file_get_contents($file['tmp_name']);
             //var_dump($file,$fadsf);
-			file_put_contents( $img_path, $fadsf );
+            file_put_contents($img_path, $fadsf);
         };
         //$sql = "INSERT INTO  tb_project (`name`, `prize`, `zone`, `banner_url`, `cover_img`, `general_info`) VALUES ('".$_REQUEST['name']."','".$_REQUEST['prize']."','".$_REQUEST['zone']."','".$_REQUEST['bannerurl']."','".$img_path."','".$_REQUEST['detail']."')";
         $dataInsert = array(
@@ -796,22 +797,23 @@ class Front_model
             'cover_img' => $img_path,
             'general_info' => $_REQUEST['detail'],
         );
-        $save = getDb()->insert_('tb_project',$dataInsert);
-        var_dump($save);exit;
-        if($save){
+        $save = getDb()->insert_('tb_project', $dataInsert);
+        var_dump($save);
+        exit;
+        if ($save) {
             $errors = array(
                 'success' => 1,
                 'message' => 'บันทึกข้อมูลสำเร็จ',
                 'redirect' => front_link(16)
             );
-        }else{
+        } else {
             $errors = array(
                 'success' => 0,
                 'message' => 'ไม่สามารถบันทึกข้อมูลได้',
                 'redirect' => front_link(16)
-            ); 
+            );
         }
-        
+
         return json_encode($errors);
     }
 
@@ -2811,10 +2813,11 @@ class Front_model
         return implode("", $newsHighlights);
     }
 
-    public function functest($params){
+    public function functest($params)
+    {
         $sql = "
         SELECT text1 FROM `tb_policy` WHERE `id`= 1;";
-        
+
         $params['html'] = htmlspecialchars_decode($this->dao->fetchAll($sql)[0]->text1);
         return $params;
     }

@@ -6,6 +6,7 @@ namespace App\Models;
 
 
 use CodeIgniter\Model;
+use CodeIgniter\Database\ConnectionInterface;
 
 class Db_model extends Model
 {
@@ -13,35 +14,25 @@ class Db_model extends Model
 	/**  */
 	protected $table   = 'tb_banners';
 
+
+	public function __destruct()
+	{
+		unset($_SESSION['fetchAll']);
+	}
+
 	public function __construct()
 	{
 		$this->db = db_connect();
 		$db = \Config\Database::connect();
 	}
-
-	function __destruct()
-	{
-		unset($_SESSION['fetchAll']);
-	}
-
 	function getBanners($db)
-
 	{
-		/** Database conect */
-		$this->db = db_connect();
-		$banners = $this->table('tb_banners')
-			->get()
-			->getResultObject();
-		return view('admin/bannerManage', ['banners' => $banners]);
+		$banners = $this->table('tb_banners')->get()->getResultArray();
+		return view('Views/admin/bannerManage', ['banners' => $banners]);
 	}
-
-
-
 
 	function getRowsCount($sql)
 	{
-
-
 		return count($this->fetchAll($sql));
 	}
 

@@ -5,6 +5,7 @@
 namespace App\Models;
 
 use App\Controllers;
+use app\Config\Database;
 use App\Models\Db_model;
 use App\Models\Auth_model;
 use CodeIgniter\HTTP\File;
@@ -18,7 +19,9 @@ class Codea
 
 
 
+
 	protected $request;
+
 	public function __construct(RequestInterface $request = null)
 	{
 		$this->request = $request ?? service('request');

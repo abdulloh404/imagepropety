@@ -59,20 +59,17 @@
                         <th>ลำดับ</th>
                         <th>รูปภาพแบนเนอร์</th>
                         <th>ชื่อ</th>
+                        <th>Path</th>
+                        <th>วันที่สร้าง</th>
                         <th>จัดการ</th>
                     </tr>
                 </thead>
                 <tbody>
 
-
-
-
-
-
                     <?php foreach ($banners as $banner) : ?>
-                    <?php $i = 1; ?>
+                    <?php $i = 1 ?>
                     <tr>
-                        <td><?php $i ?></td>
+                        <td><?php echo ("$i") ?></td>
                         <td>
                             <img src="public/upload/tb_banners/banner1.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
@@ -84,7 +81,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td><?php $i ?></td>
+                        <td><?php echo ("$i") ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
@@ -95,7 +92,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td><?php $i ?></td>
+                        <td><?php echo ("$i") ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
