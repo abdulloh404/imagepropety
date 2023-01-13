@@ -11,9 +11,13 @@ use CodeIgniter\HTTP\File;
 use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
+use CodeIgniter\Database\ConnectionInterface;
 
 class Codea
 {
+
+
+
 	protected $request;
 	public function __construct(RequestInterface $request = null)
 	{
@@ -22,54 +26,23 @@ class Codea
 
 	function uploadBanner()
 	{
-		if (isset($_FILES['banner_file'])) {
-			$file = $_FILES['banner_file'];
-			$bannerName = $_POST['banner_name'];
-			$fileName = $file['name'];
-			$fileTmpName = $file['tmp_name'];
-			$fileSize = $file['size'];
-			$fileError = $file['error'];
-			$fileType = $file['type'];
 
-
-			echo ("SSSSSSSSSSSSS");
-			exit;
-
-			$fileExt = explode('.', $fileName);
-			$fileActualExt = strtolower(end($fileExt));
-
-			$allowed = array('jpg', 'jpeg', 'png', 'gif');
-
-			if (in_array($fileActualExt, $allowed)) {
-				if ($fileError === 0) {
-					if ($fileSize < 1000000) {
-						$fileNameNew = uniqid('', true) . "." . $fileActualExt;
-						$fileDestination = 'uploads/' . $fileNameNew;
-						move_uploaded_file($fileTmpName, $fileDestination);
-						// Insert in database if required
-						$data = [
-							'name' => $bannerName,
-							'path' => $fileDestination,
-							'created_at' => date('Y-m-d H:i:s')
-						];
-						$db = new PDO('mysql:host=localhost;dbname=your_db_name', 'username', 'password');
-						$query = "INSERT INTO banner_table (name,path,created_at) VALUES (:name,:path,:created_at)";
-						$stmt = $db->prepare($query);
-						$stmt->execute($data);
-						echo 'File Uploaded';
-					} else {
-						echo 'File too big';
-					}
-				} else {
-					echo 'Error uploading file';
-				}
-			} else {
-				echo 'Invalid file type';
-			}
+		$file = $this->request->getFile('banner_file');
+		$bannerName = $this->request->getVar('banner_name');
+		if ($file->isValid() && !$file->hasMoved()) {
+			$newName = $file->getRandomName();
+			$file->move('./path/to/upload', $newName);
+			// Insert in database if required
+			$data = [
+				'name' => $bannerName,
+				'path' => '/path/to/upload/' . $newName,
+				'created_at' => date('Y-m-d H:i:s')
+			];
+			$db = \Config\Database::connect();
+			$db->table('banner_table')->insert($data);
 		}
 	}
 }
-
 function validationUri()
 {
 

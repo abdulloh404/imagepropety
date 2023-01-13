@@ -63,40 +63,49 @@
                     </tr>
                 </thead>
                 <tbody>
+
+
+
+
+
+
+                    <?php foreach ($banners as $banner) : ?>
+                    <?php $i = 1; ?>
                     <tr>
-                        <td>1</td>
+                        <td><?php $i ?></td>
                         <td>
                             <img src="public/upload/tb_banners/banner1.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
-                        <td>แบนเนอร์ 1</td>
+                        <td><?= $banner->name ?></td>
 
                         <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td>2</td>
+                        <td><?php $i ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
-                        <td>แบนเนอร์ 2</td>
+                        <td><?= $banner->created_at ?></td>
                         <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td>3</td>
+                        <td><?php $i ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
                         </td>
-                        <td>แบนเนอร์ 3</td>
+                        <td><?= $banner->update_at ?></td>
                         <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
