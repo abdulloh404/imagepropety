@@ -125,6 +125,7 @@
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
             <form id="upload-form" enctype="multipart/form-data" action="<?php echo front_link(25) ?>">
+
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
@@ -154,65 +155,65 @@
                 <label for="" class="form-label">ชื่อแบนเนอร์</label>
                 <input type="text" class="form-add-blog" name="banner_name" id="banner_name" value="" placeholder="">
             </div>
-            <!-- <div class="form-blog">
-                <label for="" class="form-label">URL</label>
-                <input type="text" class="form-add-blog" name="date" value="" placeholder="">
+            <div class="form-blog">
+                <label for="" class="form-label">Description</label>
+                <input type="text" class="form-add-blog" name="Description" value="" placeholder="">
             </div>
-            <div class=""> -->
-            <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
-            <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
-        </div>
-        </form>
+            <div class="">
+                <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
+                <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
+            </div>
+            </form>
 
 
-        <!-- AJAX Form uplaods -->
-        <script>
-        $(document).ready(function() {
-            $("#upload-form").submit(function(e) {
-                e.preventDefault(); // prevent the form from submitting normally
-                var formData = new FormData(this);
-                $.ajax({
+            <!-- AJAX Form uplaods -->
+            <script>
+            $(document).ready(function() {
+                $("#upload-form").submit(function(e) {
+                    e.preventDefault(); // prevent the form from submitting normally
+                    var formData = new FormData(this);
+                    $.ajax({
+                        url: "<?php echo front_link(15) ?>",
+                        type: "GET",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
 
-                    type: "GET",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(data) {
+                            // handle success
+                            Swal.fire({
+                                title: data.message,
+                                text: 'อัปโหลดรูปภาพสำเร็จ',
+                                icon: 'success',
+                                confirmButtonText: 'ตกลง'
+                            }).then(function() {
+                                //location.reload();
+                                window.location = data
+                                    .redirect;
+                            });
 
-                        // handle success
-                        Swal.fire({
-                            title: data.message,
-                            text: 'อัปโหลดรูปภาพสำเร็จ',
-                            icon: 'success',
-                            confirmButtonText: 'ตกลง'
-                        }).then(function() {
-                            //location.reload();
-                            window.location = data
-                                .redirect;
-                        });
+                            // document.write("Uplaods sucees")
+                            // console.log(data);
+                        },
+                        error: function(error) {
+                            // handle errors
 
-                        // document.write("Uplaods sucees")
-                        // console.log(data);
-                    },
-                    error: function(error) {
-                        // handle errors
+                            Swal.fire({
+                                title: data.message,
+                                text: 'อัปโหลดรูปภาพล้มเหลว',
+                                icon: 'error',
+                                confirmButtonText: 'ตกลง'
+                            }).then(function() {
 
-                        Swal.fire({
-                            title: data.message,
-                            text: 'อัปโหลดรูปภาพล้มเหลว',
-                            icon: 'error',
-                            confirmButtonText: 'ตกลง'
-                        }).then(function() {
+                            });
 
-                        });
-
-                        // document.write("Uplaods fail")
-                        // console.log(error);
-                    }
+                            // document.write("Uplaods fail")
+                            // console.log(error);
+                        }
+                    });
                 });
             });
-        });
-        </script>
+            </script>
 
 
 
@@ -222,18 +223,17 @@
 
 
 
+        </div>
     </div>
-</div>
 
-<script src="./assets/js/ckeditor.js"></script>
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch(error => {
-        console.error(error);
-    });
-</script>
-
+    <script src="./assets/js/ckeditor.js"></script>
+    <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
 
 
 
@@ -246,5 +246,6 @@ ClassicEditor
 
 
 
-<!-- dragdrop file -->
-<script src="./assets/js/dragdropFile.js"></script>
+
+    <!-- dragdrop file -->
+    <script src="./assets/js/dragdropFile.js"></script>

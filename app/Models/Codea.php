@@ -20,7 +20,7 @@ class Codea
 		$this->request = $request ?? service('request');
 	}
 
-	function uploadBanner($file, $bannerName)
+	function uploadBanner()
 	{
 		// Insert in database if required
 
@@ -49,7 +49,7 @@ class Codea
 			$this->db->table('tb_banners')->insert($data);
 		}
 
-		return json_encode(['status' => true, 'message' => 'File Uploaded']);
+		// return json_encode(['status' => true, 'message' => 'File Uploaded']);
 	}
 }
 
