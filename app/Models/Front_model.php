@@ -756,18 +756,63 @@ class Front_model
     }
 
     function add_project($param =array()){
+
+        //var_dump($_REQUEST);
+        foreach($_REQUEST as $k => $v){
+            if($k == 'gallary'){
+                continue;
+            }
+            $configs[$k] = array('require' => 1);
+        }
+        $check_form = check_form($_REQUEST, $configs);
+
+
+        if (!empty($check_form['errors'])) {
+
+            $errors['success'] = 0;
+            $errors['field'] = $check_form['errors'];
+            $errors['message'] = 'กรุณากรอกข้อมูลให้ถูกต้อง';
+            return json_encode($errors);
+            //exit;
+        }
+        /* var_dump($configs);
+        exit; */
+
 		$upload_folders = 'upload/tb_project';
         if(!empty($_FILES['img_logo'])){
-            
-        };exit;
-        $sql = "INSERT INTO  tb_project (`name`, `prize`, `zone`, `banner_url`, `cover_img`, `general_info`) VALUES ('".$_REQUEST['name']."','".$_REQUEST['prize']."','".$_REQUEST['zone']."','".$_REQUEST['bannerurl']."','Placeholder','".$_REQUEST['detail']."')";
-
-        $this->dao->execDatas($sql);
-        $request = service('request');
-        //var_dump($param,$request);exit;
-        $img1 = $request->getFile('img_logo');
-        //var_dump($_REQUEST);exit;
-        return $_REQUEST;
+            $file = $_FILES['img_logo'];
+            $type = explode('/',$file['type'])[1];
+            $img_path = $upload_folders . '/' . md5($file['name'] . '-'. rand()).'.'.$type;
+            $fadsf = file_get_contents( $file['tmp_name'] );
+            //var_dump($file,$fadsf);
+			file_put_contents( $img_path, $fadsf );
+        };
+        //$sql = "INSERT INTO  tb_project (`name`, `prize`, `zone`, `banner_url`, `cover_img`, `general_info`) VALUES ('".$_REQUEST['name']."','".$_REQUEST['prize']."','".$_REQUEST['zone']."','".$_REQUEST['bannerurl']."','".$img_path."','".$_REQUEST['detail']."')";
+        $dataInsert = array(
+            'name' => $_REQUEST['name'],
+            'prize' => $_REQUEST['prize'],
+            'zone' => $_REQUEST['zone'],
+            'banner_url' => $_REQUEST['bannerurl'],
+            'cover_img' => $img_path,
+            'general_info' => $_REQUEST['detail'],
+        );
+        $save = getDb()->insert_('tb_project',$dataInsert);
+        var_dump($save);exit;
+        if($save){
+            $errors = array(
+                'success' => 1,
+                'message' => 'บันทึกข้อมูลสำเร็จ',
+                'redirect' => front_link(16)
+            );
+        }else{
+            $errors = array(
+                'success' => 0,
+                'message' => 'ไม่สามารถบันทึกข้อมูลได้',
+                'redirect' => front_link(16)
+            ); 
+        }
+        
+        return json_encode($errors);
     }
 
 
