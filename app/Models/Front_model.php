@@ -755,10 +755,18 @@ class Front_model
         return $test;
     }
 
-    function add_project($param){
+    function add_project($param =array()){
+		$upload_folders = 'upload/tb_project';
+        if(!empty($_FILES['img_logo'])){
+            
+        };exit;
+        $sql = "INSERT INTO  tb_project (`name`, `prize`, `zone`, `banner_url`, `cover_img`, `general_info`) VALUES ('".$_REQUEST['name']."','".$_REQUEST['prize']."','".$_REQUEST['zone']."','".$_REQUEST['bannerurl']."','Placeholder','".$_REQUEST['detail']."')";
+
+        $this->dao->execDatas($sql);
         $request = service('request');
+        //var_dump($param,$request);exit;
         $img1 = $request->getFile('img_logo');
-        var_dump($_REQUEST);exit;
+        //var_dump($_REQUEST);exit;
         return $_REQUEST;
     }
 

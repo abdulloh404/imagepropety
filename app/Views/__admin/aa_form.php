@@ -139,7 +139,7 @@
 								<script>
 									$(function() {
 
-										$('.dropify').dropify();
+										//$('.dropify').dropify();
 
 										
 										//

@@ -1,4 +1,9 @@
 
+<link href="admin/assets/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+<link href="admin/assets/bootstrap-fileinput/themes/explorer-fa5/theme.css" media="all" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+
 <style>
     /* dragdrop */
     .box {
@@ -170,7 +175,7 @@
                 <a href="<?php echo front_link(16) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
         </div>
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             <?php echo $secret ?>
             <div class="row">
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
@@ -183,7 +188,7 @@
                                 <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
                                 <?php /* <p class="text-danger" style="display: none;" id="text-alert-image">(ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p> */ ?>
                             </div>
-                            <input type="file" name="img_logo" class="dropzone">
+                            <input type="file" name="img_logo" id="img_logo" class="dropzone">
                         </div>
                         <div class="preview-zone hidden">
                             <div class="box box-solid">
@@ -200,19 +205,19 @@
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
                     <div class="form-blog">
                         <label for="" class="form-label">ชื่อโครงการ</label>
-                        <input type="text" class="form-add-blog" name="headerpost" value="" placeholder="">
+                        <input type="text" class="form-add-blog" name="name" value="" placeholder="">
                     </div>
                     <div class="form-blog">
                         <label for="" class="form-label">ราคา</label>
-                        <input type="number" class="form-add-blog" name="postname" value="" placeholder="">
+                        <input type="number" class="form-add-blog" name="prize" value="" placeholder="">
                     </div>
                     <div class="form-blog">
                         <label for="" class="form-label">โซน</label>
-                        <input type="text" class="form-add-blog" name="date" value="" placeholder="">
+                        <input type="text" class="form-add-blog" name="zone" value="" placeholder="">
                     </div>
                     <div class="form-blog">
                         <label for="" class="form-label">ลิ้งวิดีโอ Banner</label>
-                        <input type="text" class="form-add-blog" name="date" value="" placeholder="">
+                        <input type="text" class="form-add-blog" name="bannerurl" value="" placeholder="">
                     </div>
                     <div class="d-flex">
                         <div class="me-2"><span>เลือกป้ายกำกับ</span></div>
@@ -252,144 +257,8 @@
                     <div class="my-3">
                         <h3>อัลบัม</h3>
                     </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
-                    <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-                        <!-- dragdrop -->
-                        <div class="form-upload">
-                            <div class="dropzone-wrapper">
-                                <div class="dropzone-desc">
-                                    <p><b>รูปภาพปก</b></p>
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                </div>
-                                <input type="file" name="img_logo" class="dropzone">
-                            </div>
-                            <div class="preview-zone hidden">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <div><b>แสดงรูปตัวอย่าง</b></div>
-                                        <div class="box-tools pull-right"></div>
-                                    </div>
-                                    <div class="box-body"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dragdrop -->
-                    </div>
+                    <input type="file" name="gallary[]" id="inp" multiple>                    
+
                 </div>
                 <div class="row">
                     <div class="mt-3 mb-2 d-flex align-items-center">
@@ -415,7 +284,67 @@
     </div>
 
     <script src="page/admin-assets/js/ckeditor.js"></script>
+    <script src="admin/assets/bootstrap-fileinput/js/plugins/buffer.min.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/filetype.min.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/piexif.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/sortable.js" type="text/javascript"></script>			
+	<script src="admin/assets/bootstrap-fileinput/js/fileinput.min.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	
+	<script src="admin/assets/bootstrap-fileinput/js/locales/fr.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/locales/es.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/themes/fa5/theme.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/themes/explorer-fa5/theme.js" type="text/javascript"></script>
+
     <script>
+        $("#inp").fileinput({
+				/* uploadUrl: '<?php //echo front_link( $id, 'saveMainProduct/'. $parent_id,  array(), false )?>',
+				uploadExtraData: {
+					'<?php //echo get_token('name')?>': '<?php //echo get_token('val')?>', 
+				}, */
+				// enableResumableUpload: true,
+				resizeImage: true,
+				maxImageWidth: 500,
+				maxImageHeight: 500,
+				resizePreference: 'width',
+				resizeImageQuality: 0.75,
+				showRotate: true,
+				overwriteInitial: false,					
+				showRemove: false,
+				browseOnZoneClick: false ,
+				showUpload: true,
+				uploadClass: "mainShows btn btn-default btn-secondary",
+				allowedFileExtensions: ['jpg', 'jpeg', 'png'] ,
+				rotatableFileExtensions: [],
+				initialPreviewAsData: true,
+				deleteExtraData: {
+					"<?php echo get_token('name')?>": "<?php echo get_token('val')?>",
+				},
+			
+				initialPreview: [
+					<?php echo @$img1?>
+				],
+				initialPreviewConfig: [
+					<?php echo @$img2?>
+				],
+				
+				
+			}).on('filesorted', function(e, params) {
+				$.ajax({
+					url : "<?php echo front_link($params['id'],'sortImageProduct' )?>",
+					type: "get",
+					data: {
+						sort: params.stack
+					}
+				})	
+			}).on('filebeforedelete', function() {
+				var aborted = !window.confirm('Are you sure you want to delete this file?');
+				if (aborted) {
+					window.alert('File deletion was aborted! ');
+				};
+				return aborted;
+			});
+
         $.each($( 'textarea' ),function(index,value) {
 			ClassicEditor.create( value, {
                 toolbar: {
@@ -463,22 +392,24 @@
     
         <script type="text/javascript" src="page/assets/js/jquery.form.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+	    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
         <script>
-			$(function() {
-
-
+			
 				$('.submit').click(function() {
 
 					myForm = $(this).parents('form');
-                    console.log(myForm.attr('action'))
+                    img = $('#img_logo')[0].files; 
+                    console.log(img)
 
 					var completed = '0%';
 
 					$(myForm).ajaxForm({
 
 						beforeSubmit: function(data, form, options) {
-
+                            console.log(data)
 							var data = {};
+                            
 
 							options["url"] = myForm.attr('action');
 						}/* ,
