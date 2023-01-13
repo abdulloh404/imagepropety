@@ -175,7 +175,7 @@
                 <a href="<?php echo front_link(16) ?>" class="text-dark"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
         </div>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="GET" action="" enctype="multipart/form-data">
             <?php echo $secret ?>
             <div class="row">
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
@@ -204,19 +204,19 @@
                 </div>
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
                     <div class="form-blog">
-                        <label for="" class="form-label">ชื่อโครงการ</label>
+                        <label for="" class="form-label">ชื่อโครงการ</label><span class="text-danger" data-name="email">*</span>
                         <input type="text" class="form-add-blog" name="name" value="" placeholder="">
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">ราคา</label>
+                        <label for="" class="form-label">ราคา</label><span class="text-danger" data-name="email">*</span>
                         <input type="number" class="form-add-blog" name="prize" value="" placeholder="">
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">โซน</label>
+                        <label for="" class="form-label">โซน</label><span class="text-danger" data-name="email">*</span>
                         <input type="text" class="form-add-blog" name="zone" value="" placeholder="">
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">ลิ้งวิดีโอ Banner</label>
+                        <label for="" class="form-label">ลิ้งวิดีโอ Banner</label><span class="text-danger" data-name="email">*</span>
                         <input type="text" class="form-add-blog" name="bannerurl" value="" placeholder="">
                     </div>
                     <div class="d-flex">
@@ -399,20 +399,20 @@
 				$('.submit').click(function() {
 
 					myForm = $(this).parents('form');
-                    img = $('#img_logo')[0].files; 
-                    console.log(img)
+                    /* img = $('#img_logo')[0].files; 
+                    console.log(img) */
 
 					var completed = '0%';
 
 					$(myForm).ajaxForm({
 
 						beforeSubmit: function(data, form, options) {
-                            console.log(data)
+                            //console.log(data)
 							var data = {};
                             
 
 							options["url"] = myForm.attr('action');
-						}/* ,
+						},
 						complete: function(response) {
 
 							protect = 0;
@@ -459,11 +459,11 @@
 
 
 
-						} */
+						}
 					});
 				});
 
-			});
+
 		</script>
 
     <!-- dragdrop file -->
