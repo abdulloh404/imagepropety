@@ -22,10 +22,19 @@ class Codea
 
 	protected $request;
 
-	public function __construct(RequestInterface $request = null)
-	{
-		$this->request = $request ?? service('request');
-	}
+	function __construct($getView = array())
+{
+
+	//echo getSkipId( 'admin_model_config_columns', 'config_columns_id', $skip = array() );exit;
+
+	$this->dao = new Db_model();
+	$this->form_mode = 'post';
+	$this->textarea_mode = 'ckeditor';
+
+
+	$this->getView = $getView;
+	$this->request = $request ?? service('request');
+}
 
 	function uploadBanner()
 	{
@@ -45,7 +54,7 @@ class Codea
 			$db->table('banner_table')->insert($data);
 		}
 	}
-}
+
 function validationUri()
 {
 
@@ -1054,20 +1063,12 @@ function action($action_type, $pri_key = NULL, $params = array())
 	}
 }
 
-//
-//
-function __construct($getView = array())
-{
-
-	//echo getSkipId( 'admin_model_config_columns', 'config_columns_id', $skip = array() );exit;
-
-	$this->dao = new Db_model();
-	$this->form_mode = 'post';
-	$this->textarea_mode = 'ckeditor';
-
-
-	$this->getView = $getView;
+function index($params = array()){
+	
 }
+
+//
+//
 
 
 //
@@ -1075,6 +1076,7 @@ function __construct($getView = array())
 function load_rows($params = array())
 {
 
+	//echo "TEST";exit;
 	$config = getConfig_($params['config_id']);
 
 	$sql = "SHOW columns FROM {$config->tb_main} WHERE Field='order_number';";
@@ -2867,4 +2869,5 @@ function switchAct($params)
 		}
 	}
 	exit;
+}
 }
