@@ -69,7 +69,7 @@
                     <?php foreach ($banners as $banner) : ?>
                     <?php $i = 1 ?>
                     <tr>
-                        <td><?php echo ("$i") ?></td>
+                        <td><?php echo $i ?></td>
                         <td>
                             <img src="public/upload/tb_banners/banner1.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
@@ -81,7 +81,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td><?php echo ("$i") ?></td>
+                        <td><?php echo $i ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
@@ -92,7 +92,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <tr>
-                        <td><?php echo ("$i") ?></td>
+                        <td><?php echo $i ?></td>
                         <td>
                             <img src="./assets/img/001.png" alt="" width="50px" height="50px"
                                 style="border-radius: 5px;">
