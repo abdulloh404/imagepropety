@@ -12,16 +12,18 @@
                 aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
+
+
             <div class="carousel-item active">
-                <iframe width="100%" src="https://www.youtube.com/embed/NFXydCGKrd8?autoplay=1&mute=1"
-                    title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" src="upload/tb_banners/banner_vdo.mp4 ?>" title="YouTube video player"
+                    frameborder="0" allow="autoplay" allowfullscreen></iframe>
             </div>
+
+
             <div class="carousel-item">
                 <img src="page/assets/img/banner-home-3.jpeg" class="d-block w-100" alt="">
             </div>
-            <div class="carousel-item">
-                <img src="page/assets/img/banner-home-4.jpg" class="d-block w-100" alt="">
-            </div>
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOurProject" data-bs-slide="prev">
             <i class="fas fa-chevron-left fa-2x"></i>

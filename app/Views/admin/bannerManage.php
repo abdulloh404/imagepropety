@@ -76,6 +76,7 @@
                         <td>
                             <img src="upload/tb_banners/<?php echo $banner->path ?>" alt="#" width="180px" height="70px"
                                 style="border-radius: 5px; ">
+
                         </td>
                         <td><?php echo $banner->name  ?></td>
                         <td><?php echo $banner->description  ?>**********************
