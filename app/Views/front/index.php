@@ -15,14 +15,15 @@
 
 
             <div class="carousel-item active">
-                <iframe width="100%" src="upload/tb_banners/banner_vdo.mp4 ?>" title="YouTube video player"
+                <iframe width="100%" src="upload/tb_banners/banner_vdo.mp4 ?>" autoplay title="YouTube video player"
                     frameborder="0" allow="autoplay" allowfullscreen></iframe>
             </div>
 
-
+            <?php foreach($banners as $banner): ?>
             <div class="carousel-item">
-                <img src="page/assets/img/banner-home-3.jpeg" class="d-block w-100" alt="">
+                <img src="upload/tb_banners/<?php $banner->path ?>" class="d-block w-100" alt="#">
             </div>
+            <?php endforeach; ?>
 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOurProject" data-bs-slide="prev">
