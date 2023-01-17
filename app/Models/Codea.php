@@ -1618,8 +1618,8 @@ function load_rows($params = array())
 		$params['addButton'] = '';
 		if (empty($config->no_add)) {
 			$params['addButton'] = '
-				<a class="" href="' . front_link($params['id'], 'formProduct') . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>
-				<button class="btn btn-danger multi-delete">ลบ</button>
+				<a class="" href="' . front_link(357) . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>
+				'/* <button class="btn btn-danger multi-delete">ลบ</button> */.'
 				';
 		}
 

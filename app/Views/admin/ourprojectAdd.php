@@ -186,7 +186,7 @@
                                 <p><b>รูปภาพปก</b></p>
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                                <?php /* <p class="text-danger" style="display: none;" id="text-alert-image">(ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p> */ ?>
+                                
                             </div>
                             <input type="file" name="img_logo" id="img_logo" class="dropzone">
                         </div>
@@ -204,20 +204,20 @@
                 </div>
                 <div class="col-lg-6 col-xl-6 col-md-6 col-12">
                     <div class="form-blog">
-                        <label for="" class="form-label">ชื่อโครงการ</label><span class="text-danger" data-name="email">*</span>
-                        <input type="text" class="form-add-blog" name="name" value="" placeholder="">
+                        <label for="" class="form-label"><span class="text-danger" data-name="name">*</span>ชื่อโครงการ</label>
+                        <input type="text" class="form-add-blog" name="name" value="" placeholder="" required>
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">ราคา</label><span class="text-danger" data-name="email">*</span>
-                        <input type="number" class="form-add-blog" name="prize" value="" placeholder="">
+                        <label for="" class="form-label"><span class="text-danger" data-name="prize">*</span>ราคา</label>
+                        <input type="number" class="form-add-blog" name="prize" value="" placeholder="" required>
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">โซน</label><span class="text-danger" data-name="email">*</span>
-                        <input type="text" class="form-add-blog" name="zone" value="" placeholder="">
+                        <label for="" class="form-label"><span class="text-danger" data-name="zone">*</span>โซน</label>
+                        <input type="text" class="form-add-blog" name="zone" value="" placeholder="" required>
                     </div>
                     <div class="form-blog">
-                        <label for="" class="form-label">ลิ้งวิดีโอ Banner</label><span class="text-danger" data-name="email">*</span>
-                        <input type="text" class="form-add-blog" name="bannerurl" value="" placeholder="">
+                        <label for="" class="form-label"><span class="text-danger" data-name="bannerurl">*</span>ลิ้งวิดีโอ Banner</label>
+                        <input type="text" class="form-add-blog" name="bannerurl" value="" placeholder="" required>
                     </div>
                     <div class="d-flex">
                         <div class="me-2"><span>เลือกป้ายกำกับ</span></div>
@@ -298,52 +298,52 @@
 
     <script>
         $("#inp").fileinput({
-				/* uploadUrl: '<?php //echo front_link( $id, 'saveMainProduct/'. $parent_id,  array(), false )?>',
-				uploadExtraData: {
-					'<?php //echo get_token('name')?>': '<?php //echo get_token('val')?>', 
-				}, */
-				// enableResumableUpload: true,
-				resizeImage: true,
-				maxImageWidth: 500,
-				maxImageHeight: 500,
-				resizePreference: 'width',
-				resizeImageQuality: 0.75,
-				showRotate: true,
-				overwriteInitial: false,					
-				showRemove: false,
-				browseOnZoneClick: false ,
-				showUpload: true,
-				uploadClass: "mainShows btn btn-default btn-secondary",
-				allowedFileExtensions: ['jpg', 'jpeg', 'png'] ,
-				rotatableFileExtensions: [],
-				initialPreviewAsData: true,
-				deleteExtraData: {
-					"<?php echo get_token('name')?>": "<?php echo get_token('val')?>",
-				},
-			
-				initialPreview: [
-					<?php echo @$img1?>
-				],
-				initialPreviewConfig: [
-					<?php echo @$img2?>
-				],
-				
-				
-			}).on('filesorted', function(e, params) {
-				$.ajax({
-					url : "<?php echo front_link($params['id'],'sortImageProduct' )?>",
-					type: "get",
-					data: {
-						sort: params.stack
-					}
-				})	
-			}).on('filebeforedelete', function() {
-				var aborted = !window.confirm('Are you sure you want to delete this file?');
-				if (aborted) {
-					window.alert('File deletion was aborted! ');
-				};
-				return aborted;
-			});
+            /* uploadUrl: '<?php //echo front_link( $id, 'saveMainProduct/'. $parent_id,  array(), false )?>',
+            uploadExtraData: {
+                '<?php //echo get_token('name')?>': '<?php //echo get_token('val')?>', 
+            }, */
+            // enableResumableUpload: true,
+            resizeImage: true,
+            maxImageWidth: 500,
+            maxImageHeight: 500,
+            resizePreference: 'width',
+            resizeImageQuality: 0.75,
+            showRotate: true,
+            overwriteInitial: false,					
+            showRemove: false,
+            browseOnZoneClick: false ,
+            showUpload: true,
+            uploadClass: "mainShows btn btn-default btn-secondary",
+            allowedFileExtensions: ['jpg', 'jpeg', 'png'] ,
+            rotatableFileExtensions: [],
+            initialPreviewAsData: true,
+            deleteExtraData: {
+                "<?php echo get_token('name')?>": "<?php echo get_token('val')?>",
+            },
+        
+            initialPreview: [
+                <?php echo @$img1?>
+            ],
+            initialPreviewConfig: [
+                <?php echo @$img2?>
+            ],
+            
+            
+        }).on('filesorted', function(e, params) {
+            $.ajax({
+                url : "<?php echo front_link($params['id'],'sortImageProduct' )?>",
+                type: "get",
+                data: {
+                    sort: params.stack
+                }
+            })	
+        }).on('filebeforedelete', function() {
+            var aborted = !window.confirm('Are you sure you want to delete this file?');
+            if (aborted) {
+                window.alert('File deletion was aborted! ');
+            };
+            return aborted;
+        });
 
         $.each($( 'textarea' ),function(index,value) {
 			ClassicEditor.create( value, {
@@ -414,6 +414,7 @@
 							options["url"] = myForm.attr('action');
 						},
 						complete: function(response) {
+                            console.log(response);
 
 							protect = 0;
 
