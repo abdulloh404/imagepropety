@@ -758,24 +758,30 @@ class Front_model
     function add_project($param = array())
     {
 
-        //var_dump($_REQUEST);
-        foreach ($_REQUEST as $k => $v) {
+        
+        
+        /* foreach ($_REQUEST as $k => $v) {
             if ($k == 'gallary') {
                 continue;
             }
             $configs[$k] = array('require' => 1);
-        }
-        $check_form = check_form($_REQUEST, $configs);
+        } */
+        /* $configs['name'] = 1;
+        $configs['prize'] = 1;
+        $configs['zone'] = 1; */
+        //var_dump($configs);exit;
+        //$check_form = check_form($_REQUEST, $configs);
+        
+//echo "TEST";exit;
 
-
-        if (!empty($check_form['errors'])) {
+        /* if (!empty($check_form['errors'])) {
 
             $errors['success'] = 0;
             $errors['field'] = $check_form['errors'];
             $errors['message'] = 'กรุณากรอกข้อมูลให้ถูกต้อง';
             return json_encode($errors);
             //exit;
-        }
+        } */
         /* var_dump($configs);
         exit; */
 
@@ -798,8 +804,8 @@ class Front_model
             'general_info' => $_REQUEST['detail'],
         );
         $save = getDb()->insert_('tb_project', $dataInsert);
-        var_dump($save);
-        exit;
+        /* var_dump($save);
+        exit; */
         if ($save) {
             $errors = array(
                 'success' => 1,
