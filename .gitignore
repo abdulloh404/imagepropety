@@ -16,3 +16,4 @@ public/uploads/*
 writable/logs/*.log
 writable/debugbar/*.json
 
+app/Controllers/Home.php
