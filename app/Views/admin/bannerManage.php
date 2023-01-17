@@ -88,7 +88,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <?php $i++ ?>
-                    <?php endforeach; ?>
+                    <?php endforeach ?>
 
 
                 </tbody>
