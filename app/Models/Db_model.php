@@ -10,10 +10,7 @@ use CodeIgniter\Database\ConnectionInterface;
 
 class Db_model extends Model
 {
-
-	/**  */
 	protected $table   = 'tb_banners';
-
 
 	public function __destruct()
 	{
@@ -27,8 +24,8 @@ class Db_model extends Model
 	}
 	function getBanners($db)
 	{
-		$banners = $this->table('tb_banners')->get()->getResultArray();
-		return view('Views/admin/bannerManage', ['banners' => $banners]);
+		$banners = $this->table('tb_banners')->get()->getResultObject();
+		return view('admin/bannerManage', ['banners' => $banners]);
 	}
 
 	function getRowsCount($sql)

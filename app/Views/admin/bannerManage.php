@@ -40,6 +40,7 @@
 }
 </style>
 
+
 <div class="container fit-height">
     <div class="row">
         <div class="col-sm-6 mt-4 mb-2">
@@ -59,50 +60,36 @@
                         <th>ลำดับ</th>
                         <th>รูปภาพแบนเนอร์</th>
                         <th>ชื่อ</th>
-                        <th>Path</th>
+                        <th>คำอธิบาย</th>
                         <th>วันที่สร้าง</th>
+                        <th>วันที่อัพเดต</th>
                         <th>จัดการ</th>
+
                     </tr>
                 </thead>
                 <tbody>
-
-                    <?php foreach ($banners as $banner) : ?>
                     <?php $i = 1 ?>
-                    <tr>
-                        <td><?php echo $i ?></td>
-                        <td>
-                            <img src="public/upload/tb_banners/banner1.png" alt="" width="50px" height="50px"
-                                style="border-radius: 5px;">
-                        </td>
-                        <td><?= $banner->name ?></td>
+                    <?php foreach ($banners as $banner) : ?>
 
-                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
-                                    class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
-                                    class="fas fa-trash-alt"></i></button></td>
-                    </tr>
                     <tr>
                         <td><?php echo $i ?></td>
                         <td>
-                            <img src="./assets/img/001.png" alt="" width="50px" height="50px"
-                                style="border-radius: 5px;">
+                            <img src="upload/tb_banners/<?php echo $banner->path ?>" alt="#" width="180px" height="70px"
+                                style="border-radius: 5px; ">
                         </td>
-                        <td><?= $banner->created_at ?></td>
+                        <td><?php echo $banner->name  ?></td>
+                        <td><?php echo $banner->description  ?>**********************
+                        </td>
+                        <td><?php echo $banner->created_at  ?></td>
+                        <td><?php echo $banner->update_at  ?></td>
                         <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
                                     class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
-                    <tr>
-                        <td><?php echo $i ?></td>
-                        <td>
-                            <img src="./assets/img/001.png" alt="" width="50px" height="50px"
-                                style="border-radius: 5px;">
-                        </td>
-                        <td><?= $banner->update_at ?></td>
-                        <td><a class="btn btn-sm btn-success btn-edit" href="<?php echo front_link(24) ?>"><i
-                                    class="fas fa-edit"></i></a><button class="btn btn-sm btn-danger btn-del"><i
-                                    class="fas fa-trash-alt"></i></button></td>
-                    </tr>
+                    <?php $i++ ?>
                     <?php endforeach; ?>
+
+
                 </tbody>
             </table>
         </div>
