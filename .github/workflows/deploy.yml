@@ -6,7 +6,7 @@
 # jobs:
 #   deployment:
 #     runs-on: ubuntu-latest
-#     environment: production
+#     environment: developer
 #     steps:
 #       - name: Deploy FM91
 #         uses: appleboy/ssh-action@master
