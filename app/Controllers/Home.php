@@ -225,6 +225,11 @@ class Home extends BaseController
 
 						$call_user_func = call_user_func(array($this->$model, $vs->call_func), $params);
 
+<<<<<<< Updated upstream
+=======
+
+						//  comment เพราะ เวลาใส่บรรทัดนี้แล้ว error ไม่สารถส่งค่าแบบ Object and array ได้
+>>>>>>> Stashed changes
 						// foreach ($call_user_func as $kc => $vc) {
 						// 	$params[$kc] = $vc;
 						// }
