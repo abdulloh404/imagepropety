@@ -823,6 +823,16 @@ class Front_model
         return json_encode($errors);
     }
 
+    function getProjectList(){
+        $test = '<div class="col-lg-3 col-md-4 col-6">
+        <a href="<?php echo front_link(12) ?>" class="productItem">
+            <img src="page/assets/img/001.png">
+            <span class="new-project">NEW PROJECT</span>
+            <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
+        </a>
+    </div>';
+    }
+
 
 
     function signin($param)
