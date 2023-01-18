@@ -36,24 +36,32 @@ class Codea
 	$this->request = $request ?? service('request');
 }
 
-	function uploadBanner()
-	{
+function uploadBanner()
+{
 
-		$file = $this->request->getFile('banner_file');
-		$bannerName = $this->request->getVar('banner_name');
-		if ($file->isValid() && !$file->hasMoved()) {
-			$newName = $file->getRandomName();
-			$file->move('./path/to/upload', $newName);
-			// Insert in database if required
-			$data = [
-				'name' => $bannerName,
-				'path' => '/path/to/upload/' . $newName,
-				'created_at' => date('Y-m-d H:i:s')
-			];
-			$db = \Config\Database::connect();
-			$db->table('banner_table')->insert($data);
-		}
-	}
+		// $file = $this->request->getFile('banner_file');
+		// $banner_name = $this->request->getPost('banner_name');
+		// $type_file = $this->request->getPost('type_file');
+		// $description = $this->request->getPost('description');
+
+
+		// var_dump($_REQUEST);
+		
+		// // Move the file to a permanent location
+		// // $file->move(ROOTPATH.'upload/tb_banners');
+
+		
+
+		// $data = [
+		// 	'name' => $banner_name,
+		// 	'path' => $file,
+		// 	'type' => $type_file,
+		// 	'description' => $description,
+		// ];	
+
+}
+
+//*********************************************************************************************** */
 
 function validationUri()
 {

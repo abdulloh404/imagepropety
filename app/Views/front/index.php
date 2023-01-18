@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="page/assets/css/index.css">
-
+<?php echo view('components/navbar') ?>
 
 
 <div class="container p-0">

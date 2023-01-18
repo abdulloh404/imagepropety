@@ -154,10 +154,17 @@
                     <input type="text" class="form-add-blog" name="headerpost" value="" placeholder="">
                 </div>
                 <div class="form-blog">
-                    <label for="" class="form-label">URL</label>
-                    <input type="text" class="form-add-blog" name="date" value="" placeholder="">
+                    <label for="" class="form-label">ประเภทของไฟล์</label>
+                    <select name="file_type" id="file_type" form="" class="form-add-blog">
+                        <option value="image">รูปภาพ</option>
+                        <option value="video">วิดิโอ</option>
+                    </select>
                 </div>
-                <div class="">
+                <div class="form-blog">
+                    <label for="" class="form-label">Description</label>
+                    <input type="text" class="form-add-blog" name="Description" value="" placeholder="">
+                </div>
+                <div class="d-flex">
                     <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
                     <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
                 </div>

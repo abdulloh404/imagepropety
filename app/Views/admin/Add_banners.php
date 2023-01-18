@@ -124,18 +124,13 @@
     <div class="row">
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
             <!-- dragdrop -->
-            </form>
-            <form id="upload-form-banner" enctype="multipart/form-data"
-                action="<?php echo base_url('/adminbannerupload') ?>">
-
+            <form id="upload-form-banner" enctype="multipart/form-data" action="<?php echo front_link(25); ?>">
                 <div class="form-upload">
                     <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
                             <p><b>รูปภาพตัวอย่าง</b></p>
                             <i class="fas fa-cloud-upload-alt"></i>
                             <p>ขนาดไฟล์สูงสุด : 1 MB<br>ไฟล์ที่รองรับ : JPEG , PNG</p>
-                            <p class="text-danger" style="display: none;" id="text-alert-image">
-                                (ถ้าหากต้องการเปลี่ยนภาพให้เลือกอัพโหลดไฟล์อีกครั้ง)</p>
                         </div>
                         <input type="file" name="banner_file" id="banner_file" class="dropzone">
                     </div>
@@ -152,89 +147,88 @@
                 <!-- dragdrop -->
         </div>
         <div class="col-lg-6 col-xl-6 col-md-6 col-12">
-
             <div class="form-blog">
                 <label for="" class="form-label">ชื่อแบนเนอร์</label>
                 <input type="text" class="form-add-blog" name="banner_name" id="banner_name" value="" placeholder="">
             </div>
             <div class="form-blog">
                 <label for="" class="form-label">ประเภทของไฟล์</label>
-                <select name="file_type" id="file_type" form="" class="form-add-blog">
+                <select name="file_type" id="type_file" class="form-add-blog">
                     <option value="image">รูปภาพ</option>
                     <option value="video">วิดิโอ</option>
                 </select>
             </div>
             <div class="form-blog">
                 <label for="" class="form-label">Description</label>
-                <input type="text" class="form-add-blog" name="Description" value="" placeholder="">
+                <input type="text" class="form-add-blog" name="description" id="description" value="" placeholder="">
             </div>
-            <div class="">
-                <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>
-                <button type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
+            <div class="d-flex">
+                <button type="reset" class="btn btn-secondary  mt-3 mb-2">เคลียร์</button>
+                <button id="submitBtn" type="submit" class="btn btn-primary mt-3 mb-2">ตกลง</button>
             </div>
-            </form>
-
-
-            <!-- AJAX Form uplaods -->
-            <script>
-            $(document).ready(function() {
-                $("#uplodwadwad-form-banner").submit(function(e) {
-                    e.preventDefault(); // prevent the form from submitting normally
-                    var formData = new FormData(this);
-                    $.ajax({
-                        url: "<?php echo base_url('/adminbannerupload'); ?>",
-                        type: "GET",
-                        enctype: "multipart/form-data",
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        success: function(data) {
-
-                            // handle success
-                            Swal.fire({
-                                title: data.message,
-                                text: 'อัปโหลดรูปภาพสำเร็จ',
-                                icon: 'success',
-                                confirmButtonText: 'ตกลง'
-                            }).then(function() {
-                                //location.reload();
-                                window.location = data
-                                    .redirect;
-                            });
-
-                            // document.write("Uplaods sucees")
-                            // console.log(data);
-                        },
-                        error: function(error) {
-                            // handle errors
-
-                            Swal.fire({
-                                title: data.message,
-                                text: 'อัปโหลดรูปภาพล้มเหลว',
-                                icon: 'error',
-                                confirmButtonText: 'ตกลง'
-                            }).then(function() {
-
-                            });
-
-                            // document.write("Uplaods fail")
-                            // console.log(error);
-                        }
-                    });
-                });
-            });
-            </script>
-
-
-
-
-
-
-
-
-
         </div>
+        </form>
     </div>
+
+    <!-- AJAX Form uplaods -->
+    <script>
+    $(document).ready(function() {
+        $("#--upload-form-banner").submit(function(e) {
+            e.preventDefault(); // prevent the form from submitting normally
+            var formData = new FormData();
+            $.ajax({
+                url: "<?php echo front_link(25); ?>",
+                type: "GET",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+
+                    // handle success
+                    Swal.fire({
+                        title: data.message,
+                        text: 'อัปโหลดรูปภาพสำเร็จ',
+                        icon: 'success',
+                        confirmButtonText: 'ตกลง'
+                    }).then(function() {
+                        //location.reload();
+                        window.location = data
+                            .redirect;
+                    });
+
+                    // document.write("Uplaods sucees")
+                    // console.log(data);
+                },
+                error: function(error) {
+                    // handle errors
+
+                    Swal.fire({
+                        title: data.message,
+                        text: 'อัปโหลดรูปภาพล้มเหลว',
+                        icon: 'error',
+                        confirmButtonText: 'ตกลง'
+                    }).then(function() {
+
+                    });
+
+                    // document.write("Uplaods fail")
+                    // console.log(error);
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="./assets/js/ckeditor.js"></script>
     <script>

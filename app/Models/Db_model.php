@@ -28,6 +28,39 @@ class Db_model extends Model
 		return view('admin/bannerManage', ['banners' => $banners]);
 	}
 
+	function uploadBanner()
+{
+		var_dump($_REQUEST);
+
+		$file = $this->request->getFile('banner_file');
+		$banner_name = $this->request->getPost('banner_name');
+		$type_file = $this->request->getPost('type_file');
+		$description = $this->request->getPost('description');
+
+		// Move the file to a permanent location
+		// $file->move(ROOTPATH.'upload/tb_banners');
+
+		
+
+		$data = [
+			'name' => $banner_name,
+			'path' => $file,
+			'type' => $type_file,
+			'description' => $description,
+		];	
+
+}
+
+//************************************************************** */
+
+
+
+
+
+
+
+
+
 	function getRowsCount($sql)
 	{
 		return count($this->fetchAll($sql));
