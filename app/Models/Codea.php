@@ -216,9 +216,12 @@ function action($action_type, $pri_key = NULL, $params = array())
 			@mkdir(implode('/', $keep));
 		}
 	}
+	
 
 
 	$showColumns = $this->dao->showColumns($k_tb_name);
+	
+	
 
 	$model = 'Img_model';
 	$use_package = "App\\Models\\$model";
@@ -232,7 +235,7 @@ function action($action_type, $pri_key = NULL, $params = array())
 
 	$getData = array();
 
-
+	
 
 	$keepStrPercent = array();
 	$data['to_db'][$k_tb_name] = array();
@@ -246,23 +249,20 @@ function action($action_type, $pri_key = NULL, $params = array())
 	$params['myRequest'] = $_REQUEST;
 
 	if ($params['id'] == 126) {
-
-
-
-
-
 		unset($_REQUEST['views']);
 	} else {
 	}
 
-
-
+	//var_dump($_REQUEST,$_FILES);exit;
 	foreach ($_REQUEST as $kr => $vr) {
-
+		//var_dump( htmlspecialchars(trim($_REQUEST['gallery'])));exit;
 		$data['to_db'][$k_tb_name][$kr] = htmlspecialchars(trim($vr));
 		//$data['to_db'][$k_tb_name][$kr] = $vr;
 		//;
 	}
+
+	//var_dump($data['to_db']);exit;
+	
 
 	foreach ($this->config->columns as $ka => $va) {
 
@@ -503,7 +503,7 @@ function action($action_type, $pri_key = NULL, $params = array())
 				$done[$ka] = 1;
 			}
 
-
+			//var_dump($va[0],$data['to_db'][$k_tb_name][$ka]);
 			if ((isset($va[0]) && $va[0] == 1) && empty($data['to_db'][$k_tb_name][$ka])) {
 
 				if (in_array($va['inputformat'], array('money', 'number'))) {
@@ -668,11 +668,15 @@ function action($action_type, $pri_key = NULL, $params = array())
 						}
 					}
 				} else if (in_array($json->type, array('CoverNews'))) {
-
+					
+					//var_dump($ka,$va);exit;
 					$allow_extensions = array('jpg', 'png', 'jpeg');
-
-					$file = $this->request->getFile('img');
-
+					$file = $this->request->getFile($ka);
+					//var_dump($file);exit;
+					if (empty($file)) {
+						$file =  $_FILES['cover_img'][0];
+					}
+					//var_dump($file);exit;
 					if (!empty($file)) {
 						$getName = $file->getName();
 						$extension = getExtension($getName);
@@ -1618,7 +1622,7 @@ function load_rows($params = array())
 		$params['addButton'] = '';
 		if (empty($config->no_add)) {
 			$params['addButton'] = '
-				<a class="" href="' . front_link(357) . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>
+				<a class="" href="' . front_link($params['id'], 'formProduct') . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>
 				'/* <button class="btn btn-danger multi-delete">ลบ</button> */.'
 				';
 		}
@@ -1884,6 +1888,19 @@ function renderBlocks($config, $vals = array(), $type = 1, $status = 'form')
 
 							
 						</div>
+
+						
+					';
+
+				$replace['[' . $kc . ']'] = '' . implode('', $d) . '';
+			} else 
+
+				if ($json_decode->type == 'Gallary') {
+				//value="'. $val .'"
+				$d = array();
+
+				$d[] = '
+					<input type="file" name="gallary[]" id="inp" multiple>  
 
 						
 					';
@@ -2807,7 +2824,7 @@ function formProduct($params = array())
 			 
 				' . $params['secret'] . '
 				<input type="hidden" name="' . PriKey . '" value="' . $params['parent_id'] . '" />				
-				' . implode('', $keep) . ''.$albuminput.'
+				' . implode('', $keep) . '
 				<div class="form-group mb-0 mt-3 justify-content-end">
 					<div>' . implode(' ', $buttons) . '</div>
 				</div>
