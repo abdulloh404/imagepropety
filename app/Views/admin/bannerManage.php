@@ -54,7 +54,7 @@
             </a>
         </div>
         <div class="col-lg-12 col-sm-12 block-table mt-3">
-            <table id="dataTable" class="display nowrap pt-2" style="width:100%">
+            <table id="dataTable" class="display nowrap pt-2" style="width:100%; text-align:center;">
                 <thead>
                     <tr>
                         <th>ลำดับ</th>
@@ -74,8 +74,8 @@
                     <tr>
                         <td><?php echo $i ?></td>
                         <td>
-                            <img src="upload/tb_banners/<?php echo $banner->path ?>" alt="#" width="180px" height="70px"
-                                style="border-radius: 5px; ">
+                            <img src="upload/tb_banners/<?php echo $banner->path ?>" alt="วิดิโอ" width="180px"
+                                height="90px" style="border-radius: 5px; ">
 
                         </td>
                         <td><?php echo $banner->name  ?></td>
@@ -88,7 +88,7 @@
                                     class="fas fa-trash-alt"></i></button></td>
                     </tr>
                     <?php $i++ ?>
-                    <?php endforeach ?>
+                    <?php endforeach; ?>
 
 
                 </tbody>

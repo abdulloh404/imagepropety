@@ -12,26 +12,31 @@
                 aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2"
                 aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2"
+                aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselOurProject" data-bs-slide-to="2"
+                aria-label="Slide 4"></button>
         </div>
 
         <div class="carousel-inner">
-
+            <?php foreach($banners as $banner){ 
+            
+                if ($banner->id=1){  ?>
             <div class="carousel-item active">
                 <iframe width="100%" src="upload/tb_banners/banner_vdo.mp4 ?>" autoplay title="YouTube video player"
                     frameborder="0" allow="autoplay" allowfullscreen></iframe>
-            </div>
-
-            <?php foreach($banners as $banner){ ?>
-
-            <div class="carousel-item">
-                <?php if ($banner->id = 0) {
-                    continue;
-                } ?>
-                <img src="upload/tb_banners/<?php echo $banner->path ?>" class="d-block w-100" alt="#">
-            </div>
+            </div> <?php break; } ?>
 
             <?php } ?>
 
+
+            <div class="carousel-item">
+                <img src="upload/tb_banners/banner1.jpeg " class="d-block w-100" alt="#">
+            </div>
+
+            <div class="carousel-item">
+                <img src="upload/tb_banners/banner2.jpeg " class="d-block w-100" alt="#">
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOurProject" data-bs-slide="prev">
             <i class="fas fa-chevron-left fa-2x"></i>
