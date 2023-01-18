@@ -78,7 +78,7 @@
     <div class="container">
         <div class="pt-3 ps-2 mb-4">
             <h5>
-                12 โครงการ
+                <?php echo $count ?> โครงการ
             </h5>
             <h6 class="text-muted">
                 สำหรับ 'บ้านเดี่ยว'
@@ -86,7 +86,8 @@
         </div>
 
         <div class="row mb-5">
-            <div class="col-lg-3 col-md-4 col-6">
+            <?php echo $html ?>
+            <!-- <div class="col-lg-3 col-md-4 col-6">
                 <a href="<?php echo front_link(12) ?>" class="productItem">
                     <img src="page/assets/img/001.png">
                     <span class="new-project">NEW PROJECT</span>
@@ -169,7 +170,7 @@
                     <span class="new-project">NEW PROJECT</span>
                     <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 

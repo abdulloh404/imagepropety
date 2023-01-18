@@ -152,8 +152,8 @@
             <li><a href="<?php echo front_link(14) ?>"><i class="fas fa-tachometer-alt"></i>&nbsp; แดชบอร์ด</a></li>
             <li><a href="<?php echo front_link(15) ?>"><i class="fas fa-image"></i>&nbsp; จัดการแบนเนอร์</a></li>
             <li><a href="<?php echo front_link(16) ?>"><i class="fas fa-building"></i>&nbsp; จัดการโครงการ</a></li>
-            <li><a href="<?php echo front_link(17) ?>"><i class="fas fa-clipboard"></i>&nbsp;
-                    จัดการข้อมูลผู้ลงทะเบียน</a></li>
+            
+            <li><a href="<?php echo front_link(17) ?>"><i class="fas fa-clipboard"></i>&nbsp;จัดการข้อมูลผู้ลงทะเบียน</a></li>
             <li><a href="<?php echo front_link(18) ?>"><i class="fas fa-star"></i></i>&nbsp; จัดการโปรโมชั่น</a></li>
             <li><a href="<?php echo front_link(19) ?>"><i class="fas fa-ad"></i>&nbsp; จัดการข่าวสารและกิจกรรม</a></li>
             <li><a href="<?php echo front_link(20) ?>"><i class="fas fa-address-card"></i>&nbsp; จัดการเกี่ยวกับเรา</a>
