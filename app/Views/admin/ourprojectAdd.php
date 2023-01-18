@@ -237,7 +237,7 @@
                         <textarea name="detail" display="none" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="my-3">
                         <h3>แบบบ้าน</h3>
                     </div>
@@ -252,7 +252,7 @@
                     <div class="col-12">
                         <textarea name="equipment" display="none" class="form-control" rows="10"></textarea>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="my-3">
                         <h3>อัลบัม</h3>
@@ -260,7 +260,7 @@
                     <input type="file" name="gallary[]" id="inp" multiple>                    
 
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="mt-3 mb-2 d-flex align-items-center">
                         <h3 class="m-0">สถานที่ใกล้เคียง</h3>
                         <div class="ms-2">
@@ -274,7 +274,7 @@
                         </div>
                         <textarea name="nearby_detail" display="none" class="form-control" rows="10"></textarea>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="">
                 <button type="reset" class="btn btn-secondary mt-3 mb-2">เคลียร์</button>

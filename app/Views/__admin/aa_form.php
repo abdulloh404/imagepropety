@@ -139,7 +139,7 @@
 								<script>
 									$(function() {
 
-										//$('.dropify').dropify();
+										$('.dropify').dropify();
 
 										
 										//
@@ -428,6 +428,73 @@
 			// 		},
 			// 	});
 		});
+	</script>
+
+<script src="page/admin-assets/js/ckeditor.js"></script>
+    <script src="admin/assets/bootstrap-fileinput/js/plugins/buffer.min.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/filetype.min.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/piexif.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/plugins/sortable.js" type="text/javascript"></script>			
+	<script src="admin/assets/bootstrap-fileinput/js/fileinput.min.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	
+	<script src="admin/assets/bootstrap-fileinput/js/locales/fr.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/js/locales/es.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/themes/fa5/theme.js" type="text/javascript"></script>
+	<script src="admin/assets/bootstrap-fileinput/themes/explorer-fa5/theme.js" type="text/javascript"></script>
+	<link href="admin/assets/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+	<link href="admin/assets/bootstrap-fileinput/themes/explorer-fa5/theme.css" media="all" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+
+    <script>
+        $("#inp").fileinput({
+            /* uploadUrl: '<?php //echo front_link( $id, 'saveMainProduct/'. $parent_id,  array(), false )?>',
+            uploadExtraData: {
+                '<?php //echo get_token('name')?>': '<?php //echo get_token('val')?>', 
+            }, */
+            // enableResumableUpload: true,
+            resizeImage: true,
+            maxImageWidth: 500,
+            maxImageHeight: 500,
+            resizePreference: 'width',
+            resizeImageQuality: 0.75,
+            showRotate: true,
+            overwriteInitial: false,					
+            showRemove: false,
+            browseOnZoneClick: false ,
+            showUpload: true,
+            uploadClass: "mainShows btn btn-default btn-secondary",
+            allowedFileExtensions: ['jpg', 'jpeg', 'png'] ,
+            rotatableFileExtensions: [],
+            initialPreviewAsData: true,
+            deleteExtraData: {
+                "<?php echo get_token('name')?>": "<?php echo get_token('val')?>",
+            },
+        
+            initialPreview: [
+                <?php echo @$img1?>
+            ],
+            initialPreviewConfig: [
+                <?php echo @$img2?>
+            ],
+            
+            
+        }).on('filesorted', function(e, params) {
+            $.ajax({
+                url : "<?php echo front_link($params['id'],'sortImageProduct' )?>",
+                type: "get",
+                data: {
+                    sort: params.stack
+                }
+            })	
+        }).on('filebeforedelete', function() {
+            var aborted = !window.confirm('Are you sure you want to delete this file?');
+            if (aborted) {
+                window.alert('File deletion was aborted! ');
+            };
+            return aborted;
+        });
 	</script>
 
 </body>

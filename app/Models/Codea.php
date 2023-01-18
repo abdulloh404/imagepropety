@@ -200,7 +200,7 @@ function uploadUrl($params = array())
 // Run action add, edit data
 function action($action_type, $pri_key = NULL, $params = array())
 {
-
+	
 	$this->request = service('request');
 
 	$k_tb_name = $this->config->tb_main;
@@ -2310,7 +2310,7 @@ function deleteImgs($params = array())
 function formProduct($params = array())
 {
 
-
+	//var_dump($params);exit;
 	$imgsBlock = '';
 	unset($_SESSION['parent_id']);
 
@@ -2789,18 +2789,33 @@ function formProduct($params = array())
 		$linksUrls = '/' . $params['parent_id'];
 	}
 	// '. $this->form_mode .'
+	$gal = [16];
+	$albuminput = '';
+	if(in_array($params['id'],$gal)){
+		$albuminput = '<div class="row">
+	<div class="my-3">
+		<h3>อัลบัม</h3>
+	</div>
+	<input type="file" name="gallary[]" id="inp" multiple>                    
+
+</div>';
+	}
+	
 	$params['form'] = '
 			<form method="POST" action="' . front_link($params['id'], 'save' . $linksUrls . '', $get = array(), $token = false) . '"  enctype="multipart/form-data" >
-			
+				
 			 
 				' . $params['secret'] . '
 				<input type="hidden" name="' . PriKey . '" value="' . $params['parent_id'] . '" />				
-				' . implode('', $keep) . '
+				' . implode('', $keep) . ''.$albuminput.'
 				<div class="form-group mb-0 mt-3 justify-content-end">
 					<div>' . implode(' ', $buttons) . '</div>
 				</div>
+				
 			</form>
 		';
+
+	
 
 
 

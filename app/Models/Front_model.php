@@ -823,14 +823,36 @@ class Front_model
         return json_encode($errors);
     }
 
-    function getProjectList(){
-        $test = '<div class="col-lg-3 col-md-4 col-6">
-        <a href="<?php echo front_link(12) ?>" class="productItem">
-            <img src="page/assets/img/001.png">
-            <span class="new-project">NEW PROJECT</span>
-            <span class="text-dark mt-2"><b>โฮมการ์เด้นวิลล์ บายพาส</b><br>ราคาเริ่มต้น 2.39 ล้านบาท<br>โซน : จอหอ-บายพาส</span>
-        </a>
-    </div>';
+    function getProjectList($params = array()){
+        $sql = "
+
+        SELECT * FROM `tb_project` WHERE 1
+		";
+        $html = array();
+        $i = 0;
+        //var_dump($this->dao->fetchAll($sql));exit;
+        foreach ($this->dao->fetchAll($sql) as $key => $val) {
+                $i++;
+                $html[] = '<div class="col-lg-3 col-md-4 col-6">
+            <a href="<?php echo front_link(12) ?>" class="productItem">
+                <img src="'.$val->cover_img.'">
+                <span class="new-project">NEW PROJECT</span>
+                <span class="text-dark mt-2"><b>'.$val->name.'</b><br>ราคาเริ่มต้น '.($val->prize/1000000).' ล้านบาท<br>โซน : '.$val->zone.'</span>
+            </a>
+        </div>';
+        }
+    $params['html'] = implode('', $html);
+    $params['count'] = $i; 
+    return $params;
+    ///return implode('', $html);
+        
+
+        
+    }
+
+    function generateProjectMenu($params=array()){
+        $params['add'] = '<a class="" href="' . front_link(357) . '"><button class="btn btn-primary m-2">เพิ่ม</button></a>';
+        return $params;
     }
 
 
