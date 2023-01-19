@@ -225,9 +225,9 @@ class Home extends BaseController
 
 						$call_user_func = call_user_func(array($this->$model, $vs->call_func), $params);
 
-						// foreach ($call_user_func as $kc => $vc) {
-						// 	$params[$kc] = $vc;
-						// }
+						foreach ($call_user_func as $kc => $vc) {
+							$params[$kc] = $vc;
+						}
 					}
 				}
 
