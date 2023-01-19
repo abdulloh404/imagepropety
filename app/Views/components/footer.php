@@ -79,6 +79,10 @@ footer div>h4 {
         align-items: center;
     }
 
+    footer div>h4 {
+        position: relative;
+    }
+
     footer div>h4::before {
         content: "";
         position: absolute;
@@ -86,8 +90,7 @@ footer div>h4 {
         bottom: 0;
         height: 1px;
         width: 70%;
-        border-bottom: 0px solid #ffffff;
-
+        border-bottom: 1px solid #ffffff;
     }
 
     .hr {
@@ -99,8 +102,8 @@ footer div>h4 {
     <div class="container-fluid">
         <div class="row d-flex align-item-center justify-content-center">
             <div
-                class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-center align-items-center mb-xl-0 mb-lg-0 mb-md-5 mb-3">
-                <div class="img-container">
+                class="col-xl-3 col-lg-5 col-md-12 col-12 d-flex justify-content-start align-items-start mb-xl-0 mb-lg-0 mb-md-5 mb-3">
+                <div class="img-container ">
                     <img src="page/assets/img/footer imp/image (23).png" class="w-100" alt="">
                     <div class="row g-1">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
@@ -119,11 +122,11 @@ footer div>h4 {
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="third-container text-center">
+                <div class="third-container text-left">
                     <h4>
                         ติดต่อเรา
                     </h4>
-                    <hr style="width:90%; text-align:center; margin:auto; padding:5px">
+                    <hr style="padding: 1px;position relative; width:50%; border-bottom: 1px solid #ffffff;">
 
                     <p class="mb-1">
                         79 หมู่ 8 ถนนมิตรภาพ-หนองคาย <br> ต.หมื่นไวย อ.เมืองนครราชสีมา จ.นครราชสีมา 30000
@@ -135,10 +138,9 @@ footer div>h4 {
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="second-container text-center">
+                <div class="second-container text-left">
                     <h4> เกี่ยวกับเรา </h4>
-                    <hr style="width:90%; text-align:center; margin:auto; padding:5px">
-
+                    <!-- <hr style="width:90%; text-align:center; margin:auto; padding:5px"> -->
                     <ul>
                         <li><a href="<?php echo front_link(11) ?>">เกี่ยวกับเรา</a></li>
                         <li><a href="<?php echo front_link(7) ?>">ข่าวสารและกิจกรรม</a></li>
@@ -148,9 +150,9 @@ footer div>h4 {
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
-                <div class="second-container text-center">
+                <div class="second-container text-left">
                     <h4> ติดตามเรา </h4>
-                    <hr style=" width:90%; color:white; text-align:center; margin:auto; padding:5px">
+                    <!-- <hr style=" width:90%; color:white; text-align:center; margin:auto; padding:5px"> -->
 
                     <div class=" social-link">
                         <a href="https://www.instagram.com/homegardenville/" target="_blank">
