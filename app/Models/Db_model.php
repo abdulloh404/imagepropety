@@ -6,15 +6,24 @@ namespace App\Models;
 
 
 use CodeIgniter\Model;
+use App\Controllers;
+use app\Config\Database;
+use App\Models\Auth_model;
+use CodeIgniter\HTTP\File;
+use CodeIgniter\Config\Services;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\Files\UploadedFile;
 use CodeIgniter\Database\ConnectionInterface;
+
 
 class Db_model extends Model
 {
 	protected $table   = 'tb_banners';
-
+	protected $request;
 	public function __destruct()
 	{
 		unset($_SESSION['fetchAll']);
+		$this->request = $request ?? service('request');
 	}
 
 	public function __construct()
@@ -27,39 +36,6 @@ class Db_model extends Model
 		$banners = $this->table('tb_banners')->get()->getResultObject();
 		return view('admin/bannerManage', ['banners' => $banners]);
 	}
-
-	function uploadBanner()
-{
-		var_dump($_REQUEST);
-
-		$file = $this->request->getFile('banner_file');
-		$banner_name = $this->request->getPost('banner_name');
-		$type_file = $this->request->getPost('type_file');
-		$description = $this->request->getPost('description');
-
-		// Move the file to a permanent location
-		// $file->move(ROOTPATH.'upload/tb_banners');
-
-		
-
-		$data = [
-			'name' => $banner_name,
-			'path' => $file,
-			'type' => $type_file,
-			'description' => $description,
-		];	
-
-}
-
-//************************************************************** */
-
-
-
-
-
-
-
-
 
 	function getRowsCount($sql)
 	{
