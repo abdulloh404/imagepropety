@@ -13,12 +13,12 @@ class Home extends BaseController
 	public function __construct()
 	{
 		parent::__construct();
-
+		
 		$this->dao = new Db_model();
 		$this->front_model = new Front_model();
 		$this->user_model = new User_model();
 		$this->ConfigForm = new ConfigForm();
-		//$this->codea = new Codea();
+		// $this->codea = new Codea();
 	}
 
 

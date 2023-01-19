@@ -13,25 +13,18 @@ use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
 use CodeIgniter\Database\ConnectionInterface;
+use Config\App;
 
-class Codea
-{
-
-
-
-
+class Codea 
+{ 
 	protected $request;
-
 	function __construct($getView = array())
 {
-
 	//echo getSkipId( 'admin_model_config_columns', 'config_columns_id', $skip = array() );exit;
-
+	// $this->load = new Loader();
 	$this->dao = new Db_model();
 	$this->form_mode = 'post';
 	$this->textarea_mode = 'ckeditor';
-
-
 	$this->getView = $getView;
 	$this->request = $request ?? service('request');
 }
@@ -39,25 +32,22 @@ class Codea
 function uploadBanner()
 {
 
-		// $file = $this->request->getFile('banner_file');
-		// $banner_name = $this->request->getPost('banner_name');
-		// $type_file = $this->request->getPost('type_file');
-		// $description = $this->request->getPost('description');
+	$config['upload_path'] = './upload/tb_banners/';
+    $config['allowed_types'] = '*';
+    $config['max_size'] = '0';
+    $config['max_width'] = '0';
+    $config['max_height'] = '0';
+    $config['encrypt_name'] = TRUE;
 
+    $this->load->library('upload', $config);
 
-		// var_dump($_REQUEST);
-		
-		// // Move the file to a permanent location
-		// // $file->move(ROOTPATH.'upload/tb_banners');
-
-		
-
-		// $data = [
-		// 	'name' => $banner_name,
-		// 	'path' => $file,
-		// 	'type' => $type_file,
-		// 	'description' => $description,
-		// ];	
+    if (!$this->upload->do_upload('file')) {
+        $error = array('error' => $this->upload->display_errors());
+        print_r($error);
+    } else {
+        $data = array('upload_data' => $this->upload->data());
+        print_r($data);
+    }
 
 }
 
